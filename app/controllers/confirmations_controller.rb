@@ -1,15 +1,17 @@
 class ConfirmationsController < ApplicationController
   def new
-    @user = User.find(session[:user_id])
+    @user = current_user
   end
 
-  def create
-    @user = User.find(params[:user_id])
-    if @user.verification_code == params[:verification_code]
-      @user.confirm!
-      session[:authenticated] = true
+  def update
+    @user = current_user
 
-      flash[:notice] = "Welcome #{user.name}!"
+    if @user.verification_code == params[:verification_code]
+
+      session[:authenticated] = true
+      @user.update_attributes(password: params[:password])
+
+      flash[:notice] = "You have successfully updated your password!"
       redirect_to root_path
     else
       flash.now[:error] = "Verification code is incorrect."

@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'
   resources :users, only: [:edit, :update, :create]
   get '/confirm' => 'confirmations#new', as: :user_confirmation
-  post '/confirm' => 'confirmations#create'
+  patch '/confirm' => 'confirmations#update'
 
 end
