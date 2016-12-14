@@ -114,8 +114,8 @@ class Seed
                                           skill_id: skill.id
                                           )
 
-    puts "Project Skill #{i}: project skill created for skill #{project_skill.skill_id} and #{project_skill.project_id} project"
-  end
+      puts "Project Skill #{i}: project skill created for skill #{project_skill.skill_id} and #{project_skill.project_id} project"
+    end
   end
 
   def create_messages
@@ -128,7 +128,7 @@ class Seed
                                 user_id: user.id,
                                 proposal_id: proposal.id,
                                 )
-    puts "Message #{i}: created for #{message.proposal_id} proposal and #{message.user_id} user"
+      puts "Message #{i}: created for #{message.proposal_id} proposal and #{message.user_id} user"
     end
   end
 
