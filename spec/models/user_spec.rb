@@ -54,7 +54,8 @@ RSpec.describe User, type: :model do
 
       it "saves emails as lower-case" do
         email = "Foo@eXamPlE.cOm"
-        user = User.create(name: "al", username: "Al", email: email, password: "password", password_confirmation: "password")
+        user = User.create!(name: "al", username: "Al", email: email, status: "active", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
+
         expect(user.email).to eq("foo@example.com")
       end
 
@@ -88,12 +89,6 @@ RSpec.describe User, type: :model do
         expect(user).to be_invalid
       end
 
-      it "is invalid without status" do
-        user = User.new(name: "al", username: "Al", email: "al@al.com", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
-
-        expect(user).to be_invalid
-      end
-
       it "is invalid without location" do
         user = User.new(name: "al", username: "Al", email: "al@al.com", status: "active", phone: "303-333-0000", password: "password", password_confirmation: "password")
 
@@ -106,11 +101,16 @@ RSpec.describe User, type: :model do
         expect(user).to be_invalid
       end
 
+      it "is valid with all attributes" do
+        user = User.new(name: "al", username: "Al", email: "al@al.com", status: "active", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
+
+        expect(user).to be_valid
+      end
     end
   end
 
   describe "relationships" do
-    let(:user) { User.new(name: "al", email: "al@al.com", password: "password", password_confirmation: "password") }
+    let(:user) { user = User.new(name: "al", username: "Al", email: "al@al.com", status: "active", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password") }
 
     it "has many user_roles" do
       expect(user).to respond_to(:user_roles)
