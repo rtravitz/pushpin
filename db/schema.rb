@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214001515) do
+ActiveRecord::Schema.define(version: 20161214003025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,18 @@ ActiveRecord::Schema.define(version: 20161214001515) do
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_proposals_on_project_id", using: :btree
     t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.float    "score"
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "giver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["giver_id"], name: "index_ratings_on_giver_id", using: :btree
+    t.index ["user_id", "giver_id"], name: "index_ratings_on_user_id_and_giver_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_ratings_on_user_id", using: :btree
   end
 
   create_table "roles", force: :cascade do |t|
@@ -102,6 +114,8 @@ ActiveRecord::Schema.define(version: 20161214001515) do
   add_foreign_key "projects", "users"
   add_foreign_key "proposals", "projects"
   add_foreign_key "proposals", "users"
+  add_foreign_key "ratings", "users"
+  add_foreign_key "ratings", "users", column: "giver_id"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
   add_foreign_key "user_skills", "skills"
