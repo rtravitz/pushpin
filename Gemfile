@@ -14,6 +14,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt'
 gem 'figaro'
 gem 'twilio-ruby'
+gem 'faraday'
+
 
 
 group :development, :test do
