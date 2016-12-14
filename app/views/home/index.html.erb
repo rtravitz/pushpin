@@ -2,3 +2,4 @@
   <%= collection_select(:skill, :skill_id, @skills, :id, :name) %>
   <%= submit_tag("Find a Professional") %>
 <% end %>
+<%= link_to "Browse Professionals", professionals_path %>

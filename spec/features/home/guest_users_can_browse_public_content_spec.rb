@@ -16,6 +16,18 @@ feature "Guest user visits the root" do
       user_list.each do |user|
         user.roles << professional
       end
+      first = user_list.first
+      last = user_list.last
+
+      visit root_path
+      click_link "Browse Professionals"
+
+      expect(current_path).to eq("/professionals")
+      expect(page).to have_content(first.name)
+      expect(page).to have_content(last.name)
+      expect(page).to have_content(first.email)
+      expect(page).to have_content(first.phone)
+      expect(page).to have_content(first.location)
     end
   end
 end
