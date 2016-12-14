@@ -4,14 +4,14 @@ class Seed
     seed = Seed.new
     seed.create_users
     seed.create_roles
-    seed.create_user_roles
+    seed.create_user_roles_professional
+    seed.create_user_roles_requester
     seed.create_projects
     seed.create_proposals
     seed.create_skills
     seed.create_user_skills
     seed.create_project_skills
     seed.create_messages
-
   end
 
   def create_users
@@ -23,7 +23,7 @@ class Seed
                           email: Faker::Internet.email,
                           phone: Faker::PhoneNumber.phone_number,
                           status: "active",
-                          password: Faker::Internet.password
+                          password_digest: Faker::Internet.password
                           )
       puts "User #{i}: #{user.name} created."
     end
@@ -37,24 +37,27 @@ class Seed
     puts "4 roles created"
   end
 
-  def create_user_roles
+  def create_user_roles_professional
     40.times do |i|
-      user = User.find(Random.new.rand(1..10))
+      user = User.find(Random.new.rand(1..40))
       role = Role.create!(title: "professional")
       user_role = UserRole.create!(
                                     user_id: user.id,
                                     role_id: role.id
                           )
-      puts "UserRole #{i}: #{user_role.user_id} created as a #{user_role.role_id} role."
+      puts "UserRole #{i}: #{user_role.user_id} user created as a #{role.title} role."
     end
+  end
+
+  def create_user_roles_requester
     60.times do |i|
-      user = User.find(Random.new.rand(1..10))
+      user = User.find(Random.new.rand(1..60))
       role = Role.create!(title: "requester")
       user_role = UserRole.create!(
                                     user_id: user.id,
                                     role_id: role.id
                           )
-      puts "UserRole #{i}: #{user_role.user_id} created as a #{user_role.role_id} role."
+      puts "UserRole #{i}: #{user_role.user_id} user created as a #{role.title} role."
     end
   end
 
@@ -66,8 +69,8 @@ class Seed
                                 user_id: user.id,
                                 status: "unassigned"
                                 )
-      end
-    puts "Project #{i}: project created for user #{project.user_id} with #{project.name}"
+      puts "Project #{i}: project created for user #{project.user_id} as #{project.name}"
+    end
   end
 
   def create_proposals
@@ -78,8 +81,9 @@ class Seed
                                   project_id: project.id,
                                   user_id: user.id
                                 )
-      end
-    puts "Proposal #{i}: proposal created for user #{proposal.user_id} and #{proposal.project_id} project"
+
+      puts "Proposal #{i}: proposal created for user #{proposal.user_id} and #{proposal.project_id} project"
+    end
   end
 
   def create_skills
@@ -90,12 +94,12 @@ class Seed
   end
 
   def create_user_skills
-    50.times do |i|
+    10.times do |i|
       user = User.find(Random.new.rand(1..10))
       skill = Skill.find(Random.new.rand(1..10))
       user_skill = UserSkill.create!(
                                       user_id: user.id,
-                                      skill_id: role.id
+                                      skill_id: skill.id
                           )
       puts "UserSkill #{i}: #{user_skill.user_id} created with #{user_skill.skill_id} skill."
     end
@@ -109,8 +113,9 @@ class Seed
                                           project_id: project.id,
                                           skill_id: skill.id
                                           )
-      end
+
     puts "Project Skill #{i}: project skill created for skill #{project_skill.skill_id} and #{project_skill.project_id} project"
+  end
   end
 
   def create_messages
@@ -123,8 +128,8 @@ class Seed
                                 user_id: user.id,
                                 proposal_id: proposal.id,
                                 )
-      end
     puts "Message #{i}: created for #{message.proposal_id} proposal and #{message.user_id} user"
+    end
   end
 
   def create_ratings
@@ -137,8 +142,10 @@ class Seed
                                 user_id: user.id,
                                 giver_id: giver.id,
                                 )
-      end
-    puts "Rating #{i}: created for #{rating.user_id} with score #{rating.sore}, given by #{rating.giver_id}"
+      puts "Rating #{i}: created for #{rating.user_id} with score #{rating.sore}, given by #{rating.giver_id}"
+    end
   end
 
 end
+
+Seed.start
