@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
 
   namespace :admin do
-    resources :users
+    get '/dashboard', to: "dashboard#show"
   end
 end
