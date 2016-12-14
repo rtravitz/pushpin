@@ -11,7 +11,11 @@ feature "Guest user visits the root" do
 
   context "they click on 'Browse Professionals'" do
     scenario "they see an index of professionals" do
-      
+      requester, professional, admin = create_list(:role, 3)
+      user_list = create_list(:user, 4)
+      user_list.each do |user|
+        user.roles << professional
+      end
     end
   end
 end
