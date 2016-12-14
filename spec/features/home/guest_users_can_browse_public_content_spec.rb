@@ -9,4 +9,9 @@ feature "Guest user visits the root" do
     expect(page).to have_content("snuggling")
   end
 
+  context "they click on 'Browse Professionals'" do
+    scenario "they see an index of professionals" do
+      
+    end
+  end
 end
