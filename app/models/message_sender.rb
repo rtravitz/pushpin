@@ -7,7 +7,7 @@ module MessageSender
     message = client.messages.create(
                                     from: ENV["twilio_number"] ,
                                     to: phone_number,
-                                    body: code
+                                    body: "Your verification code is: #{code}"
     )
     message.status == 'queued'
   end

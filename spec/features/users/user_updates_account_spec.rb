@@ -4,6 +4,8 @@ describe "User updates account information" do
   context "user resets password" do
     it "requires two factor authentication" do
       user = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+      
       visit edit_user_path(user)
 
       click_on "Send me a verification code!"
