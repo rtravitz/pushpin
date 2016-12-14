@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "home#index"
-  resources :skills, only: [:show]
+  resources :skills, only: [:index, :show]
+  get '/skills-search', to: 'skills#show'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
