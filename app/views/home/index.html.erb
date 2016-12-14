@@ -1,0 +1,4 @@
+<%= form_tag "/skills", method: "get" do %>
+  <%= collection_select(:skill, :skill_id, @skills, :id, :name) %>
+  <%= submit_tag("Find a Professional") %>
+<% end %>
