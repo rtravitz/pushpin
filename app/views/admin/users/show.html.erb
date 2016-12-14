@@ -1,0 +1,5 @@
+<h1>Your role: admin</h1>
+<h3>Users:</h3>
+<% @users.each do |user| %>
+  <%= link_to user.name, admin_edit_user_path(user) %>
+<% end %>
