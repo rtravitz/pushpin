@@ -6,8 +6,10 @@ feature "Admin deactivates a user" do
     admin = create(:user)
     admin.roles << role
 
-    visit '/'
-    save_and_open_page
+    visit login_path
+
+
+
 
     # click "Login"
   end
