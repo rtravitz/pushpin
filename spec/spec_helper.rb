@@ -1,4 +1,5 @@
 require 'capybara/rspec'
+require 'database_cleaner'
 
 DatabaseCleaner[:active_record].strategy = :truncation
 RSpec.configure do |config|
