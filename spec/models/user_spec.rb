@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "validations" do
-    context "name" do
-      it "is invalid without a name" do
-        user = User.new(email: "al@al.com", password: "password", password_confirmation: "password")
+    context "username" do
+      it "is invalid without a username" do
+        user = User.new(name: "al", email: "al@al.com", status: "active", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
 
         expect(user).to be_invalid
       end
 
       it "can not be too long" do
-        name = "a" * 51
-        user = User.new(name: name, email: "al@al.com", password: "password", password_confirmation: "password")
+        username = "a" * 51
+        user = User.new(name: "al", username: username, email: "al@al.com", status: "active", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
 
         expect(user).to be_invalid
       end
@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
 
     context "password" do
       it "is invalid without a password" do
-        user = User.new(name: "al", email: "al@al.com")
+        user = User.new(name: "al", username: "Al", email: "al@al.com", status: "active", location: "Denver", phone: "303-333-0000")
 
         expect(user).to be_invalid
       end
@@ -54,13 +54,12 @@ RSpec.describe User, type: :model do
 
       it "saves emails as lower-case" do
         email = "Foo@eXamPlE.cOm"
-        user = User.create(name: "al", email: email, password: "password", password_confirmation: "password")
-
+        user = User.create(name: "al", username: "Al", email: email, password: "password", password_confirmation: "password")
         expect(user.email).to eq("foo@example.com")
       end
 
       it "accepts valid email addresses" do
-        user = User.new(name: "al", password: "password", password_confirmation: "password")
+        user = User.new(name: "al", username: "Al", email: "al@al.com", status: "active", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
         valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
           first.last@foo.jp alice+bob@baz.cn]
 
@@ -71,7 +70,7 @@ RSpec.describe User, type: :model do
         end
 
         it "rejects invalid email addresses" do
-          user = User.new(name: "al", password: "password", password_confirmation: "password")
+          user = User.new(name: "al", username: "Al", email: "al@al.com", status: "active", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
           invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
             foo@bar_baz.com foo@bar+baz.com]
 
@@ -82,8 +81,30 @@ RSpec.describe User, type: :model do
         end
     end
 
-    context "other attibutes validation" do
-      let(:user) { User.new(name: "al", username: "Al", email: "al@al.com", status: "active", password: "password", password_confirmation: "password") }
+    context "validating other attibutes" do
+      it "is invalid without name" do
+        user = User.new(username: "Al", email: "al@al.com", status: "active", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
+
+        expect(user).to be_invalid
+      end
+
+      it "is invalid without status" do
+        user = User.new(name: "al", username: "Al", email: "al@al.com", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
+
+        expect(user).to be_invalid
+      end
+
+      it "is invalid without location" do
+        user = User.new(name: "al", username: "Al", email: "al@al.com", status: "active", phone: "303-333-0000", password: "password", password_confirmation: "password")
+
+        expect(user).to be_invalid
+      end
+
+      it "is invalid without a phone number" do
+        user = User.new(name: "al", username: "Al", email: "al@al.com", status: "active", location: "Denver", password: "password", password_confirmation: "password")
+
+        expect(user).to be_invalid
+      end
 
     end
   end
