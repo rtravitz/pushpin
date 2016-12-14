@@ -1,15 +1,21 @@
-
 class Seed
 
   def self.start
     seed = Seed.new
     seed.create_users
+    seed.create_roles
+    seed.create_user_roles
     seed.create_projects
-    # seed.create_orders
+    seed.create_proposals
+    seed.create_skills
+    seed.create_user_skills
+    seed.create_project_skills
+    seed.create_messages
+
   end
 
   def create_users
-    10.times do |i|
+    100.times do |i|
       user = User.create!(
                           name: Faker::Name.name,
                           username: Faker::Internet.user_name,
@@ -20,6 +26,35 @@ class Seed
                           password: Faker::Internet.password
                           )
       puts "User #{i}: #{user.name} created."
+    end
+  end
+
+  def create_roles
+    role = Role.create!(title: "requester")
+    role2 = Role.create!(title: "professional")
+    role3 = Role.create!(title: "admin")
+    role4 = Role.create!(title: "guest")
+    puts "4 roles created"
+  end
+
+  def create_user_roles
+    40.times do |i|
+      user = User.find(Random.new.rand(1..10))
+      role = Role.create!(title: "professional")
+      user_role = UserRole.create!(
+                                    user_id: user.id,
+                                    role_id: role.id
+                          )
+      puts "UserRole #{i}: #{user_role.user_id} created as a #{user_role.role_id} role."
+    end
+    60.times do |i|
+      user = User.find(Random.new.rand(1..10))
+      role = Role.create!(title: "requester")
+      user_role = UserRole.create!(
+                                    user_id: user.id,
+                                    role_id: role.id
+                          )
+      puts "UserRole #{i}: #{user_role.user_id} created as a #{user_role.role_id} role."
     end
   end
 
@@ -38,42 +73,72 @@ class Seed
   def create_proposals
     10.times do |i|
       user = User.find(Random.new.rand(1..10))
+      project = Project.find(Random.new.rand(1..10))
       proposal = Proposal.create!(
-                                name: Faker::Company.catch_phrase,
-                                user_id: user.id,
-                                status: "unassigned"
+                                  project_id: project.id,
+                                  user_id: user.id
                                 )
       end
-    puts "Project #{i}: project created for user #{project.user_id} with #{project.name}"
+    puts "Proposal #{i}: proposal created for user #{proposal.user_id} and #{proposal.project_id} project"
   end
 
-  create_table "proposals", force: :cascade do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_proposals_on_project_id", using: :btree
-    t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
+  def create_skills
+    10.times do |i|
+      skill = Skill.create!(name: Faker::Company.profession)
+      puts "Skill #{i}: #{skill.name} created."
+    end
   end
 
-  def create_orders
-    100.times do |i|
+  def create_user_skills
+    50.times do |i|
       user = User.find(Random.new.rand(1..10))
-      order = Order.create!(
-        amount: Faker::Commerce.price,
-        user_id: user.id
-        )
-        add_items(order)
-      puts "Order #{i}: order created for user #{order.user_id} with #{order.items.count} items."
+      skill = Skill.find(Random.new.rand(1..10))
+      user_skill = UserSkill.create!(
+                                      user_id: user.id,
+                                      skill_id: role.id
+                          )
+      puts "UserSkill #{i}: #{user_skill.user_id} created with #{user_skill.skill_id} skill."
     end
   end
 
-  private
-    def add_items(order)
-      random_num = rand(1..10)
-      random_num.times do |i|
-        item = Item.find(Random.new.rand(1..100))
-        order.items << item
+  def create_project_skills
+    10.times do |i|
+      skill = Skill.find(Random.new.rand(1..10))
+      project = Project.find(Random.new.rand(1..10))
+      project_skill = ProjectSkill.create!(
+                                          project_id: project.id,
+                                          skill_id: skill.id
+                                          )
       end
-    end
+    puts "Project Skill #{i}: project skill created for skill #{project_skill.skill_id} and #{project_skill.project_id} project"
+  end
+
+  def create_messages
+    10.times do |i|
+      user = User.find(Random.new.rand(1..10))
+      proposal = Proposal.find(Random.new.rand(1..10))
+      message = Message.create!(
+                                body: Faker::Lorem.paragraph,
+                                image_url: Faker::Avatar.image,
+                                user_id: user.id,
+                                proposal_id: proposal.id,
+                                )
+      end
+    puts "Message #{i}: created for #{message.proposal_id} proposal and #{message.user_id} user"
+  end
+
+  def create_ratings
+    10.times do |i|
+      user = User.find(Random.new.rand(1..10))
+      giver = User.find(Random.new.rand(1..10))
+      rating = Rating.create!(
+                                score: Faker::Number.decimal(2),
+                                comment: Faker::Lorem.sentence,
+                                user_id: user.id,
+                                giver_id: giver.id,
+                                )
+      end
+    puts "Rating #{i}: created for #{rating.user_id} with score #{rating.sore}, given by #{rating.giver_id}"
+  end
+
 end
