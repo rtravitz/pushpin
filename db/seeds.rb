@@ -18,12 +18,12 @@ class Seed
     100.times do |i|
       user = User.create!(
                           name: Faker::Name.name,
-                          username: Faker::Internet.user_name,
+                          username: "#{Faker::Internet.user_name}#{i}",
                           location: Faker::Address.city,
                           email: Faker::Internet.email,
                           phone: Faker::PhoneNumber.phone_number,
                           status: "active",
-                          password_digest: Faker::Internet.password
+                          password: Faker::Internet.password
                           )
       puts "User #{i}: #{user.name} created."
     end
@@ -88,7 +88,7 @@ class Seed
 
   def create_skills
     10.times do |i|
-      skill = Skill.create!(name: Faker::Company.profession)
+      skill = Skill.create!(name: "#{Faker::Company.profession}#{i}")
       puts "Skill #{i}: #{skill.name} created."
     end
   end
