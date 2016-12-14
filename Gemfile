@@ -12,6 +12,7 @@ gem 'faker'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'bcrypt'
 
 
 group :development, :test do
@@ -19,6 +20,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'pry'
 end
 
 group :development do
