@@ -35,7 +35,7 @@ RSpec.describe Skill, type: :model do
       expect(skill).to respond_to(:project_skills)
     end
 
-    it "responds to project_skills" do
+    it "responds to projects" do
       skill = Skill.create(name: "Typer")
       user = User.create(status: "active", name: "Name", username: "Uname", location: "Place", email: "e@email.com", phone: "12345667890", password_digest: "password")
       project = Project.create(user: user, name: "Name", status: "unassigned")
