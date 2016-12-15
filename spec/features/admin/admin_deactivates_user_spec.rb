@@ -10,7 +10,7 @@ feature "Admin deactivates a user" do
     requester = create(:user)
     requester.roles << requester_role
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    login(admin)
 
     visit admin_dashboard_path(admin)
 
