@@ -30,11 +30,13 @@ class PermissionsService
 
     def professional_permissions
       return true if controller == "confirmations" && action.in?(%w(new update))
+
       return true if controller == "sessions" && action == "destroy"
 
     end
 
     def requester_permissions
+      return true if controller == "requester/dashboard" && action == "show"
       return true if controller == "confirmations" && action.in?(%w(new update))
 
       return true if controller == "sessions" && action == "destroy"
