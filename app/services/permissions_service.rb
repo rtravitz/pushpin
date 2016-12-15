@@ -23,25 +23,28 @@ class PermissionsService
     def admin_permissions
       return true if controller == "admin/dashboard" && action == "show"
       return true if controller == "admin/update_user" && action.in?(%w(update_status destroy_user))
+      return true if controller == "confirmations" && action.in?(%w(new update))
       return true if controller == "sessions" && action == "destroy"
 
     end
 
     def professional_permissions
+      return true if controller == "confirmations" && action.in?(%w(new update))
       return true if controller == "sessions" && action == "destroy"
 
     end
 
     def requester_permissions
-      return true if controller == "sessions" && action == "destroy"
+      return true if controller == "confirmations" && action.in?(%w(new update))
 
+      return true if controller == "sessions" && action == "destroy"
     end
 
     def guest_permissions
       return true if controller == "home" && action == "index"
       return true if controller == "skills" && action == "show"
       return true if controller == "sessions" && action.in?(%w(new create))
-      return true if controller == "users" && action.in?(%w(new create ))
+      return true if controller == "users" && action.in?(%w(new create))
       return true if controller == "skills" && action.in?(%w(index show))
     end
 end
