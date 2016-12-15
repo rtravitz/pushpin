@@ -17,10 +17,6 @@
           <%= collection_select(:skill, :skill_id, @skills, :id, :name) %>
         <%= submit_tag("Add this skill!") %>
           <% end %>
-
-        <%#= form_for [@skill, @user_skills] do |f| %>
-        <%#= f.select_tag "Skills", options_from_collection_for_select(Skill.all, "id", "name") %>
-        <%# end %>
         <hr>
         <h5>Possible Requests:</h5>
 
