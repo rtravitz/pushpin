@@ -6,18 +6,17 @@
     <th>Name</th>
     <th>Status</th>
     <th>Change status</th>
-
   </tr>
   <% @users.each do |user| %>
   <tr>
-      <td><%= user.id %></td>
-      <td><%= user.name %></td>
-      <td><%= user.status %></td>
-      <% if user.status == "active" %>
-        <td><%= button_to "Deactivate", admin_update_user_path(user.id), method: :put %></td>
-      <% else %>
-        <td><%= button_to "Activate", admin_update_user_path(user.id), method: :put %></td>
-      <% end %>
+    <td><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.status %></td>
+    <% if user.status == "active" %>
+      <td><%= button_to "Deactivate", admin_update_user_path(user.id), method: :put %></td>
+    <% else %>
+      <td><%= button_to "Activate", admin_update_user_path(user.id), method: :put %></td>
+    <% end %>
   </tr>
   <% end %>
 </table>
