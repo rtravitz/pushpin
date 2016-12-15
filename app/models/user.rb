@@ -9,7 +9,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
 
   validates :name, presence: true
   validates :status, presence: true
@@ -20,23 +20,25 @@ class User < ApplicationRecord
   validates_confirmation_of :password
 
   has_many :user_roles
-  has_many :roles, through: :user_roles
+  has_many :roles, through: :user_roles, dependent: :destroy
   has_many :ratings
   has_many :givers, through: :ratings
   has_many :user_roles
   has_many :roles, through: :user_roles
-  has_many :user_skills
-  has_many :skills, through: :user_skills
-  has_many :projects
-  has_many :proposals
   # has_many :proposals, through: :projects
   # has_many :projects, through: :proposals
+  has_many :proposals
+  has_many :projects
   has_many :messages
   has_many :messages, through: :proposals
   has_many :user_skills
-  has_many :skills, through: :user_skills
+  has_many :skills, through: :user_skills, dependent: :destroy
 
   def self.professionals
     Role.find_by(title: "professional").users
+  end
+
+  def active?
+    status == "active"
   end
 end
