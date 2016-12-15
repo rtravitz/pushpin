@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 feature "Admin deactivates a user" do
-  scenario "admin visits dashboard" do
-
+  scenario "admin visits dashboard and deactivates a user" do
     admin_role = create(:role, title: "admin")
     admin = create(:user)
     admin.roles << admin_role
@@ -14,12 +13,12 @@ feature "Admin deactivates a user" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit admin_dashboard_path(admin)
-    
+
     expect(current_path).to eq(admin_dashboard_path(admin))
     expect(page).to have_content(admin.name)
     expect(page).to have_content(requester.name)
 
-    within "##{requester.id}" do
+    within "#update_#{requester.id}" do
       click_button "Deactivate"
     end
 

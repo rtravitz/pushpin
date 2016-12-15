@@ -6,6 +6,7 @@
     <th>Name</th>
     <th>Status</th>
     <th>Change status</th>
+    <th>Delete user?</th>
   </tr>
   <% @users.each do |user| %>
   <tr>
@@ -13,10 +14,11 @@
     <td><%= user.name %></td>
     <td><%= user.status %></td>
     <% if user.active? %>
-      <td id=<%= user.id %>><%= button_to "Deactivate", admin_update_user_path(user.id), method: :put %></td>
+      <td id=update_<%= user.id %>><%= button_to "Deactivate", admin_update_user_path(user.id), method: :put %></td>
     <% else %>
-      <td id=<%= user.id %>><%= button_to "Activate", admin_update_user_path(user.id), method: :put %></td>
+      <td id=update_<%= user.id %>><%= button_to "Activate", admin_update_user_path(user.id), method: :put %></td>
     <% end %>
+    <td id=delete_<%= user.id %>><%= button_to "Delete", admin_delete_user_path(user.id), method: :delete %></td>
   </tr>
   <% end %>
 </table>
