@@ -42,5 +42,6 @@ class PermissionsService
       return true if controller == "skills" && action == "show"
       return true if controller == "sessions" && action.in?(%w(new create))
       return true if controller == "users" && action.in?(%w(new create ))
+      return true if controller == "skills" && action == "show"
     end
 end
