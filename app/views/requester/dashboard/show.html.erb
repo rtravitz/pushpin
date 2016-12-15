@@ -2,5 +2,11 @@
 <p>Role: Requester</p>
 
 <h4>Projects</h4>
+<% @user.projects.each do |project| %>
+  <%= project.name %>
+<% end  %>
 
 <h4>Proposals</h4>
+<% @user.proposals.each do |proposal| %>
+  <%= proposal.id %>
+<% end  %>
