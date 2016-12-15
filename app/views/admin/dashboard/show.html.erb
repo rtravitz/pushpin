@@ -13,7 +13,11 @@
       <td><%= user.id %></td>
       <td><%= user.name %></td>
       <td><%= user.status %></td>
-      <td><%= button_to "Deactivate", admin_update_user_path(user.id), method: :put %></td>
+      <% if user.status == "active" %>
+        <td><%= button_to "Deactivate", admin_update_user_path(user.id), method: :put %></td>
+      <% else %>
+        <td><%= button_to "Activate", admin_update_user_path(user.id), method: :put %></td>
+      <% end %>
   </tr>
   <% end %>
 </table>
