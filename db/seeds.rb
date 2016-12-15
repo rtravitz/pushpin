@@ -41,7 +41,7 @@ class Seed
   def create_user_roles_professional
     role = Role.find_by(title: "professional")
     40.times do |i|
-      user = User.find(Random.new.rand(1..40))
+      user = User.find(i+1)
       user_role = UserRole.create!(
                                     user_id: user.id,
                                     role_id: role.id
@@ -53,7 +53,7 @@ class Seed
   def create_user_roles_requester
     role = Role.find_by(title: "requester")
     60.times do |i|
-      user = User.find(Random.new.rand(1..60))
+      user = User.find(40+i)
       user_role = UserRole.create!(
                                     user_id: user.id,
                                     role_id: role.id
