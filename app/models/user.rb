@@ -25,11 +25,14 @@ class User < ApplicationRecord
   has_many :givers, through: :ratings
   has_many :user_roles
   has_many :roles, through: :user_roles
-  has_many :user_skills
-  has_many :skills, through: :user_skills, dependent: :destroy
-
+  # has_many :proposals, through: :projects
+  # has_many :projects, through: :proposals
   has_many :proposals
   has_many :projects
+  has_many :messages
+  has_many :messages, through: :proposals
+  has_many :user_skills
+  has_many :skills, through: :user_skills, dependent: :destroy
 
   def self.professionals
     Role.find_by(title: "professional").users
