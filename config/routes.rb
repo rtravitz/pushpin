@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
 
   namespace :admin do
-    get '/dashboard', to: "dashboard#show"
+    get '/dashboard/:id', to: "dashboard#show", as: :dashboard
+    put '/dashboard/:id', to: "dashboard#update_user", as: :update_user
   end
 end
