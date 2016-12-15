@@ -20,4 +20,13 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update, :create]
   get '/confirm' => 'confirmations#new', as: :user_confirmation
   patch '/confirm' => 'confirmations#update'
+
+  namespace :requester do
+    get '/dashboard', to: "dashboard#show", as: :dashboard
+  end
+
+  namespace :professional do
+    get '/dashboard', to: 'dashboard#show', as: :dashboard
+  end
+
 end

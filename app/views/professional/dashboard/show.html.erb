@@ -1,0 +1,38 @@
+
+<%= render partial: "shared/navbar" %>
+
+<div class="container">
+  <div class="pros">
+    <h1>Welcome to Your Professional Dashboard</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Your Skills:</h4>
+        <% @professional.skills.each do |skill| %>
+        <%= skill.name %>
+        <% end %>
+
+        <h4>Add a Skill:</h4>
+
+        <%= form_tag "/professional/dashboard", method: "get" do %>
+          <%= collection_select(:skill, :skill_id, @skills, :id, :name) %>
+        <%= submit_tag("Add this skill!") %>
+          <% end %>
+        <hr>
+        <h5>Possible Requests:</h5>
+
+      </div>
+      <div class="col-md-6">
+
+        <h5>Active Projects: </h5>
+        <% @professional.projects.each do |project| %>
+        <p>Name: <%= project.name %></p>
+        <% end %>
+        <hr>
+        <h5>Proposals</h5>
+        <% @professional.proposals.each do |proposal| %>
+        <p>Project Id: <%= proposal.project_id %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
