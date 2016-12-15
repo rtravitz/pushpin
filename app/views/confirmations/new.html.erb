@@ -1,12 +1,18 @@
 
-<%= form_for @user, :url => {:controller => 'confirmations', :action => 'update'} do |f| %>
+<%= render partial: "shared/navbar" %>
 
-<%= f.label "Verification Code" %>
-<%= f.text_field :verification_code %>
+<div class="container">
 
-<%= f.label "New Password" %>
-<%= f.password_field :password %>
+  <%= form_for @user, :url => {:controller => 'confirmations', :action => 'update'} do |f| %>
 
-<%= f.submit %>
+  <%= f.label "Verification Code" %>
+  <%= f.password_field :verification_code %>
 
-<% end %>
+  <%= f.label "New Password" %>
+  <%= f.password_field :password %>
+
+  <%= f.submit %>
+
+  <% end %>
+
+</div>

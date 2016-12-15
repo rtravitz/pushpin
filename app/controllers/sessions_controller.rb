@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
 
-      redirect_to "/#{user.roles.first.title}/dashboard/#{user.id}"
+      redirect_to "/#{user.roles.first.title}/dashboard"
     else
       redirect_to '/login'
     end

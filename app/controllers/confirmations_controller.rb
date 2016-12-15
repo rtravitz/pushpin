@@ -5,8 +5,8 @@ class ConfirmationsController < ApplicationController
 
   def update
     @user = current_user
-
-    if @user.verification_code == params[:verification_code]
+      
+    if @user.verification_code == params[:user][:verification_code]
 
       session[:authenticated] = true
       @user.update_attributes(password: params[:password])
