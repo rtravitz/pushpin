@@ -3,7 +3,10 @@ require "rails_helper"
 describe "requester dashboard" do
   scenario "a requester visits their dashboard" do
     user = create(:user)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    role = Role.create(title: "requester")
+    user.roles << role
+
+    login(user)
 
     visit requester_dashboard_path(user)
 
@@ -16,9 +19,13 @@ describe "requester dashboard" do
 
   scenario "a requester sees their projects and proposals" do
     user = create(:user)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    role = Role.create(title: "requester")
+    user.roles << role
     project = user.projects.create!(name: "Name", status: "unassigned")
     proposal = user.proposals.create!(project: project)
+
+    login(user)
+    
     visit requester_dashboard_path(user)
 
     expect(page).to have_content "#{project.name}"
