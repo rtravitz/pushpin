@@ -31,4 +31,8 @@ class User < ApplicationRecord
   def self.professionals
     Role.find_by(title: "professional").users
   end
+
+  def active?
+    status == "active"
+  end
 end

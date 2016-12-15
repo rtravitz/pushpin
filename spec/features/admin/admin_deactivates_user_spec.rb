@@ -11,12 +11,10 @@ feature "Admin deactivates a user" do
     requester = create(:user)
     requester.roles << requester_role
 
-    visit login_path
-    fill_in :email, with: admin.email
-    fill_in :password, with: admin.password
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-    click_on "Login"
-
+    visit admin_dashboard_path(admin)
+    
     expect(current_path).to eq(admin_dashboard_path(admin))
     expect(page).to have_content(admin.name)
     expect(page).to have_content(requester.name)
@@ -25,8 +23,7 @@ feature "Admin deactivates a user" do
       click_button "Deactivate"
     end
 
-    requester = User.all.last.status
-    expect(requester).to eq("inactive")
-
+    requester = User.find(requester.id)
+    expect(requester.status).to eq("inactive")
   end
 end
