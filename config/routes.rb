@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   get '/confirm' => 'confirmations#new', as: :user_confirmation
   patch '/confirm' => 'confirmations#update'
 
+  namespace :professional do
+    get '/dashboard', to: 'dashboard#show', as: :dashboard
+  end
 end
