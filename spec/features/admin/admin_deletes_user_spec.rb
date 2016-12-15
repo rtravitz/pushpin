@@ -25,6 +25,7 @@ feature "Admin deletes a user" do
     end
 
     professional = User.find_by(id: professional.id)
+
     expect(professional).to eq(nil)
     expect(Skill.first).to eq(skill)
     expect(Role.last).to eq(professional_role)
