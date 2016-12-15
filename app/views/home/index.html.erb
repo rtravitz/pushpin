@@ -1,10 +1,8 @@
 <%= render partial: "shared/navbar" %>
-<div class="container">
-  <div class="text-center col-md-6 col-md-offset-3 skills-search-box">
-    <%= form_tag "/skills-search", method: "get" do %>
-      <%= collection_select(:skill, :skill_id, @skills, :id, :name, {}, {class: "form-control skill-select"}) %>
-      <br>
-      <%= submit_tag("Find a Professional", class: "btn btn-primary") %>
-    <% end %>
+<div class="jumbotron">
+  <div class="container home-content text-center">
+    <h1>Find the Right People</h1>
+    <p>Professionals on PushPin are ready to help you get all kinds of things done!</p>
+    <%= render partial: "skill_search_form" %>
   </div>
 </div>
