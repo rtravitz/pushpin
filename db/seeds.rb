@@ -12,6 +12,7 @@ class Seed
     seed.create_user_skills
     seed.create_project_skills
     seed.create_messages
+    seed.create_ratings
   end
 
   def create_users
@@ -142,7 +143,7 @@ class Seed
                                 user_id: user.id,
                                 giver_id: giver.id,
                                 )
-      puts "Rating #{i}: created for #{rating.user_id} with score #{rating.sore}, given by #{rating.giver_id}"
+      puts "Rating #{i}: created for #{rating.user_id} with score #{rating.score}, given by #{rating.giver_id}"
     end
   end
 
