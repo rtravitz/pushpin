@@ -11,6 +11,5 @@ feature "Only admin should be able to view admin dashboard" do
     visit "/admin/dashboard/#{requester.id}"
 
     expect(current_path).to eq(admin_dashboard_path(requester))
-
   end
 end
