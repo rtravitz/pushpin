@@ -1,5 +1,10 @@
-<%= form_tag "/skills-search", method: "get" do %>
-  <%= collection_select(:skill, :skill_id, @skills, :id, :name) %>
-  <%= submit_tag("Find a Professional") %>
-<% end %>
-<%= link_to "Browse Professionals", professionals_path %>
+<%= render partial: "shared/navbar" %>
+<div class="container">
+  <div class="text-center col-md-6 col-md-offset-3 skills-search-box">
+    <%= form_tag "/skills-search", method: "get" do %>
+      <%= collection_select(:skill, :skill_id, @skills, :id, :name, {}, {class: "form-control skill-select"}) %>
+      <br>
+      <%= submit_tag("Find a Professional", class: "btn btn-primary") %>
+    <% end %>
+  </div>
+</div>
