@@ -9,7 +9,7 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
 
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
 
   validates :name, presence: true
   validates :status, presence: true
@@ -30,5 +30,9 @@ class User < ApplicationRecord
 
   def self.professionals
     Role.find_by(title: "professional").users
+  end
+
+  def active?
+    status == "active"
   end
 end
