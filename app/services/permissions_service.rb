@@ -7,11 +7,11 @@ class PermissionsService
 
   def allow?
     if user.admin?
-      admin_permissions
+      registered_user_permissions || admin_permissions
     elsif user.professional?
-      professional_permissions
+      registered_user_permissions || professional_permissions
     elsif user.requester?
-      requester_permissions
+      registered_user_permissions || requester_permissions
     else
       guest_permissions
     end
@@ -20,26 +20,23 @@ class PermissionsService
   private
     attr_reader :user, :controller, :action
 
-    def admin_permissions
-      return true if controller == "admin/dashboard" && action == "show"
-      return true if controller == "admin/update_user" && action.in?(%w(update_status destroy_user))
+    def registered_user_permissions
       return true if controller == "users" && action.in?(%w(edit update))
       return true if controller == "confirmations" && action.in?(%w(new update))
       return true if controller == "sessions" && action == "destroy"
+    end
+
+    def admin_permissions
+      return true if controller == "admin/dashboard" && action == "show"
+      return true if controller == "admin/update_user" && action.in?(%w(update_status destroy_user))
     end
 
     def professional_permissions
       return true if controller == "professional/dashboard" && action == "show"
-      return true if controller == "users" && action.in?(%w(edit update))
-      return true if controller == "confirmations" && action.in?(%w(new update))
-      return true if controller == "sessions" && action == "destroy"
     end
 
     def requester_permissions
       return true if controller == "requester/dashboard" && action == "show"
-      return true if controller == "users" && action.in?(%w(edit update))
-      return true if controller == "confirmations" && action.in?(%w(new update))
-      return true if controller == "sessions" && action == "destroy"
     end
 
     def guest_permissions
