@@ -1,7 +1,7 @@
 class Admin::UpdateUserController < ApplicationController
   def update_status
     user = User.find(params[:id])
-    if user.status == "active"
+    if user.active?
       user.update_attributes(status: "inactive")
     else
       user.update_attributes(status: "active")

@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to admin_dashboard_path(user)
-      # redirect_to "/#{user.roles.first.title}/dashboard/#{user.id}"
+
+      redirect_to "/#{user.roles.first.title}/dashboard/#{user.id}"
     else
       redirect_to '/login'
     end
