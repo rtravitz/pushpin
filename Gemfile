@@ -16,9 +16,10 @@ gem 'bcrypt'
 gem 'figaro'
 gem 'twilio-ruby'
 gem 'faraday'
-gem 'rails_12factor'
 
-
+group :production do
+  gem 'rails_12factor' 
+end
 
 group :development, :test do
   gem 'byebug', platform: :mri
