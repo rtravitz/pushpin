@@ -23,3 +23,7 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
 end
+
+def login(user)
+  allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+end
