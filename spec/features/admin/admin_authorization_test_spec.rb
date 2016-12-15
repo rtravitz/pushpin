@@ -14,7 +14,7 @@ feature "Only admin should be able to view admin dashboard" do
     requester = create(:user)
     requester.roles << requester_role
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(requester)
+    login(requester)
 
     visit "/admin/dashboard/#{requester.id}"
 
@@ -27,8 +27,7 @@ feature "Only admin should be able to view admin dashboard" do
     professional = create(:user)
     professional.roles << professional_role
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(professional)
-
+    login(professional)
     visit "/admin/dashboard/#{professional.id}"
 
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
