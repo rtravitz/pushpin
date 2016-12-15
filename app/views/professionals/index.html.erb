@@ -1,8 +1,11 @@
-<% @professionals.each do |professional| %>
-  <div class="prof-card">
-    <%= professional.name %>
-    <%= professional.location %>
-    <%= professional.email %>
-    <%= professional.phone %>
-  </div>
-<% end %>
+<%= render partial: "shared/navbar" %><br>
+<div class="container">
+  <% @professionals.each do |professional| %>
+    <div class="prof-card col-md-3 col-md-offset-1 well">
+      <p><%= professional.name %></p>
+      <p><%= professional.location %></p>
+      <p><%= professional.email %></p>
+      <p><%= professional.phone %></p>
+    </div>
+  <% end %>
+</div>
