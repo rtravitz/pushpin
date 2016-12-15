@@ -20,7 +20,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password
 
   has_many :user_roles
-  has_many :roles, through: :user_roles
+  has_many :roles, through: :user_roles, dependent: :destroy
   has_many :ratings
   has_many :givers, through: :ratings
   has_many :user_roles

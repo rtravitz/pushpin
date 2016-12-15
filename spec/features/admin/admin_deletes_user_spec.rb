@@ -22,7 +22,7 @@ feature "Admin deletes a user" do
       click_button "Delete"
     end
 
-    requester = User.find(requester.id)
+    requester = User.find_by(id: requester.id)
     expect(requester).to eq(nil)
   end
 end
