@@ -16,9 +16,17 @@ feature "Admin deactivates a user" do
     fill_in :password, with: admin.password
 
     click_on "Login"
-    save_and_open_page
-    expect(current_path).to eq(admin_user_path(admin))
 
-    # click "Login"
+    expect(current_path).to eq(admin_dashboard_path(admin))
+    expect(page).to have_content(admin.name)
+    expect(page).to have_content(requester.name)
+
+    within "##{requester.id}" do
+      click_button "Deactivate"
+    end
+
+    requester = User.all.last.status
+    expect(requester).to eq("inactive")
+
   end
 end
