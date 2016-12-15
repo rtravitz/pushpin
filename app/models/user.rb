@@ -35,4 +35,16 @@ class User < ApplicationRecord
   def active?
     status == "active"
   end
+
+  def admin?
+    roles.exists?(title: "admin")
+  end
+
+  def professional?
+    roles.exists?(title: "professional")
+  end
+
+  def requester?
+    roles.exists?(title: "requester")
+  end
 end
