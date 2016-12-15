@@ -6,9 +6,11 @@ feature "Admin deletes a user" do
     admin = create(:user)
     admin.roles << admin_role
 
-    requester_role = create(:role, title: "requester")
-    requester = create(:user)
-    requester.roles << requester_role
+    professional_role = create(:role, title: "professional")
+    professional = create(:user)
+    professional.roles << professional_role
+    skill = create(:skill)
+    professional.skills << skill
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
@@ -16,13 +18,15 @@ feature "Admin deletes a user" do
 
     expect(current_path).to eq(admin_dashboard_path(admin))
     expect(page).to have_content(admin.name)
-    expect(page).to have_content(requester.name)
+    expect(page).to have_content(professional.name)
 
-    within "#delete_#{requester.id}" do
+    within "#delete_#{professional.id}" do
       click_button "Delete"
     end
 
-    requester = User.find_by(id: requester.id)
-    expect(requester).to eq(nil)
+    professional = User.find_by(id: professional.id)
+    expect(professional).to eq(nil)
+    expect(Skill.first).to eq(skill)
+    expect(Role.last).to eq(professional_role)
   end
 end
