@@ -28,5 +28,4 @@ Rails.application.routes.draw do
   namespace :professional do
     get '/dashboard', to: 'dashboard#show', as: :dashboard
   end
-
 end
