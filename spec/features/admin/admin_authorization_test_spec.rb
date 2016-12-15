@@ -2,8 +2,10 @@ require 'rails_helper'
 
 feature "Only admin should be able to view admin dashboard" do
   scenario "a guest visits admin dashboard" do
-    random_number = rand(1..10)
-    visit "/admin/dashboard/#{random_number}"
+    user = create(:user)
+    login(user)
+    
+    visit "/admin/dashboard"
 
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
     expect(page).to_not have_content("admin")
@@ -16,7 +18,7 @@ feature "Only admin should be able to view admin dashboard" do
 
     login(requester)
 
-    visit "/admin/dashboard/#{requester.id}"
+    visit "/admin/dashboard"
 
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
     expect(page).to_not have_content("admin")
@@ -28,7 +30,7 @@ feature "Only admin should be able to view admin dashboard" do
     professional.roles << professional_role
 
     login(professional)
-    visit "/admin/dashboard/#{professional.id}"
+    visit "/admin/dashboard"
 
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
     expect(page).to_not have_content("admin")
