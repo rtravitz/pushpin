@@ -45,6 +45,7 @@ class PermissionsService
     def guest_permissions
       return true if controller == "home" && action == "index"
       return true if controller == "skills" && action == "show"
+      return true if controller == "professionals" && action == "index"
       return true if controller == "sessions" && action.in?(%w(new create))
       return true if controller == "users" && action.in?(%w(new create))
       return true if controller == "skills" && action.in?(%w(index show))
