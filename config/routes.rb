@@ -13,6 +13,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/dashboard/:id', to: "dashboard#show", as: :dashboard
-    put '/dashboard/:id', to: "dashboard#update_user", as: :update_user
+    put '/update_user/:id', to: "update_user#update_status", as: :update_user
   end
 end
