@@ -29,6 +29,8 @@ class PermissionsService
     end
 
     def professional_permissions
+      return true if controller == "professional/dashboard" && action == "show"
+
       return true if controller == "confirmations" && action.in?(%w(new update))
 
       return true if controller == "sessions" && action == "destroy"
