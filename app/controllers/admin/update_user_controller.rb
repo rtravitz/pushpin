@@ -12,5 +12,6 @@ class Admin::UpdateUserController < ApplicationController
   def destroy_user
     user = User.find(params[:id])
     user.destroy
+    redirect_to admin_dashboard_path(current_user)
   end
 end
