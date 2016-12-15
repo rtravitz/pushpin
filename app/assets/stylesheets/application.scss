@@ -12,6 +12,12 @@
  *
  */
 
+$navbar-default-bg: #337AB7;
+$navbar-default-link-color: #fff;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "forms.scss";
+@import "home.scss";
+@import "navbar.scss";
+
