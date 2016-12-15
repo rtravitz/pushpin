@@ -3,7 +3,7 @@ class Admin::DashboardController < ApplicationController
     @users = User.all
   end
 
-  def edit
-    @user = User.find(params[:id])
+  def update_user
+    binding.pry
   end
 end

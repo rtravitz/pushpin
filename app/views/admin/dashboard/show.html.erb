@@ -1,0 +1,19 @@
+<h1>Your role: admin</h1>
+<h3>Users:</h3>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Change status</th>
+
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= user.status %></td>
+      <td><%= button_to "Deactivate", admin_update_user_path(user.id), method: :put %></td>
+  </tr>
+  <% end %>
+</table>
