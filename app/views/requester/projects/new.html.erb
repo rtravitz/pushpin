@@ -4,5 +4,10 @@
   <%= f.label :location %>
   <%= f.text_field :location %>
 
+  <% @skills.each do |skill| %>
+    <%= label_tag skill.name %>
+    <%= check_box_tag(:skill_id, skill.id, false, name: "project[skill_ids][]", id: "skill-#{skill.id}", include_blank: true) %>
+  <% end %>
+
   <%= f.submit("Create Project") %>
 <% end %>
