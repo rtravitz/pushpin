@@ -7,13 +7,11 @@ class PermissionsService
 
   def allow?
     if user.admin?
-      registered_user_permissions || admin_permissions
+      registered_user_permissions || admin_permissions || guest_permissions
     elsif user.professional?
-      registered_user_permissions || professional_permissions
+      registered_user_permissions || professional_permissions || guest_permissions
     elsif user.requester?
-      registered_user_permissions || requester_permissions
-    else
-      guest_permissions
+      registered_user_permissions || requester_permissions || guest_permissions
     end
   end
 
