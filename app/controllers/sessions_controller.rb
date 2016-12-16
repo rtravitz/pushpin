@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to "/#{user.roles.first.title}/dashboard"
     else
-      redirect_to '/login'
+      render :new
+      flash[:warning] = "Try again!"
     end
   end
 
