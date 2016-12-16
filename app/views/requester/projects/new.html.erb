@@ -1,0 +1,15 @@
+<%= form_for [:requester, @project] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <% @skills.each do |skill| %>
+    <%= label_tag skill.name %>
+    <%= check_box_tag(:skill_id, skill.id, false, name: "project[skill_ids][]", id: "skill-#{skill.id}", include_blank: true) %>
+  <% end %>
+
+  <%= f.submit("Create Project") %>
+<% end %>

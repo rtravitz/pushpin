@@ -4,9 +4,11 @@ feature "Professional user visits the site" do
   context "professional visits the professional dashboard" do
     it "shows the pertinent dashboard information" do
       user = create(:user)
-      skill = create(:skill)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      user.skills << skill
+      user.skills << create(:skill)
+      user.roles << create(:role, title: "professional")
+
+      login(user)
+
       visit professional_dashboard_path
 
       expect(page).to have_content("Welcome to Your Professional Dashboard")
