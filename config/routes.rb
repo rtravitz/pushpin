@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
 
   namespace :admin do
-    get '/dashboard/:id', to: 'dashboard#show', as: :dashboard
+    get '/dashboard', to: 'dashboard#show', as: :dashboard
     put '/update_user/:id', to: 'update_user#update_status', as: :update_user
     delete '/delete_user/:id', to: 'update_user#destroy_user', as: :delete_user
   end
@@ -23,10 +23,10 @@ Rails.application.routes.draw do
 
   namespace :requester do
     get '/dashboard', to: "dashboard#show", as: :dashboard
+    resources :projects, only: [:new, :create]
   end
 
   namespace :professional do
     get '/dashboard', to: 'dashboard#show', as: :dashboard
   end
-
 end
