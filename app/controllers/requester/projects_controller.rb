@@ -19,6 +19,6 @@ class Requester::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, skill_ids: [])
+    params.require(:project).permit(:name, :location, :description, skill_ids: [])
   end
 end
