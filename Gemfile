@@ -17,10 +17,6 @@ gem 'figaro'
 gem 'twilio-ruby'
 gem 'faraday'
 
-group :production do
-  gem 'rails_12factor' 
-end
-
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
@@ -40,6 +36,10 @@ end
 
 group :test do
   gem 'database_cleaner'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
