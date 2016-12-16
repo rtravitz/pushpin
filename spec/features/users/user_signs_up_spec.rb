@@ -1,7 +1,5 @@
 require 'rails_helper'
-
 feature "User signs up for an account" do
-
   scenario "requester signs up" do
     requester_role = create(:role, title: "requester")
     professional_role = create(:role, title: "professional")
