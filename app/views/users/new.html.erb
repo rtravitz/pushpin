@@ -9,6 +9,7 @@
   Phone number: <%= f.text_field :phone %>
   Password: <%= f.password_field :password %>
   Password Confirmation: <%= f.password_field :password_confirmation %>
+  <%= f.collection_select(:roles, @roles, :id, :title) %>
   <%= f.submit "Submit" %>
 
 <% end %>

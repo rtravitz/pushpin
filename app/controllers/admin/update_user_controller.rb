@@ -6,12 +6,12 @@ class Admin::UpdateUserController < ApplicationController
     else
       user.update_attributes(status: "active")
     end
-    redirect_to admin_dashboard_path(current_user)
+    redirect_to admin_dashboard_path
   end
 
   def destroy_user
     user = User.find(params[:id])
     user.destroy
-    redirect_to admin_dashboard_path(current_user)
+    redirect_to admin_dashboard_path
   end
 end
