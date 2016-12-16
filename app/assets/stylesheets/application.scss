@@ -17,6 +17,12 @@ $navbar-default-link-color: #fff;
 
 
 @import url('https://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt|Walter+Turncoat');
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand+SC');
+@import url('https://fonts.googleapis.com/css?family=Caveat+Brush');
+@import url('https://fonts.googleapis.com/css?family=Handlee');
+@import url('https://fonts.googleapis.com/css?family=Handlee|Sue+Ellen+Francisco');
+
 
 
 @import "bootstrap-sprockets";
@@ -26,6 +32,6 @@ $navbar-default-link-color: #fff;
 @import "navbar.scss";
 @import "dashboard.scss";
 
-* {
+body {
   font-family: 'Cabin', sans-serif;
 }

@@ -16,6 +16,7 @@ gem 'bcrypt'
 gem 'figaro'
 gem 'twilio-ruby'
 gem 'faraday'
+gem 'octicons_helper'
 
 
 group :production do
