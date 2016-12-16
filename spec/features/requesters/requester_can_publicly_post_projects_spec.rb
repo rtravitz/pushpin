@@ -3,10 +3,9 @@ require 'rails_helper'
 describe "As a requester" do
   it "I can post projects from my dashboard" do
     user = create(:user)
-    skill1, skill2 = create_list(:skill, 2)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-    visit requester_dashboard_path(user)
+    visit requester_dashboard_path
 
     click_link("Create New Project")
     expect(page).to have_current_path("/requester/projects/new")

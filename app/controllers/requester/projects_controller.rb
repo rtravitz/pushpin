@@ -1,12 +1,11 @@
 class Requester::ProjectsController < ApplicationController
   def new
     @project = Project.new
-    @skills = Skill.all
   end
 
   def create
     @project = Project.new(project_params)
-    @project.user = current_user
+    current_user.projects << @project
     if @project.save
       flash[:success] = "Created new project: #{@project.name}!"
       redirect_to requester_dashboard_path
