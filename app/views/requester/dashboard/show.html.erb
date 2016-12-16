@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 <%= render partial: "shared/navbar" %>
-
-
-
 
 <div class="container requester-dashboard">
   <h1>Welcome to Your Requester Dashboard</h1>
+  <%= link_to "Create New Project", new_requester_project_path, class: "btn btn-primary" %>
   <div class="container">
     <div class="row">
       <h4>Projects</h4>
@@ -13,7 +10,8 @@
       <div class="col-md-3 panel project-card">
         <h5><%= project.name %></h5>
         <p>Status: <%= project.status %></p>
-        <p>Location: project location</p>
+        <p>Location: <%= project.location %></p>
+        <p>Description: <%= project.description %></p>
       </div>
       <% end  %>
     </div>
@@ -30,22 +28,3 @@
     </div>
   </div>
 </div>
-=======
-<h2><%= @user.name %>'s Dashboard</h2>
-<p>Role: Requester</p>
-
-<%= link_to "Create New Project", new_requester_project_path, class: "btn btn-primary" %>
-<h4>Projects</h4>
-<% @user.projects.each do |project| %>
-  <%= project.name %>
-  <%= project.location %>
-  <% project.skills.each do |skill| %>
-    <%= skill.name %>
-  <% end %>
-<% end  %>
-
-<h4>Proposals</h4>
-<% @user.proposals.each do |proposal| %>
-  <%= proposal.id %>
-<% end  %>
->>>>>>> becbfc9349371c249a6661e4368c61f350646d51
