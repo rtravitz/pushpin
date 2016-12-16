@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
-    requester = Role.create(title: "requester")
-    professional = Role.create(title: "professional")
-    @roles = [requester, professional]
+    @roles = Role.signup_roles
   end
 
   def create
