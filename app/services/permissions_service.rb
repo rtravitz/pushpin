@@ -12,6 +12,9 @@ class PermissionsService
       registered_user_permissions || professional_permissions || guest_permissions
     elsif user.requester?
       registered_user_permissions || requester_permissions || guest_permissions
+      # we have to keep the below else clause here otherwise the guests will not see anything
+    else
+      guest_permissions
     end
   end
 
@@ -43,6 +46,7 @@ class PermissionsService
       return true if controller == "skills" && action == "show"
       return true if controller == "professionals" && action == "index"
       return true if controller == "sessions" && action.in?(%w(new create))
+      # a registered user should not be authorized for line 50
       return true if controller == "users" && action.in?(%w(new create))
       return true if controller == "skills" && action.in?(%w(index show))
     end
