@@ -12,7 +12,7 @@ feature "Admin deletes a user" do
     skill = create(:skill)
     professional.skills << skill
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+    login(admin)
 
     visit admin_dashboard_path(admin)
 
@@ -25,6 +25,7 @@ feature "Admin deletes a user" do
     end
 
     professional = User.find_by(id: professional.id)
+
     expect(professional).to eq(nil)
     expect(Skill.first).to eq(skill)
     expect(Role.last).to eq(professional_role)
