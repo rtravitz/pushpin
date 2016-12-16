@@ -6,6 +6,9 @@
 <% @user.projects.each do |project| %>
   <%= project.name %>
   <%= project.location %>
+  <% project.skills.each do |skill| %>
+    <%= skill.name %>
+  <% end %>
 <% end  %>
 
 <h4>Proposals</h4>

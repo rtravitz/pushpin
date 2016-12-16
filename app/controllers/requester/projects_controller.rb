@@ -1,6 +1,7 @@
 class Requester::ProjectsController < ApplicationController
   def new
     @project = Project.new
+    @skills = Skill.all
   end
 
   def create
@@ -18,6 +19,6 @@ class Requester::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :location)
+    params.require(:project).permit(:name, skill_ids: [])
   end
 end
