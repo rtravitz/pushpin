@@ -1,17 +1,30 @@
-<h2><%= @user.name %>'s Dashboard</h2>
-<p>Role: Requester</p>
+<%= render partial: "shared/navbar" %>
 
-<%= link_to "Create New Project", new_requester_project_path, class: "btn btn-primary" %>
-<h4>Projects</h4>
-<% @user.projects.each do |project| %>
-  <%= project.name %>
-  <%= project.location %>
-  <% project.skills.each do |skill| %>
-    <%= skill.name %>
-  <% end %>
-<% end  %>
-
-<h4>Proposals</h4>
-<% @user.proposals.each do |proposal| %>
-  <%= proposal.id %>
-<% end  %>
+<div class="container requester-dashboard">
+  <h1>Welcome to Your Requester Dashboard</h1>
+  <%= link_to "Create New Project", new_requester_project_path, class: "btn btn-primary" %>
+  <div class="container">
+    <div class="row">
+      <h4>Projects</h4>
+      <% @user.projects.each do |project| %>
+      <div class="col-md-3 panel project-card">
+        <h5><%= project.name %></h5>
+        <p>Status: <%= project.status %></p>
+        <p>Location: <%= project.location %></p>
+        <p>Description: <%= project.description %></p>
+      </div>
+      <% end  %>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <h4>Proposals</h4>
+      <% @user.proposals.each do |proposal| %>
+        <div class="col-md-3 panel proposal-card">
+          <h5>Proposal ID: <%= proposal.id %></h5>
+          <p>Proposed by: <%= proposal.user.name %></p>
+        </div>
+      <% end  %>
+    </div>
+  </div>
+</div>
