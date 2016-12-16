@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+    @roles = Role.signup_roles
   end
 
   def create
+    role = Role.find(params["user"]["roles"])
     user = User.new(user_params)
     if user.save
+      user.roles << role
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to "/#{user.roles.first.title}/dashboard"
     else
       redirect_to '/signup'
     end
