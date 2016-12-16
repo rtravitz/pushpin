@@ -1,9 +1,14 @@
 <h2><%= @user.name %>'s Dashboard</h2>
 <p>Role: Requester</p>
 
+<%= link_to "Create New Project", new_requester_project_path, class: "btn btn-primary" %>
 <h4>Projects</h4>
 <% @user.projects.each do |project| %>
   <%= project.name %>
+  <%= project.location %>
+  <% project.skills.each do |skill| %>
+    <%= skill.name %>
+  <% end %>
 <% end  %>
 
 <h4>Proposals</h4>

@@ -17,8 +17,6 @@ gem 'figaro'
 gem 'twilio-ruby'
 gem 'faraday'
 
-
-
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
