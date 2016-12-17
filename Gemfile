@@ -16,6 +16,14 @@ gem 'bcrypt'
 gem 'figaro'
 gem 'twilio-ruby'
 gem 'faraday'
+gem 'octicons_helper'
+
+
+
+group :production do
+  gem 'rails_12factor'
+end
+
 
 group :development, :test do
   gem 'byebug', platform: :mri

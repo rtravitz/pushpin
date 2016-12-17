@@ -7,10 +7,11 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+
       redirect_to "/#{user.roles.first.title}/dashboard"
     else
+      flash.now[:warning] = "Something went wrong. Try again"
       render :new
-      flash[:warning] = "Try again!"
     end
   end
 
