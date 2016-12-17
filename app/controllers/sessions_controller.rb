@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
 
       redirect_to "/#{user.roles.first.title}/dashboard"
     else
-      flash.now[:error] = "Something went wrong. Try again"
-      redirect_to '/login'
+      flash.now[:warning] = "Something went wrong. Try again"
+      render :new
     end
   end
 
