@@ -15,7 +15,6 @@ feature "Professional user visits the site" do
       expect(page).to have_content(user.skills.first.name)
       expect(page).to have_content("Your Skills")
       expect(page).to have_content("Possible Requests")
-      #need to add the above functionality
       expect(page).to have_content("Active Projects")
     end
   end
