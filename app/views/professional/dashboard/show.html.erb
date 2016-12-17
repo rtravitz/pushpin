@@ -5,27 +5,28 @@
       <div class="col-md-6">
         <h4>Your Skills:</h4>
         <% @professional.skills.each do |skill| %>
-        <%= skill.name %>
+        <p><%= skill.name %></p>
         <% end %>
 
         <h4>Add a Skill:</h4>
-
         <%= form_tag "/professional/dashboard", method: "get" do %>
           <%= collection_select(:skill, :skill_id, @skills, :id, :name) %>
         <%= submit_tag("Add this skill!") %>
           <% end %>
         <hr>
+
         <h5>Possible Requests:</h5>
         <% @possible_projects.each do |project| %>
         <%= project.name %>
         <% end %>
       </div>
+
       <div class="col-md-6">
 
         <h5>Active Projects: </h5>
         <div class="panel">
           <% @professional.projects.each do |project| %>
-          <p>Name: <%= project.name %></p>
+          <p>Name: <%= link_to project.name %></p>
           <p>Status: <%= project.status %></p>
           <% end %>
         </div>
