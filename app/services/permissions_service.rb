@@ -38,7 +38,7 @@ class PermissionsService
 
     def requester_permissions
       return true if controller == "requester/dashboard" && action == "show"
-      return true if controller == "requester/projects" && action.in?(%w(new create))
+      return true if controller == "requester/projects" && action.in?(%w(new create show))
     end
 
     def guest_permissions

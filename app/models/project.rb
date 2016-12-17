@@ -9,6 +9,7 @@ class Project < ApplicationRecord
   validates :name, presence: true
   validates :user, presence: true
 
+
   # def self.possible_projects(user_id)
   #
   #   user = User.find(user_id)
@@ -16,4 +17,13 @@ class Project < ApplicationRecord
   #     skill.projects
   #   end
   # end
+
+  validates :slug, uniqueness: true
+
+  before_validation :generate_slug
+
+  def generate_slug
+    self.slug = "#{name.parameterize}-#{self.id}"
+  end
+
 end

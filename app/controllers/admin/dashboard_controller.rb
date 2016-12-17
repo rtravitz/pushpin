@@ -1,5 +1,5 @@
 class Admin::DashboardController < ApplicationController
   def show
-    @users = User.all
+    @users = User.all.sort
   end
 end
