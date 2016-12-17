@@ -16,6 +16,10 @@ class Requester::ProjectsController < ApplicationController
     end
   end
 
+  def show
+    @project = Project.find_by(slug: params[:project])
+  end
+
   private
 
   def project_params

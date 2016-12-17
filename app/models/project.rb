@@ -8,4 +8,11 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
   validates :user, presence: true
+  validates :slug, uniqueness: true
+
+  before_validation :generate_slug
+
+  def generate_slug
+    self.slug = "#{name.parameterize}-#{self.id}"
+  end
 end
