@@ -12,8 +12,10 @@ class Project < ApplicationRecord
 
   before_validation :generate_slug
 
+  scope :unassigned, -> { where(status: "unassigned") }
+
   def generate_slug
-    self.slug = "#{name.parameterize}-#{self.id}"
+    self.slug = "#{name.parameterize}-#{self.id}" if self.name
   end
 
 end
