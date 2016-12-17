@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
         expect(user).to be_invalid
       end
 
-      it "password cannot be too short" do
+      it "cannot be too short" do
         user = User.new(name: "al", email: "al@al.com", password: "pass", password_confirmation: "pass")
 
         expect(user).to be_invalid
@@ -38,21 +38,21 @@ RSpec.describe User, type: :model do
         expect(user).to be_invalid
       end
 
-      it "email address should be unique" do
+      it "address should be unique" do
         User.create(name: "al", email: "al@al.com", password: "password", password_confirmation: "password")
         user = User.create(name: "ali", email: "al@al.com", password: "password1", password_confirmation: "password1")
 
         expect(user).to be_invalid
       end
 
-      it "email cannot be too long" do
+      it "cannot be too long" do
         email = "a" * 244 + "@example.com"
         user = User.new(name: "al", email: email, password: "password", password_confirmation: "password")
 
         expect(user).to be_invalid
       end
 
-      it "saves emails as lower-case" do
+      it "is saved as lower-case" do
         email = "Foo@eXamPlE.cOm"
         user = User.create!(name: "al", username: "Al", email: email, status: "active", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
 

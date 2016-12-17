@@ -8,8 +8,10 @@ class UsersController < ApplicationController
     role = Role.find(params["user"]["roles"])
     user = User.new(user_params)
     if user.save
+      
       user.roles << role
       session[:user_id] = user.id
+
       redirect_to "/#{user.roles.first.title}/dashboard"
     else
       redirect_to '/signup'
