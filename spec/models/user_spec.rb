@@ -193,7 +193,8 @@ RSpec.describe User, type: :model do
         user1, user2 = create_list(:user, 2)
         user1.roles << prof
         user2.roles << prof
-        user3 = create(:user).roles << requester
+        user3 = create(:user)
+        user3.roles << requester
 
         professionals = User.professionals
 
@@ -213,6 +214,43 @@ RSpec.describe User, type: :model do
 
         expect(user.active?).to be_falsey
       end
+    end
+
+    context ".admin?" do
+      it "returns true if user is admin" do
+        role = create(:role, title: "admin")
+        user = create(:user)
+        user.roles << role
+
+        expect(user.admin?).to be_truthy
+      end
+
+      it "returns false if user is admin" do
+        role = create(:role, title: "requester")
+        user = create(:user)
+        user.roles << role
+
+        expect(user.admin?).to be_falsey
+      end
+    end
+
+    context ".professional?" do
+      it "returns true if user is professional" do
+        role = create(:role, title: "professional")
+        user = create(:user)
+        user.roles << role
+
+        expect(user.professional?).to be_truthy
+      end
+
+      it "returns false if user is professional" do
+        role = create(:role, title: "admin")
+        user = create(:user)
+        user.roles << role
+
+        expect(user.professional?).to be_falsey
+      end
+
 
     end
   end
