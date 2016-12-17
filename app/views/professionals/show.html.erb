@@ -1,0 +1,11 @@
+<div class="container">
+<h2>All about <%= @professional.name %>:</h2>
+  <p>Location: <%= @professional.location %></p>
+  <% @professional.skills.each do |skill| %>
+  <p>Skills:<%= skill.name %><p/>
+  <% end %>
+  <p>Contact this pro:<p>
+    <p><%= @professional.email %><p/>
+    <p><%= @professional.phone %><p/>
+  <p><%= link_to "Back to the full Pro Index", professionals_path %></p>
+</div>
