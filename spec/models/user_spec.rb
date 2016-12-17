@@ -147,44 +147,59 @@ RSpec.describe User, type: :model do
     it "has many skills" do
       expect(user).to respond_to(:skills)
     end
-
-
-
   end
 
-  describe "#possible_projects_professional" do
-    it "returns available projects by skill" do
-      user = create(:user)
-      user.roles << create(:role, title: "professional")
-      skill_1, skill_2, skill_3 = create_list(:skill, 3)
-      user.skills << [skill_1, skill_2]
-      project_1, project_2, project_3 = create_list(:project, 3)
-      project_1.skills << skill_1
-      project_2.skills << skill_2
-      project_3.skills << skill_3
+  describe "user methods" do
+    context "#possible_projects_professional" do
+      it "returns available projects by skill" do
+        user = create(:user)
+        user.roles << create(:role, title: "professional")
+        skill_1, skill_2, skill_3 = create_list(:skill, 3)
+        user.skills << [skill_1, skill_2]
+        project_1, project_2, project_3 = create_list(:project, 3)
+        project_1.skills << skill_1
+        project_2.skills << skill_2
+        project_3.skills << skill_3
 
-      possible_projects = user.possible_projects_professional
+        possible_projects = user.possible_projects_professional
 
-      expect(user.skills).to include(skill_1, skill_2)
-      expect(possible_projects).to include(project_1, project_2)
-      expect(possible_projects).to_not include(project_3)
+        expect(user.skills).to include(skill_1, skill_2)
+        expect(possible_projects).to include(project_1, project_2)
+        expect(possible_projects).to_not include(project_3)
+      end
+
+      it "does not return assigned projects" do
+        user = create(:user)
+        user.roles << create(:role, title: "professional")
+        skill_1, skill_2, skill_3 = create_list(:skill, 3)
+        user.skills << [skill_1, skill_2, skill_3]
+        project_1, project_2 = create_list(:project, 2)
+        project_3 = create(:project, status: "assigned")
+        project_1.skills << skill_1
+        project_2.skills << skill_2
+        project_3.skills << skill_3
+
+        possible_projects = user.possible_projects_professional
+
+        expect(possible_projects).to_not include(project_3)
+        expect(possible_projects).to include(project_1, project_2)
+      end
     end
 
-    it "does not return assigned projects" do
-      user = create(:user)
-      user.roles << create(:role, title: "professional")
-      skill_1, skill_2, skill_3 = create_list(:skill, 3)
-      user.skills << [skill_1, skill_2, skill_3]
-      project_1, project_2 = create_list(:project, 2)
-      project_3 = create(:project, status: "assigned")
-      project_1.skills << skill_1
-      project_2.skills << skill_2
-      project_3.skills << skill_3
+    context ".professionals" do
+      it "returns an array of professional users" do
+        prof = create(:role, title: "professional")
+        requester= create(:role, title: "requester")
+        user1, user2 = create_list(:user, 2)
+        user1.roles << prof
+        user2.roles << prof
+        user3 = create(:user).roles << requester
 
-      possible_projects = user.possible_projects_professional
+        professionals = User.professionals
 
-      expect(possible_projects).to_not include(project_3)
-      expect(possible_projects).to include(project_1, project_2)
+        expect(professionals).to include(user1, user2)
+        expect(professionals).to_not include (user3)
+      end
     end
   end
 end
