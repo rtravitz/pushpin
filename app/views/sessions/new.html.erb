@@ -8,5 +8,8 @@
       <%= password_field_tag :password %>
       <%= submit_tag "Login", class: "btn btn-primary" %>
     <% end %>
+    <p id="login">Don't have an account?
+      <%= link_to "Sign up here", signup_path, method: :get%>
+    </p>
   </div>
 </div>
