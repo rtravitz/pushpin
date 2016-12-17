@@ -15,10 +15,8 @@
           <% end %>
         <hr>
 
-        <h5>Possible Requests:</h5>
-        <% @possible_projects.each do |project| %>
-        <%= project.name %>
-        <% end %>
+         <%= link_to "Find Work",  professional_projects_path %> 
+
       </div>
 
       <div class="col-md-6">
