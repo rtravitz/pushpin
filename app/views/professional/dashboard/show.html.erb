@@ -16,7 +16,9 @@
           <% end %>
         <hr>
         <h5>Possible Requests:</h5>
-
+        <% @possible_projects.each do |project| %>
+        <%= project.name %>
+        <% end %>
       </div>
       <div class="col-md-6">
 
