@@ -2,48 +2,51 @@
   padding: 20px;
 }
 
-@mixin box_sizing {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
-}
+.form {
 
-body {
-  padding-top: 60px;
-}
+  @mixin box_sizing {
+    -moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:         border-box;
+  }
 
-input, textarea, select {
-  padding-top: 10px;
-  font-size: 1.3em;
-  line-height: 1em;
-  border: 2px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  @include box_sizing;
-}
+  // body {
+  //   padding-top: 60px;
+  // }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
+  input, textarea, select {
+    padding-top: 10px;
+    font-size: 1.3em;
+    line-height: 1em;
+    border: 2px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    @include box_sizing;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  padding-top: 10px;
-  line-height: 1;
-  text-align: center;
-}
+  h1 {
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
+  h1, h2, h3, h4, h5, h6 {
+    padding-top: 10px;
+    line-height: 1;
+    text-align: center;
+  }
 
-#login {
-  padding-top: 15px;
-  text-align: center;
+  p {
+    font-size: 1.1em;
+    line-height: 1.7em;
+  }
+
+  #login {
+    padding-top: 15px;
+    text-align: center;
+  }
 }

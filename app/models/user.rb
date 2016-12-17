@@ -53,4 +53,8 @@ class User < ApplicationRecord
   def requester?
     roles.exists?(title: "requester")
   end
+
+  def possible_projects_professional
+    Project.unassigned.joins(skills: :users).where("user_skills.user_id = #{id}")
+  end
 end
