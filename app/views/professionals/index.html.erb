@@ -1,7 +1,7 @@
 <div class="container">
   <% @professionals.each do |professional| %>
     <div class="prof-card col-md-3 col-md-offset-1 well">
-      <p><%= professional.name %></p>
+      <p><%= link_to professional.name, professional_path(professional) %></p>
       <p><%= professional.location %></p>
       <p><%= professional.email %></p>
       <p><%= professional.phone %></p>
