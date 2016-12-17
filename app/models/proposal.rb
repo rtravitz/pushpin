@@ -5,8 +5,4 @@ class Proposal < ApplicationRecord
   has_many :messages
   has_many :users, through: :messages
 
-  def projects_with_skill_matches
-
-  end
-
 end

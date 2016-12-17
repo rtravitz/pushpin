@@ -8,4 +8,12 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
   validates :user, presence: true
+
+  # def self.possible_projects(user_id)
+  #
+  #   user = User.find(user_id)
+  #   user.skills.each do |skill|
+  #     skill.projects
+  #   end
+  # end
 end
