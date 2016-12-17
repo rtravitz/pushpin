@@ -14,7 +14,6 @@ feature "Professional user visits the site" do
       expect(page).to have_content("Welcome to Your Professional Dashboard")
       expect(page).to have_content(user.skills.first.name)
       expect(page).to have_content("Your Skills")
-      expect(page).to have_content("Possible Requests")
       expect(page).to have_content("Active Projects")
     end
   end

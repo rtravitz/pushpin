@@ -10,6 +10,7 @@ feature "As a logged in professional, on my dashboard" do
     project_1, project_2, project_3 = create_list(:project, 3)
     project_1.skills << skill_2
     project_3.skills << skill_2
+    user.skills << skill_2
 
     visit professional_dashboard_path
     click_on "Find Work"
