@@ -18,13 +18,6 @@ gem 'twilio-ruby'
 gem 'faraday'
 gem 'octicons_helper'
 
-
-
-group :production do
-  gem 'rails_12factor'
-end
-
-
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
@@ -32,7 +25,6 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'pry'
-  gem 'launchy'
 end
 
 group :development do
