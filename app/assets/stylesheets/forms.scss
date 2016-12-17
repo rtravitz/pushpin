@@ -2,7 +2,6 @@
   padding: 20px;
 }
 
-
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -34,10 +33,17 @@ h1 {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  padding-top: 10px;
   line-height: 1;
+  text-align: center;
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+}
+
+#login {
+  padding-top: 15px;
+  text-align: center;
 }
