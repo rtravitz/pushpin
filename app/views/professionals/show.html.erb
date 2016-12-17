@@ -1,11 +1,19 @@
 <div class="container">
-<h2>All about <%= @professional.name %>:</h2>
-  <p>Location: <%= @professional.location %></p>
-  <% @professional.skills.each do |skill| %>
-  <p>Skills:<%= skill.name %><p/>
-  <% end %>
-  <p>Contact this pro:<p>
-    <p><%= @professional.email %><p/>
-    <p><%= @professional.phone %><p/>
-  <p><%= link_to "Back to the full Pro Index", professionals_path %></p>
+  <div class="professionalshow">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @professional.name %>:</h3>
+      </div>
+      <div class="panel-body">
+        <p>Location: <%= @professional.location %></p>
+        <p>Skills: <% @professional.skills.each do |skill| %>
+        <%= skill.name %><p/>
+        <% end %>
+        <p>Contact this pro:<p>
+          <p><%= @professional.email %><p/>
+          <p><%= @professional.phone %><p/>
+        <p><%= link_to "Back to the full Pro Index", professionals_path %></p>
+      </div>
+    </div>
+</div>
 </div>
