@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :skills, only: [:index, :show]
 
   get '/skills-search', to: 'skills#show'
-  get '/professionals', to: 'professionals#index', as: 'professionals'
+
+  # get '/professionals', to: 'professionals#index', as: 'professionals'
+  # get '/professionals/:id', to: 'professionals#show'
+  resources :professionals, only: [:index, :show]
+
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
@@ -29,5 +33,6 @@ Rails.application.routes.draw do
 
   namespace :professional do
     get '/dashboard', to: 'dashboard#show', as: :dashboard
+    resources :skills, only: [:new, :create]
   end
 end
