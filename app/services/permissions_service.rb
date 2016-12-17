@@ -45,6 +45,8 @@ class PermissionsService
       return true if controller == "home" && action == "index"
       return true if controller == "skills" && action == "show"
       return true if controller == "professionals" && action == "index"
+      return true if controller == "professionals" && action == "show"
+
       return true if controller == "sessions" && action.in?(%w(new create))
       # a registered user should not be authorized for line 50
       return true if controller == "users" && action.in?(%w(new create))
