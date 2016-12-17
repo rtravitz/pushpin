@@ -34,11 +34,11 @@ $navbar-default-link-color: #fff;
 @import "forms.scss";
 @import "home.scss";
 @import "navbar.scss";
-
 @import "dashboard.scss";
+@import "requester_dashboard.scss";
+@import "admin_dashboard.scss";
+@import "professional_show.scss";
 
 body {
   font-family: 'Cabin', sans-serif;
 }
-@import "requester_dashboard.scss";
-@import "admin_dashboard.scss";
