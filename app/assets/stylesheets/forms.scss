@@ -2,7 +2,7 @@
   padding: 20px;
 }
 
-.signup-form, .signup-login {
+.form {
 
   @mixin box_sizing {
     -moz-box-sizing:    border-box;
@@ -10,9 +10,9 @@
     box-sizing:         border-box;
   }
 
-  body {
-    padding-top: 60px;
-  }
+  // body {
+  //   padding-top: 60px;
+  // }
 
   input, textarea, select {
     padding-top: 10px;
