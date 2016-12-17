@@ -5,11 +5,8 @@ class Proposal < ApplicationRecord
   has_many :messages
   has_many :users, through: :messages
 
-  def self.projects_with_skill_matches
-    binding.pry
-    project.skills.each do |skill|
-      skill.name
-    end
+  def projects_with_skill_matches
+
   end
 
 end
