@@ -201,5 +201,19 @@ RSpec.describe User, type: :model do
         expect(professionals).to_not include (user3)
       end
     end
+
+    context ".active?" do
+      it "returns true if active" do
+        user = create(:user, status: "active")
+
+        expect(user.active?).to be_truthy
+      end
+      it "returns false if inactive" do
+        user = create(:user, status: "inactive")
+
+        expect(user.active?).to be_falsey
+      end
+
+    end
   end
 end
