@@ -127,6 +127,29 @@ RSpec.describe User, type: :model do
     it "has many givers" do
       expect(user).to respond_to(:givers)
     end
+
+    it "has many proposals" do
+      expect(user).to respond_to(:proposals)
+    end
+
+    it "has many projects" do
+      expect(user).to respond_to(:projects)
+    end
+
+    it "has many messages" do
+      expect(user).to respond_to(:messages)
+    end
+
+    it "has many user_skills" do
+      expect(user).to respond_to(:user_skills)
+    end
+
+    it "has many skills" do
+      expect(user).to respond_to(:skills)
+    end
+
+
+
   end
 
   describe "#possible_projects_professional" do
