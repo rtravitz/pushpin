@@ -6,15 +6,18 @@ class PermissionsService
   end
 
   def allow?
+    return guest_permissions if guest_permissions
     if user.admin?
-      registered_user_permissions || admin_permissions || guest_permissions
-    elsif user.professional?
-      registered_user_permissions || professional_permissions || guest_permissions
-    elsif user.requester?
-      registered_user_permissions || requester_permissions || guest_permissions
-      # we have to keep the below else clause here otherwise the guests will not see anything
-    else
-      guest_permissions
+      permission = admin_permissions
+      return permission if permission
+    end
+    if user.professional?
+      permission = professional_permissions
+      return permission if permission
+    end
+    if user.requester?
+      permission = requester_permissions
+      return permission if permission
     end
   end
 
