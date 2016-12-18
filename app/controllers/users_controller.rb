@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     @user = only_current_user
-    @roles = Role.signup_roles
+
     ConfirmationSender.send_confirmation_to(@user)
     redirect_to user_confirmation_path
   end

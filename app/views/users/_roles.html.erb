@@ -3,4 +3,6 @@
     <ul>
       <li><%= role.title %></li>
     </ul>
-  <% end %>
+    <% end %>
+    You can add the following role to your account:
+    <%= f.collection_select(:roles, @user.role_to_add, :id, :title, include_blank: true) %>
