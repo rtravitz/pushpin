@@ -15,7 +15,7 @@
           <% end %>
         <hr>
 
-         <%= button_to "Find Work",  professional_projects_path, method: :get, class: "btn btn-warning" %> 
+         <%= button_to "Find Work",  professional_projects_path, method: :get, class: "btn btn-warning" %>
 
       </div>
 
@@ -32,6 +32,7 @@
         <h5>Proposals</h5>
         <% @professional.proposals.each do |proposal| %>
         <p>ID: <%= proposal.project_id %>   </p>
+        <p>Project: <%= proposal.project.name %></p>
         <p>Date Submitted: <%= proposal.created_at %> </p>
         <% end %>
       </div>
