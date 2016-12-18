@@ -13,14 +13,9 @@
         <%= f.text_field :location %>
         Phone number:
         <%= f.text_field :phone %>
-        <h4>
-          Your role(s):
-          <% @user.roles.each do |role| %>
-            <%= role.title %>,
-          <% end %>
-        </h4>
 
-        <%#= f.collection_select(:roles, @roles, :id, :title) %>
+        <%= render partial: "roles" %>
+
         To change password:
         <%= f.submit "Send me a verification code!", class: "btn btn-primary" %>
         <%= f.submit "Submit", class: "btn btn-primary" %>

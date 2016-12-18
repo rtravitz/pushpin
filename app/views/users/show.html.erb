@@ -10,7 +10,9 @@
       <p>
         Role(s):
         <% @user.roles.each do |role| %>
-          <%= role.title %>,
+          <ul>
+            <li><%= role.title %></li>
+          </ul>
         <% end %>
       </p>
 
