@@ -25,7 +25,10 @@ describe "User updates account information" do
     it "updated information is stored" do
       user = create(:user)
 
-      visit edit_user_path
+      login(user)
+
+      visit
+
     end
   end
 
