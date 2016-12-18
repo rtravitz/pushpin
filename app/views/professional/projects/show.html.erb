@@ -8,3 +8,5 @@
   <% @project.skills.each do |skill| %>
     <%= skill.name%>
   <% end %></p>
+
+<%= button_to "Create a Proposal", professional_proposals_new_path(project: @project.id), method: :get %>
