@@ -2,7 +2,6 @@ class Professional::ProposalsController < ApplicationController
 
   def new
     @proposal = Proposal.new
-    binding.pry
     @project = Project.find(params[:project])
   end
 
