@@ -1,4 +1,4 @@
 <h3>Potential Projects</h3>
 <% @projects.each do |project| %>
-<%= project.name %>
+<%= link_to project.name, professional_project_path(project: project.slug) %>
 <% end %>
