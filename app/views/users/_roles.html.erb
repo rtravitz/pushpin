@@ -1,0 +1,6 @@
+<h4>Your role(s):</h4>
+  <% @user.roles.each do |role| %>
+    <ul>
+      <li><%= role.title %></li>
+    </ul>
+  <% end %>

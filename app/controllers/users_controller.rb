@@ -28,6 +28,7 @@ class UsersController < ApplicationController
 
   def update
     @user = only_current_user
+    @roles = Role.signup_roles
     ConfirmationSender.send_confirmation_to(@user)
     redirect_to user_confirmation_path
   end
@@ -37,11 +38,10 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :username, :status, :email, :location, :phone, :password, :password_confirmation)
     end
 
-    # below method was built to account for the edge case
+    # below method was added to account for the edge case
     # when users try to go to someone else's page,
-    # they can only see their info own info regardless
+    # they can only see their own info regardless
     # but this stops them from even trying
-
     def only_current_user
       if params[:id].to_i == current_user.id
         current_user
