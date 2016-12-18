@@ -24,6 +24,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 10px;
     @include box_sizing;
   }
 
@@ -49,4 +50,11 @@
     padding-top: 15px;
     text-align: center;
   }
+
+  .checkbox-grid li {
+    display: block;
+    float: left;
+    width: 25%;
+  }
+
 }
