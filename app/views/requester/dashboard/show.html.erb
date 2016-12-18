@@ -5,13 +5,15 @@
     <div class="row">
       <h4>Projects</h4>
       <% @user.projects.each do |project| %>
-      <div class="col-md-3 panel project-card">
-        <h5><%= project.name %></h5>
-        <p>Status: <%= project.status %></p>
-        <p>Location: <%= project.location %></p>
-        <p>Description: <%= project.description %></p>
-      </div>
-      <% end  %>
+      <a href=<%= requester_project_path(project: project.slug) %> >
+        <div class="col-md-3 panel project-card">
+          <h5><%= project.name %></h5>
+          <p>Status: <%= project.status %></p>
+          <p>Location: <%= project.location %></p>
+          <p>Description: <%= project.description %></p>
+        </div>
+      </a>
+      <% end %>
     </div>
   </div>
   <div class="container">
@@ -22,7 +24,7 @@
           <h5>Proposal ID: <%= proposal.id %></h5>
           <p>Proposed by: <%= proposal.user.name %></p>
         </div>
-      <% end  %>
+      <% end %>
     </div>
   </div>
 </div>
