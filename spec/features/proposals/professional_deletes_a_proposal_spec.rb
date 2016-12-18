@@ -15,7 +15,7 @@ describe "professional deletes a proposal" do
         click_on "Delete"
       end
 
-      expect(page).to_not have_content(proposal.id)
+      expect(page).to_not have_content("Proposal ID: #{proposal.id}")
     end
   end
 end
