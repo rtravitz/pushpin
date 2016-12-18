@@ -28,9 +28,8 @@ class UsersController < ApplicationController
     redirect_to user_confirmation_path
   end
 
-private
-
-  def user_params
-    params.require(:user).permit(:name, :username, :status, :email, :location, :phone, :password, :password_confirmation)
-  end
+  private
+    def user_params
+      params.require(:user).permit(:name, :username, :status, :email, :location, :phone, :password, :password_confirmation)
+    end
 end
