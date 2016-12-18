@@ -11,7 +11,7 @@ describe "professional deletes a proposal" do
       visit professional_dashboard_path(proposal.user)
 
       expect(page).to have_content(proposal.id)
-      within("proposal-#{proposal.id}") do
+      within(".proposal-#{proposal.id}") do
         click_on "Delete"
       end
 
