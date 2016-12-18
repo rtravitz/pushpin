@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   def show
-    if params[:id].to_i == current_user.id
-      @user = current_user
-    else
-      render file: "/public/404"
-    end
+    @user = only_current_user
   end
 
   def new
@@ -31,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
+    @user = only_current_user
     ConfirmationSender.send_confirmation_to(@user)
     redirect_to user_confirmation_path
   end
@@ -39,5 +35,18 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:name, :username, :status, :email, :location, :phone, :password, :password_confirmation)
+    end
+
+    # below method was built to account for the edge case
+    # when users try to go to someone else's page,
+    # they can only see their info own info regardless
+    # but this stops them from even trying
+
+    def only_current_user
+      if params[:id].to_i == current_user.id
+        current_user
+      else
+        render file: "/public/404"
+      end
     end
 end
