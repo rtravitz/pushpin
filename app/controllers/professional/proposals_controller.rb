@@ -6,8 +6,14 @@ class Professional::ProposalsController < ApplicationController
   end
 
   def create
-    @proposal = Proposal.create(user: current_user, project_id: params[:project_id])
-    binding.pry
+    @proposal = Proposal.new(user: current_user, project_id: params[:project_id])
+    if @proposal.save
+      flash[:success] = "You have submitted a proposal for #{@proposal.project.name}"
+      redirect_to professional_dashboard_path(current_user)
+    else
+      flash[:warning] = "Proposal not submitted, please try again."
+      render :new
+    end
   end
 
   private
