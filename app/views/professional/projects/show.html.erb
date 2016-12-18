@@ -4,3 +4,7 @@
 <p> <%= @project.description %></p>
 <p> <%= @project.status %></p>
 <p> <%= @project.created_at %></p>
+<p>Required Skills:
+  <% @project.skills.each do |skill| %>
+    <%= skill.name%>
+  <% end %></p>
