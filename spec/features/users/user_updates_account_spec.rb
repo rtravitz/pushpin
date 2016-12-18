@@ -24,10 +24,17 @@ describe "User updates account information" do
   context "user updates account information" do
     it "updated information is stored" do
       user = create(:user)
+      requester_role = create(:role, title: "requester")
+      user.roles << requester_role
 
       login(user)
 
-      visit
+      visit user_path(user)
+
+
+
+      save_and_open_page
+
 
     end
   end
