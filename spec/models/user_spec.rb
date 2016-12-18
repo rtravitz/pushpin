@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
         expect(user).to be_invalid
       end
 
-      it "password cannot be too short" do
+      it "cannot be too short" do
         user = User.new(name: "al", email: "al@al.com", password: "pass", password_confirmation: "pass")
 
         expect(user).to be_invalid
@@ -38,21 +38,21 @@ RSpec.describe User, type: :model do
         expect(user).to be_invalid
       end
 
-      it "email address should be unique" do
+      it "address should be unique" do
         User.create(name: "al", email: "al@al.com", password: "password", password_confirmation: "password")
         user = User.create(name: "ali", email: "al@al.com", password: "password1", password_confirmation: "password1")
 
         expect(user).to be_invalid
       end
 
-      it "email cannot be too long" do
+      it "cannot be too long" do
         email = "a" * 244 + "@example.com"
         user = User.new(name: "al", email: email, password: "password", password_confirmation: "password")
 
         expect(user).to be_invalid
       end
 
-      it "saves emails as lower-case" do
+      it "is saved as lower-case" do
         email = "Foo@eXamPlE.cOm"
         user = User.create!(name: "al", username: "Al", email: email, status: "active", location: "Denver", phone: "303-333-0000", password: "password", password_confirmation: "password")
 
@@ -127,41 +127,150 @@ RSpec.describe User, type: :model do
     it "has many givers" do
       expect(user).to respond_to(:givers)
     end
-  end
 
-  describe "#possible_projects_professional" do
-    it "returns available projects by skill" do
-      user = create(:user)
-      user.roles << create(:role, title: "professional")
-      skill_1, skill_2, skill_3 = create_list(:skill, 3)
-      user.skills << [skill_1, skill_2]
-      project_1, project_2, project_3 = create_list(:project, 3)
-      project_1.skills << skill_1
-      project_2.skills << skill_2
-      project_3.skills << skill_3
-
-      possible_projects = user.possible_projects_professional
-
-      expect(user.skills).to include(skill_1, skill_2)
-      expect(possible_projects).to include(project_1, project_2)
-      expect(possible_projects).to_not include(project_3)
+    it "has many proposals" do
+      expect(user).to respond_to(:proposals)
     end
 
-    it "does not return assigned projects" do
-      user = create(:user)
-      user.roles << create(:role, title: "professional")
-      skill_1, skill_2, skill_3 = create_list(:skill, 3)
-      user.skills << [skill_1, skill_2, skill_3]
-      project_1, project_2 = create_list(:project, 2)
-      project_3 = create(:project, status: "assigned")
-      project_1.skills << skill_1
-      project_2.skills << skill_2
-      project_3.skills << skill_3
+    it "has many projects" do
+      expect(user).to respond_to(:projects)
+    end
 
-      possible_projects = user.possible_projects_professional
+    it "has many messages" do
+      expect(user).to respond_to(:messages)
+    end
 
-      expect(possible_projects).to_not include(project_3)
-      expect(possible_projects).to include(project_1, project_2)
+    it "has many user_skills" do
+      expect(user).to respond_to(:user_skills)
+    end
+
+    it "has many skills" do
+      expect(user).to respond_to(:skills)
     end
   end
+
+  describe "user methods" do
+
+    context ".professionals" do
+      it "returns an array of professional users" do
+        prof = create(:role, title: "professional")
+        requester= create(:role, title: "requester")
+        user1, user2 = create_list(:user, 2)
+        user1.roles << prof
+        user2.roles << prof
+        user3 = create(:user)
+        user3.roles << requester
+
+        professionals = User.professionals
+
+        expect(professionals).to include(user1, user2)
+        expect(professionals).to_not include (user3)
+      end
+    end
+
+    context ".active?" do
+      it "returns true if active" do
+        user = create(:user, status: "active")
+
+        expect(user.active?).to be_truthy
+      end
+      it "returns false if inactive" do
+        user = create(:user, status: "inactive")
+
+        expect(user.active?).to be_falsey
+      end
+    end
+
+    context ".admin?" do
+      it "returns true if user is admin" do
+        role = create(:role, title: "admin")
+        user = create(:user)
+        user.roles << role
+
+        expect(user.admin?).to be_truthy
+      end
+
+      it "returns false if user is not admin" do
+        role = create(:role, title: "requester")
+        user = create(:user)
+        user.roles << role
+
+        expect(user.admin?).to be_falsey
+      end
+    end
+
+    context ".professional?" do
+      it "returns true if user is professional" do
+        role = create(:role, title: "professional")
+        user = create(:user)
+        user.roles << role
+
+        expect(user.professional?).to be_truthy
+      end
+
+      it "returns false if user is not professional" do
+        role = create(:role, title: "admin")
+        user = create(:user)
+        user.roles << role
+
+        expect(user.professional?).to be_falsey
+      end
+    end
+
+    context ".requester?" do
+      it "returns true if user is requester" do
+        role = create(:role, title: "requester")
+        user = create(:user)
+        user.roles << role
+
+        expect(user.requester?).to be_truthy
+      end
+
+      it "returns false if user is not requester" do
+        role = create(:role, title: "admin")
+        user = create(:user)
+        user.roles << role
+
+        expect(user.requester?).to be_falsey
+      end
+    end
+
+    context "#possible_projects_professional" do
+      it "returns available projects by skill" do
+        user = create(:user)
+        user.roles << create(:role, title: "professional")
+        skill_1, skill_2, skill_3 = create_list(:skill, 3)
+        user.skills << [skill_1, skill_2]
+        project_1, project_2, project_3 = create_list(:project, 3)
+        project_1.skills << skill_1
+        project_2.skills << skill_2
+        project_3.skills << skill_3
+
+        possible_projects = user.possible_projects_professional
+
+        expect(user.skills).to include(skill_1, skill_2)
+        expect(possible_projects).to include(project_1, project_2)
+        expect(possible_projects).to_not include(project_3)
+      end
+
+      it "does not return assigned projects" do
+        user = create(:user)
+        user.roles << create(:role, title: "professional")
+        skill_1, skill_2, skill_3 = create_list(:skill, 3)
+        user.skills << [skill_1, skill_2, skill_3]
+        project_1, project_2 = create_list(:project, 2)
+        project_3 = create(:project, status: "assigned")
+        project_1.skills << skill_1
+        project_2.skills << skill_2
+        project_3.skills << skill_3
+
+        possible_projects = user.possible_projects_professional
+
+        expect(possible_projects).to_not include(project_3)
+        expect(possible_projects).to include(project_1, project_2)
+      end
+    end
+    
+  end
+
 end
