@@ -27,9 +27,12 @@ describe "a professional creates a proposal on a project" do
       login(user1)
 
       visit professional_proposals_new_path(project: project.id)
+
+      expect(Proposal.count).to eq(0)
       click_on "Submit a Proposal"
 
       expect(current_path).to eq(professional_dashboard_path(user1))
+      expect(Proposal.count).to eq(1)
     end
 
   end
