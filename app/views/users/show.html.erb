@@ -1,1 +1,25 @@
-HI!
+<%= current_user.name %>
+<%= current_user.email %>
+<%= current_user.location %>
+
+<div class="row">
+  <div class="form">
+    <div class="col-md-4 col-md-offset-4">
+      <h1>Your account information:</h1>
+        Name:
+        <%= current_user.name %>
+        Username:
+        <%= current_user.username %>
+        Email:
+        <%= current_user.email %>
+        Location:
+        <%= current_user.location %>
+        Phone number:
+        <%= current_user.phone %>
+        Role(s):
+        <% current_user.roles.each do |role| %>
+          <%= role.title %>
+        <% end %>
+    </div>
+  </div>
+</div>
