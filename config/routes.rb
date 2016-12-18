@@ -36,5 +36,7 @@ Rails.application.routes.draw do
     resources :skills, only: [:new, :create]
     resources :projects, only: [:index]
     get '/projects/:project', to: 'projects#show', as: 'project'
+    get '/proposals/new', to: 'proposals#new'
+    post '/proposals/create', to: 'proposals#create', as: 'proposals'
   end
 end
