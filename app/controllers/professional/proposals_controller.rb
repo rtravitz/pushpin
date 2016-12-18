@@ -1,5 +1,9 @@
 class Professional::ProposalsController < ApplicationController
 
+  def show
+    @proposal = Proposal.find(params[:id])
+  end
+
   def new
     @proposal = Proposal.new
     @project = Project.find(params[:project])

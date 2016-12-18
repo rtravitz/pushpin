@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "professional visits a proposal" do
   context "sees a proposal show professional dashboard" do
-    it "removes the proposal" do
+    it "sees the proposal" do
       role = create(:role, title: "professional")
       user = create(:user)
       user.roles << role
@@ -15,6 +15,10 @@ describe "professional visits a proposal" do
       end
 
       expect(current_path).to eq(professional_proposal_path(proposal))
+      expect(page).to have_content("Proposal ID: #{proposal.id}")
+      expect(page).to have_content("Project Name: #{proposal.project.name}")
+      expect(page).to have_content("Project Requester: #{proposal.project.user.name}")
+      expect(page).to have_content("Message Center")
     end
   end
 end
