@@ -5,12 +5,14 @@
     <div class="row">
       <h4>Projects</h4>
       <% @user.projects.each do |project| %>
+      <a href=<%= requester_project_path(project: project.slug) %> >
       <div class="col-md-3 panel project-card">
         <h5><%= project.name %></h5>
         <p>Status: <%= project.status %></p>
         <p>Location: <%= project.location %></p>
         <p>Description: <%= project.description %></p>
       </div>
+    </a>
       <% end  %>
     </div>
   </div>
