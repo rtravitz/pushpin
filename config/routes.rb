@@ -37,8 +37,9 @@ Rails.application.routes.draw do
     resources :projects, only: [:index]
     get '/projects/:project', to: 'projects#show', as: 'project'
     get '/proposals/new', to: 'proposals#new'
-    delete '/proposals/:id', to: 'proposals#destroy', as: 'proposal'
+    delete '/proposals/:id', to: 'proposals#destroy'#, as: 'proposal'
     # should the next route have the create in the path?
     post '/proposals', to: 'proposals#create', as: 'proposals'
+    get '/proposals/:id', to: 'proposals#show', as: 'proposal'
   end
 end
