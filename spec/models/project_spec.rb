@@ -75,12 +75,16 @@ RSpec.describe Project, type: :model do
 
       expect(project).to respond_to(:skills)
     end
+  end
 
+  describe "project methods" do
+    context ".generate_slug" do
+      it "generates a slug using a project name" do
+        user = create(:user)
+        project = create(:project, user: user, name: "fix tables")
 
-
-
-
-
-
+        expect(project.slug).to eq("fix-tables-")
+      end
+    end
   end
 end
