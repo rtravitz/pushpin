@@ -16,6 +16,13 @@ class Professional::ProposalsController < ApplicationController
     end
   end
 
+  def destroy
+    proposal = Proposal.find(params[:id])
+    proposal.destroy
+    flash[:success] = "You have successfully deleted Proposal: #{proposal.id}"
+    redirect_to professional_dashboard_path
+  end
+
   private
 
     def proposal_params
