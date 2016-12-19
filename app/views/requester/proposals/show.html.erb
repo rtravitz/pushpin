@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="col-md-8">
+    <h3>Proposal ID: <%= @proposal.id %></h3>
+    <h4>Project Name: <%= @proposal.project.name %></h4>
+    <h4>Professional: <%=link_to @proposal.user, professional_path(@proposal.user) %></h4>
+  </div>
+  <div class="col-md-4 message-center">
+    <h3>Message Center</h3>
+    <%= form_for [@proposal, @message] do |f|%>
+      <%= f.label "Add a message" %>
+      <%= f.text_area :body %>
+      <%= f.submit("Send") %>
+    <% end %>
+  </div>
+</div>
+

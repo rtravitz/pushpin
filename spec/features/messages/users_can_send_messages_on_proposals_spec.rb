@@ -14,8 +14,8 @@ feature "A user can send messages on a proposal" do
       visit requester_proposal_path(proposal)
       message = "Would you like some iced tea, dearie?"
 
-      fill_in "message", with: message
-      click_button "Submit"
+      fill_in "message_body", with: message
+      click_button "Send"
 
       expect(page).to have_content(message)
     end
