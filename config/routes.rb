@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     delete '/delete_user/:id', to: 'update_user#destroy_user', as: :delete_user
   end
 
-  resources :users, only: [:edit, :update, :create]
+  resources :users, only: [:edit, :update, :create, :show]
   get '/confirm' => 'confirmations#new', as: :user_confirmation
   patch '/confirm' => 'confirmations#update'
 
