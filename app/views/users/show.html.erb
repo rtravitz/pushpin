@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="form col-md-4 col-md-offset-4">
+    <div class="form col-md-3 col-md-offset-4">
       <h1>Your account information:</h1>
-      <p>Name:         <%= @user.name %></p>
-      <p>Username:     <%= @user.username %></p>
-      <p>Email:        <%= @user.email %></p>
-      <p>Location:     <%= @user.location %></p>
-      <p>Phone number: <%= @user.phone %></p>
+      <p>Name:&emsp;&emsp;&emsp;&ensp;&nbsp;<%= @user.name %></p>
+      <p>Username:&emsp;&emsp;<%= @user.username %></p>
+      <p>Email:&emsp;&emsp;&emsp;&emsp;<%= @user.email %></p>
+      <p>Location:&emsp;&emsp;&ensp;&nbsp;<%= @user.location %></p>
+      <p>Phone:&emsp;&emsp;&emsp;&ensp;&nbsp;<%= @user.phone %></p>
       <p>
         Role(s):
         <% @user.roles.each do |role| %>
@@ -15,8 +15,8 @@
           </ul>
         <% end %>
       </p>
+      <h3><%= link_to "Update account info", edit_user_path(@user) %></h3>
 
-      <%= link_to "Update account info", edit_user_path(@user) %>
       <%#= link_to "Delete account", delete_user_path(@user) %>
     </div>
   </div>
