@@ -55,4 +55,12 @@ class User < ApplicationRecord
   def possible_projects_professional
     Project.unassigned.joins(skills: :users).where("user_skills.user_id = ?", self.id)
   end
+
+  def role_to_add
+    (Role.signup_roles - roles)
+  end
+
+  def add_extra_role
+    roles << role_to_add
+  end
 end

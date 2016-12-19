@@ -1,10 +1,14 @@
-<h3>Project Info:</h3>
-<p><%= @project.name %></p>
-<p><%= @project.location %></p>
-<p> <%= @project.description %></p>
-<p> <%= @project.status %></p>
-<p> <%= @project.created_at %></p>
-<p>Required Skills:
-  <% @project.skills.each do |skill| %>
-    <%= skill.name%>
-  <% end %></p>
+<div class="container">
+  <h3>Project Info:</h3>
+  <p><%= @project.name %></p>
+  <p><%= @project.location %></p>
+  <p> <%= @project.description %></p>
+  <p> <%= @project.status %></p>
+  <p> <%= @project.created_at %></p>
+  <p>Required Skills:
+    <% @project.skills.each do |skill| %>
+      <%= skill.name%>
+    <% end %></p>
+
+  <%= link_to "Create a Proposal", new_professional_proposal_path(project: @project.id), class: "btn btn-warning" %>
+</div>

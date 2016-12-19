@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # get '/professionals', to: 'professionals#index', as: 'professionals'
   # get '/professionals/:id', to: 'professionals#show'
   resources :professionals, only: [:index, :show]
+  resources :requesters, only: [:show]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
     delete '/delete_user/:id', to: 'update_user#destroy_user', as: :delete_user
   end
 
-  resources :users, only: [:edit, :update, :create]
+  resources :users, only: [:edit, :update, :create, :show]
   get '/confirm' => 'confirmations#new', as: :user_confirmation
   patch '/confirm' => 'confirmations#update'
 
@@ -36,5 +37,6 @@ Rails.application.routes.draw do
     resources :skills, only: [:new, :create]
     resources :projects, only: [:index]
     get '/projects/:project', to: 'projects#show', as: 'project'
+    resources :proposals, only: [:new, :create, :show, :destroy]
   end
 end

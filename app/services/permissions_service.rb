@@ -28,23 +28,25 @@ class PermissionsService
     def admin_permissions
       return true if controller == "admin/dashboard" && action == "show"
       return true if controller == "admin/update_user" && action.in?(%w(update_status destroy_user))
-      return true if controller == "users" && action.in?(%w(edit update))
+      return true if controller == "users" && action.in?(%w(edit update show))
       return true if controller == "confirmations" && action.in?(%w(new update))
       return true if controller == "sessions" && action == "destroy"
     end
 
     def professional_permissions
       return true if controller == "professional/dashboard" && action == "show"
-      return true if controller == "users" && action.in?(%w(edit update))
+      return true if controller == "users" && action.in?(%w(edit update show))
       return true if controller == "confirmations" && action.in?(%w(new update))
       return true if controller == "sessions" && action == "destroy"
       return true if controller == "professional/projects" && action.in?(%w(index show))
+      return true if controller == "professional/proposals" && action.in?(%w(new create show destroy))
+      return true if controller == "requesters" && action == "show"
     end
 
     def requester_permissions
       return true if controller == "requester/dashboard" && action == "show"
       return true if controller == "requester/projects" && action.in?(%w(new create show))
-      return true if controller == "users" && action.in?(%w(edit update))
+      return true if controller == "users" && action.in?(%w(edit update show))
       return true if controller == "confirmations" && action.in?(%w(new update))
       return true if controller == "sessions" && action == "destroy"
     end

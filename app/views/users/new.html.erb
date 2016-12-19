@@ -18,7 +18,7 @@
         Password Confirmation:
         <%= f.password_field :password_confirmation %>
         Please select a Requester or Professional account:
-        <%= f.collection_select(:roles, @roles, :id, :title) %>
+        <%= f.collection_select(:roles, @roles, :id, :title, include_blank: true) %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
     </div>
