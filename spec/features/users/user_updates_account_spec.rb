@@ -17,7 +17,6 @@ describe "User updates account information" do
       click_on 'Reset Password'
 
       expect(page).to have_content("You successfully updated your password!")
-      expect(current_path).to eq()
     end
   end
 

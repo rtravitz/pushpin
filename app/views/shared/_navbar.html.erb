@@ -32,7 +32,7 @@
               <% if current_user.requester? %>
                 <li><%= link_to "Requester Dashboard", requester_dashboard_path %></li>
               <% end %>
-              <!-- <li role="separator" class="divider"></li> -->
+              <li role="separator" class="divider"></li>
               <li><%= link_to "Settings", user_path(current_user) %></li>
             </ul>
           </li>
