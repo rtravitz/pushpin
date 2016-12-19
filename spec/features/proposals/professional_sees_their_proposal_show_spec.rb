@@ -24,7 +24,4 @@ describe "professional visits a proposal" do
     end
   end
 
-  # context "professional can link to requester from proposal show" do
-  #
-  # end
 end

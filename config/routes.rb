@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # get '/professionals', to: 'professionals#index', as: 'professionals'
   # get '/professionals/:id', to: 'professionals#show'
   resources :professionals, only: [:index, :show]
+  resources :requesters, only: [:show]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
