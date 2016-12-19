@@ -20,8 +20,7 @@ feature "As a logged in requester" do
     click_on(project.name)
 
     expect(page).to have_content(project.status)
-    expect(page).to have_content("Rate This Professional")
-
+    expect(page).to have_content("Rate This Professional: #{professional.name}")
 
   end
 end
