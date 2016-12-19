@@ -2,6 +2,7 @@ class Professional::ProposalsController < ApplicationController
 
   def show
     @proposal = Proposal.find(params[:id])
+    @message = Message.new
   end
 
   def new
