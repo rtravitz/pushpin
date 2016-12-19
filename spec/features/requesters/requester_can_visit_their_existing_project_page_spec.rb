@@ -3,7 +3,7 @@ require 'rails_helper'
 feature "As a requester when I visit my existing project page" do
   scenario "I can see the information for my project" do
     user = create(:user)
-    requester, professional, admin = create_list(:role, 3)
+    requester = create(:role, title: "requester")
     project = create(:project)
     user.roles << requester
     user.projects << project

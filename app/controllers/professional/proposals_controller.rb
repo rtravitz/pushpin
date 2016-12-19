@@ -24,7 +24,7 @@ class Professional::ProposalsController < ApplicationController
   def destroy
     proposal = Proposal.find(params[:id])
     if proposal.destroy
-      current_user.proposals.delete(proposal) if  Rails.env == "test"
+      current_user.proposals.delete(proposal) #if  Rails.env == "test"
       flash[:success] = "You have successfully deleted Proposal: #{proposal.id}"
     end
     redirect_to professional_dashboard_path
