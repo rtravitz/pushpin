@@ -10,8 +10,10 @@ describe "Professional visits a requester profile page" do
       user2.roles << prof_role
       project = create(:project, user: user1, name: "TestName")
       proposal = Proposal.create(project: project, user: user2)
+      login(user2)
 
       visit professional_proposal_path(proposal)
+      save_and_open_page
       click_on "#{user1.name}"
 
       expect(current_path).to eq(requester_path(user1))
