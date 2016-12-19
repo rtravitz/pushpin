@@ -28,9 +28,16 @@ class UsersController < ApplicationController
 
   def update
     @user = only_current_user
+    if @user.update_attributes(user_params)
+      @user.add_role if params[:user][:role_to_add]
+      flash[:success] = "Your account information has been updated!"
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
 
-    ConfirmationSender.send_confirmation_to(@user)
-    redirect_to user_confirmation_path
+    # ConfirmationSender.send_confirmation_to(@user)
+    # redirect_to user_confirmation_path
   end
 
   private
