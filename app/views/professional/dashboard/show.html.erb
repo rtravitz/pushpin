@@ -15,26 +15,34 @@
           <% end %>
         <hr>
 
-         <%= button_to "Find Work",  professional_projects_path, method: :get, class: "btn btn-warning" %> 
+         <%= button_to "Find Work",  professional_projects_path, method: :get, class: "btn btn-warning" %>
 
       </div>
 
       <div class="col-md-6">
 
         <h5>Active Projects: </h5>
-        <div class="panel">
-          <% @professional.projects.each do |project| %>
-          <p>Name: <%= link_to project.name %></p>
-          <p>Status: <%= project.status %></p>
-          <% end %>
-        </div>
+          <div class="row">
+            <% @professional.projects.each do |project| %>
+              <div class="panel col-md-6">
+                <p>Name: <%= link_to project.name %></p>
+                <p>Status: <%= project.status %></p>
+              </div>
+            <% end %>
+          </div>
 
         <h5>Proposals</h5>
-        <% @professional.proposals.each do |proposal| %>
-        <p>ID: <%= proposal.project_id %>   </p>
-        <p>Date Submitted: <%= proposal.created_at %> </p>
-        <% end %>
+        <div class="row">
+          <% @professional.proposals.each do |proposal| %>
+            <div class="proposal-<%= proposal.id %> panel col-md-6">
+              <p>Proposal ID: <%=link_to proposal.id, professional_proposal_path(proposal) %>  <%= link_to "Delete", professional_proposal_path(proposal), method: :delete, class:"btn btn-danger btn-xs sit-right" %> </p>
+              <p>Project: <%= proposal.project.name %> <% proposal.project.id %></p>
+              <p>Date Submitted: <%= proposal.created_at %> </p>
+            </div>
+          <% end %>
+        </div>
       </div>
+
     </div>
   </div>
 </div>

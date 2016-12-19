@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="form">
+    <div class="col-md-4">
+      <p>
+       Create a proposal for <%= @project.name %>
+      </p>
+        <%= form_for [:professional, @proposal], :url => {action: "create", project_id: @project.id} do |f| %>
+          <%= f.submit "Submit a Proposal"  %>
+          <% end  %>
+    </div>
+  </div>
+</div>
