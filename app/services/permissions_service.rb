@@ -41,6 +41,7 @@ class PermissionsService
       return true if controller == "professional/projects" && action.in?(%w(index show))
       return true if controller == "professional/proposals" && action.in?(%w(new create show destroy))
       return true if controller == "requesters" && action == "show"
+      return true if controller == "messages" && action.in?(%w(create))
     end
 
     def requester_permissions
@@ -49,6 +50,8 @@ class PermissionsService
       return true if controller == "users" && action.in?(%w(edit update show))
       return true if controller == "confirmations" && action.in?(%w(new update))
       return true if controller == "sessions" && action == "destroy"
+      return true if controller == "requester/proposals" && action == "show"
+      return true if controller == "messages" && action.in?(%w(create))
     end
 
     def guest_permissions
