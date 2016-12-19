@@ -9,4 +9,4 @@
     <%= skill.name%>
   <% end %></p>
 
-<%= link_to "Create a Proposal", professional_proposals_new_path(project: @project.id), class: "btn btn-warning" %>
+<%= link_to "Create a Proposal", new_professional_proposal_path(project: @project.id), class: "btn btn-warning" %>
