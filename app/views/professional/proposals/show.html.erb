@@ -3,7 +3,7 @@
     <div class="col-md-8">
       <h3>Proposal ID: <%= @proposal.id %></h3>
       <h4>Project Name: <%= @proposal.project.name %></h4>
-      <h4>Project Requester: <%= @proposal.project.user.name %></h4>
+      <h4>Project Requester: <%=link_to @proposal.project.user.name, requester_path(@proposal.project.user) %></h4>
     </div>
     <div class="col-md-4 message-center">
       <h3>Message Center</h3>
