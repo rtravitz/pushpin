@@ -22,5 +22,11 @@ feature "As a logged in requester" do
     expect(page).to have_content(project.status)
     expect(page).to have_content("Rate This Professional: #{professional.name}")
 
+    fill_in "rating[score]", with: 5
+
+    click_on "Create Rating"
+
+    expect(current_path).to eq(requester_dashboard_path(requester))
+    expect(professional.ratings.last.score).to eq(5.0)
   end
 end
