@@ -1,7 +1,7 @@
 <%= @project.name %>
 <%= @project.status %>
 <% if @project.status == "complete" %>
- "Rate This Professional"
+ Rate This Professional: <%= @professional.name %>
  <%= form_for [@requester,@rating],  url: requester_ratings_path(professional: @professional) do |f| %>
    <%= f.text_field :score  %>
    <%= f.label "Score" %>
