@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def create
-    message = Message.new(message_params)
     proposal = Proposal.find(params[:proposal_id])
+    message = proposal.messages.new(message_params)
     message.user = current_user
     flash[:danger] = "Your message did not send. Please try again." unless message.save
     redirect_decision(proposal)
@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
   private
 
     def message_params
-      params.require(:message).permit(:body, :proposal_id)
+      params.require(:message).permit(:body)
     end
 
     def redirect_decision(proposal)
