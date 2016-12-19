@@ -16,7 +16,7 @@ describe "Professional visits a requester profile page" do
       click_on "#{user1.name}"
 
       expect(current_path).to eq(requester_path(user1))
-      expect(page).to have_content("#{user1.name}'s Profile'")
+      expect(page).to have_content("#{user1.name}'s Profile")
       expect(page).to have_content("Location: #{user1.location}")
     end
   end
