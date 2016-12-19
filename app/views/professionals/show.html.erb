@@ -7,7 +7,7 @@
       <div class="panel-body">
         <p>Location: <%= @professional.location %></p>
         <p>Skills: <% @professional.skills.each do |skill| %>
-        <%= skill.name %><p/>
+        <%=link_to skill.name, skills_search_path(skill: {skill_id: skill.id}) %><p/>
         <% end %>
         <p>Contact this pro:<p>
           <p><%= @professional.email %><p/>
