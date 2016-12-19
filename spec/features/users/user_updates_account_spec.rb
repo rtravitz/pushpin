@@ -67,7 +67,7 @@ describe "User updates account information" do
 
       visit edit_user_path(user)
 
-      select "professional", :from => "user[role_to_add]"
+      select "professional", from: "user[role_to_add]"
 
       click_on "Update"
 
@@ -85,7 +85,7 @@ describe "User updates account information" do
 
       visit edit_user_path(user)
 
-      select "requester", :from => "user[role_to_add]"
+      select "requester", from: "user[role_to_add]"
 
       click_on "Update"
 
