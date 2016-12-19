@@ -22,7 +22,10 @@
         </ul>
 
         <h4>Add a role to your account:</h4>
-        <%= f.collection_select(:role_to_add, @user.role_to_add, :id, :title, include_blank: true) %>
+
+        <div id="add-role">
+          <%= f.collection_select(:role_to_add, @user.role_to_add, :id, :title, include_blank: true) %>
+        </div>
 
         <h4>To change password:</h4>
 
