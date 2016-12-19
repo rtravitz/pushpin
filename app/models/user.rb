@@ -60,7 +60,7 @@ class User < ApplicationRecord
     (Role.signup_roles - roles)
   end
 
-  def add_role
+  def add_extra_role
     roles << role_to_add
   end
 end

@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def update
     @user = only_current_user
     if @user.update_attributes(user_params)
-      @user.add_role if params[:user][:role_to_add]
+      @user.add_extra_role if params[:user][:role_to_add]
       flash[:success] = "Your account information has been updated!"
       redirect_to user_path(@user)
     else
