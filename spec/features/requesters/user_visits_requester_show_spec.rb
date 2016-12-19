@@ -13,7 +13,6 @@ describe "Professional visits a requester profile page" do
       login(user2)
 
       visit professional_proposal_path(proposal)
-      save_and_open_page
       click_on "#{user1.name}"
 
       expect(current_path).to eq(requester_path(user1))
