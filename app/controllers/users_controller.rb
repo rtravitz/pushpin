@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :only_current_user, only: [:show, :create]
   def show
     @user = only_current_user
   end

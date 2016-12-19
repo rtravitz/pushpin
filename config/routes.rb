@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     get '/dashboard', to: "dashboard#show", as: :dashboard
     resources :projects, only: [:new, :create]
     get '/:project', to: "projects#show", as: 'project'
+    get '/ratings', to: "ratings#new"
+    post '/ratings', to: "ratings#create"
   end
 
   namespace :professional do
