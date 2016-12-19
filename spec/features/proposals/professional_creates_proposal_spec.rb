@@ -14,7 +14,7 @@ describe "a professional creates a proposal on a project" do
       visit professional_project_path(project: project.slug)
 
       click_on "Create a Proposal"
-      expect(current_path).to eq(professional_proposals_new_path)
+      expect(current_path).to eq(new_professional_proposal_path)
     end
 
     it "fills in proposal information" do
@@ -26,7 +26,7 @@ describe "a professional creates a proposal on a project" do
       project = create(:project, user: user2)
       login(user1)
 
-      visit professional_proposals_new_path(project: project.id)
+      visit new_professional_proposal_path(project: project.id)
 
       expect(Proposal.count).to eq(0)
       click_on "Submit a Proposal"
