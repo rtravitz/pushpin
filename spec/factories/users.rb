@@ -7,7 +7,7 @@ FactoryGirl.define do
     email
     phone "555-555-5555"
     password "password"
-    image "https://www.organicfacts.net/wp-content/uploads/2013/06/Pineapple.jpg"
+    image "/assets/default-user-icon.png"
   end
 
   sequence :name do |n|
