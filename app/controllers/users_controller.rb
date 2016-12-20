@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
+   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
 
   def show
     @user = only_current_user
