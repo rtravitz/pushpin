@@ -9,7 +9,7 @@
     <%= f.submit("Submit") %>
   <% end %>
   <hr>
-  <% @proposal.messages.each do |message| %>
+  <% @proposal.messages_by_most_recent.each do |message| %>
     <div id="message-<%= message.id %>" class="panel">
       <% if message.body %>
         <p><%= message.body %></p>
