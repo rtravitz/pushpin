@@ -7,6 +7,13 @@ class MessagesController < ApplicationController
     redirect_decision(proposal)
   end
 
+  def destroy
+    message = Message.find(params[:id])
+    message.destroy
+    proposal = Proposal.find(params[:proposal_id])
+    redirect_decision(proposal)
+  end
+
   private
 
     def message_params

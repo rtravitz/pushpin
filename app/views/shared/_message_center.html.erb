@@ -1,0 +1,17 @@
+<div class="col-md-4 message-center form">
+
+  <h3>Message Center</h3>
+  <%= form_for [@proposal, @message] do |f|%>
+    <%= f.label "Add a message" %>
+    <%= f.text_area :body %>
+    <%= f.submit("Send") %>
+  <% end %>
+  <hr>
+  <% @proposal.messages.each do |message| %>
+    <div id=message-<%= message.id %>>
+      <p><%= message.body %></p>
+      <p>Sent by <%= message.user.name %> at <%= message.created_at %></p>
+      <%= link_to "Delete", proposal_message_path(@proposal, message), method: :delete, class: "btn btn-danger btn-xs" %>
+    </div>
+  <% end %>
+</div>

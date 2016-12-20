@@ -51,7 +51,7 @@ class PermissionsService
       return true if controller == "confirmations" && action.in?(%w(new update))
       return true if controller == "sessions" && action == "destroy"
       return true if controller == "requester/proposals" && action == "show"
-      return true if controller == "messages" && action.in?(%w(create))
+      return true if controller == "messages" && action.in?(%w(create destroy))
     end
 
     def guest_permissions
