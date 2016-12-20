@@ -63,4 +63,8 @@ class User < ApplicationRecord
   def add_extra_role
     roles << role_to_add
   end
+
+  def average_rating
+    ratings.average(:score).to_f
+  end
 end

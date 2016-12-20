@@ -29,7 +29,7 @@ feature "As a logged in requester" do
 
     expect(current_path).to eq(requester_dashboard_path(requester))
     expect(professional.ratings.last.score).to eq(5.0)
-    expect(page).to have_content("Thanks for rating #{professional.name}!")
+    expect(page).to have_content("Thanks for rating this professional!")
   end
 
   scenario "I can see professional's average rating" do
@@ -54,9 +54,9 @@ feature "As a logged in requester" do
 
     login(requester_1)
 
-    visit requester_dashboard_path(requester_1)
+    visit professional_path(professional)
 
-
-
+    expect(page).to have_content(professional.name)
+    expect(page).to have_content(professional.average_rating)
   end
 end
