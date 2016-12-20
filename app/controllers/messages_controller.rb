@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  
+
 
   def create
     proposal = Proposal.find(params[:proposal_id])
@@ -7,6 +7,20 @@ class MessagesController < ApplicationController
     message.user = current_user
     flash[:danger] = "Your message did not send. Please try again." unless message.save
     redirect_decision(proposal)
+  end
+
+  def edit
+    @message = Message.find(params[:id])
+  end
+
+  def update
+    @message = Message.find(params[:id])
+    if @message.update_attributes(message_params)
+      flash[:success] = "You have updated your message!"
+    else
+      flash[:danger] = "You have failed to update your message"
+    end
+    redirect_decision(@message.proposal)
   end
 
   def destroy
