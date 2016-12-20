@@ -1,12 +1,21 @@
-<%= @project.name %>
-<%= @project.status %>
-<% if @project.status == "complete" %>
- Rate This Professional: <%= @professional.name %>
- <%= form_for [@requester,@rating],  url: requester_ratings_path(professional: @professional, project: @project) do |f| %>
-   <%= f.text_field :score  %>
-   <%= f.label "Score" %>
-   <%= f.text_area :comment %>
-   <%= f.label "Comment" %>
-   <%= f.submit %>
-<% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="form col-md-4 col-md-offset-4">
+      <h1><%= @project.name %></h1>
+      <h3>Status: <%= @project.status.capitalize %></h3>
+
+      <% if @project.status == "complete" %>
+      <span id=rate-header> <h4>Rate This Professional:</h4>
+      <h4><%= link_to @professional.name, professional_path(@professional) %></h4></span>
+
+       <%= form_for [@requester,@rating],  url: requester_ratings_path(professional: @professional, project: @project) do |f| %>
+         <%= f.label "Score" %>
+         <%= f.text_field :score  %>
+         <%= f.label "Comment" %>
+         <%= f.text_area :comment %>
+         <%= f.submit %>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
