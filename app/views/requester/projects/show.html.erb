@@ -4,10 +4,17 @@
       <h1><%= @project.name %></h1>
       <h3>Status: <%= @project.status.capitalize %></h3>
 
+      <%= @project.location %>
+
+      <%= @project.status %>
+
+      <% if @project.status == "assigned" %>
+      <%= link_to "Mark This Project as Complete", edit_requester_project_path(current_user, project: @project.slug), method: :get %>
+      <% end %>
+
       <% if @project.status == "complete" %>
       <span id=rate-header> <h4>Rate This Professional:</h4>
       <h4><%= link_to @professional.name, professional_path(@professional) %></h4></span>
-
        <%= form_for [@requester,@rating],  url: requester_ratings_path(professional: @professional, project: @project) do |f| %>
          <%= f.label "Score" %>
          <%= f.select :score, options_for_select(1..5), include_blank: true %>

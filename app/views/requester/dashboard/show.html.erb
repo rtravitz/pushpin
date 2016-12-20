@@ -8,11 +8,12 @@
       <a href=<%= requester_project_path(project: project.slug) %> >
         <div class="col-md-3 panel project-card">
           <h5><%= project.name %></h5>
-          <p>Status: <%= project.status %></p>
+          <p>Status: <%= project.status.capitalize %></p>
           <p>Location: <%= project.location %></p>
           <p>Description: <%= project.description %></p>
+          <p>Project ID: <%= project.id %></p>
             <% if project.status == "assigned" %>
-            Professional: <%= project.proposals.where(status: "assigned").first.user_id %>
+            Professional: <%#= project.proposals.where(status: "assigned").first.user_id %>
             <% end %>
         </div>
       </a>
@@ -25,8 +26,9 @@
       <% @user.projects.each do |project| %>
       <% project.proposals.each do |proposal| %>
           <div class="col-md-3 panel proposal-card">
-            <h5>Proposal ID: <%= link_to proposal.id, requester_proposal_path(proposal) %></h5>
+            <h5>Proposal ID: <%= link_to proposal.id, requester_proposal_path(proposal) %> for project <%= proposal.project_id %> </h5>
             <p>Proposed by: <%= proposal.user.name %></p>
+            <p>Status: <%= proposal.status %></p>
           </div>
         <% end %>
       <% end %>
