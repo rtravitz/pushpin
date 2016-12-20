@@ -1,11 +1,12 @@
 class Requester::RatingsController < ApplicationController
 
   def create
-    rating = Rating.new(score: params[:rating][:score], user_id: params[:professional], giver_id: current_user.id)
-    if !rating.save
-      redirect_to requester_project_path(current_user)
+    project = Project.find(params[:project])
+    if Rating.find_by(user_id: params[:professional], giver_id: current_user.id)
+      redirect_to "/requester/#{project.slug}"
       flash[:warning] = "Something went wrong. Please try again."
     else
+      Rating.create(score: params[:rating][:score], user_id: params[:professional], giver_id: current_user.id)
       redirect_to requester_dashboard_path(current_user)
       flash[:success] = "Thanks for rating #{rating.user.name}!"
     end
