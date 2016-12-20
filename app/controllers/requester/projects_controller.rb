@@ -23,6 +23,10 @@ class Requester::ProjectsController < ApplicationController
     @requester = current_user
   end
 
+  def update
+    binding.pry
+  end
+
   private
 
   def project_params

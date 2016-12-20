@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     get '/:project', to: "projects#show", as: 'project'
     get '/ratings', to: "ratings#new"
     post '/ratings', to: "ratings#create"
-    resources :projects, only: [:new, :create]
+    resources :projects, only: [:new, :create, :update]
   end
 
   namespace :professional do
