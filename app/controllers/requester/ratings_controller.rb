@@ -8,7 +8,7 @@ class Requester::RatingsController < ApplicationController
     else
       Rating.create(score: params[:rating][:score], user_id: params[:professional], giver_id: current_user.id)
       redirect_to requester_dashboard_path(current_user)
-      flash[:success] = "Thanks for rating #{rating.user.name}!"
+      flash[:success] = "Thanks for rating this professional!"
     end
   end
 
