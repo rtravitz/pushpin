@@ -23,8 +23,11 @@ class Requester::ProjectsController < ApplicationController
     @requester = current_user
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
   def update
-    binding.pry
   end
 
   private

@@ -29,10 +29,11 @@ Rails.application.routes.draw do
   namespace :requester do
     get '/dashboard', to: "dashboard#show", as: :dashboard
     get '/proposals/:id', to: "proposals#show", as: 'proposal'
+    resources :proposals, only: [:edit, :update]
     get '/:project', to: "projects#show", as: 'project'
     get '/ratings', to: "ratings#new"
     post '/ratings', to: "ratings#create"
-    resources :projects, only: [:new, :create, :update]
+    resources :projects, only: [:new, :create, :update, :edit]
   end
 
   namespace :professional do
