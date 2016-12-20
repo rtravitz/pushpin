@@ -17,6 +17,7 @@ gem 'figaro'
 gem 'twilio-ruby'
 gem 'faraday'
 gem 'octicons_helper'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'byebug', platform: :mri
