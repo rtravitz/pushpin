@@ -4,7 +4,7 @@
   <%= form_for([@proposal, @message], html: { class: "directUpload", data: {'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host} }) do |f|%>
     <%= f.label "Add a message" %>
     <%= f.text_area :body %>
-    <%= f.label "Add an image" %>
+    <%= f.label "Add a file" %>
     <%= f.file_field :image_url %>
     <%= f.submit("Submit") %>
   <% end %>
@@ -15,7 +15,9 @@
         <p><%= message.body %></p>
       <% end %>
       <% if message.image_url %>
-         <img src=<%= message.image_url %> alt="" class="msg-img" />
+        <a href=<%= message.image_url %>>
+         <img src=<%= image_or_pdf_icon(message) %> alt="" class="msg-img" />
+        </a>
       <% end %>
       <p>Sent by <%= message.user.name %> at <%= message.created_at %></p>
       <% if message.user == current_user %>
