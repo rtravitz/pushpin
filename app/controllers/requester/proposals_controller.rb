@@ -5,6 +5,7 @@ class Requester::ProposalsController < ApplicationController
 
   def edit
     @proposal = Proposal.find(params[:id])
+    @proposal.update_attributes(status: "assigned")
     project = @proposal.project_id
     Project.find(project).update_attributes(status: "assigned")
     redirect_to "/requester/dashboard"
