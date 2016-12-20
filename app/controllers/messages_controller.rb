@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
 
-
   def create
     proposal = Proposal.find(params[:proposal_id])
     message = proposal.messages.new(message_params)
