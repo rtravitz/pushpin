@@ -28,5 +28,6 @@ feature "As a logged in requester" do
 
     expect(current_path).to eq(requester_dashboard_path(requester))
     expect(professional.ratings.last.score).to eq(5.0)
+    expect(page).to have_content("Thanks for rating #{professional.name}!")
   end
 end

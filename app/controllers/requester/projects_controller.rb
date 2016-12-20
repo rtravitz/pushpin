@@ -18,9 +18,6 @@ class Requester::ProjectsController < ApplicationController
 
   def show
     @project = Project.find_by(slug: params[:project])
-    @professional = User.find(@project.proposals.first.user_id) if !@project.proposals.empty?
-    @rating = Rating.new
-    @requester = current_user
   end
 
   private
