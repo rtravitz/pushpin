@@ -15,7 +15,7 @@ feature "A user can send messages on a proposal" do
       message = "Would you like some iced tea, dearie?"
 
       fill_in "message_body", with: message
-      click_button "Send"
+      click_button "Submit"
 
       expect(page).to have_content(message)
     end
@@ -36,7 +36,7 @@ feature "A user can send messages on a proposal" do
       message = "No thanks."
 
       fill_in "message_body", with: message
-      click_button "Send"
+      click_button "Submit"
 
       expect(page).to have_content(message)
     end
