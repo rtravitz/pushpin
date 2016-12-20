@@ -10,7 +10,7 @@
 
        <%= form_for [@requester,@rating],  url: requester_ratings_path(professional: @professional, project: @project) do |f| %>
          <%= f.label "Score" %>
-         <%= f.text_field :score  %>
+         <%= f.select :score, options_for_select(1..5), include_blank: true %>
          <%= f.label "Comment" %>
          <%= f.text_area :comment %>
          <%= f.submit %>

@@ -44,7 +44,7 @@
 
   #rate-header {
     text-align: center;
-  }  
+  }
 
   p {
     font-size: 1.1em;
@@ -69,5 +69,4 @@
   input[type=password]:focus {
     @include outline;
   }
-
 }
