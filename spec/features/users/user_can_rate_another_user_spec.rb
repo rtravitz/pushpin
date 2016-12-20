@@ -10,7 +10,7 @@ feature "As a logged in requester" do
     professional.roles << role_2
     project = create(:project, status: "complete")
     requester.projects << project
-    proposal = create(:proposal, project: project, user: professional)
+    proposal = create(:proposal, status: "assigned", project: project, user: professional)
 
     login(requester)
 
@@ -25,7 +25,7 @@ feature "As a logged in requester" do
     expect(page).to have_content(project.status)
     expect(page).to have_content("Rate This Professional: #{professional.name}")
 
-    fill_in "rating[score]", with: 5
+    select "5", from: "rating[score]"
 
     click_on "Create Rating"
 
