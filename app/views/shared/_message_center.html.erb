@@ -16,7 +16,7 @@
       <% end %>
       <% if message.image_url %>
         <a href=<%= message.image_url %>>
-         <img src=<%= image_or_pdf_icon(message) %> alt="" class="msg-img" />
+          <%= image_or_pdf_icon(message) %>
         </a>
       <% end %>
       <p>Sent by <%= message.user.name %> at <%= message.created_at %></p>

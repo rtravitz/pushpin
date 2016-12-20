@@ -1,9 +1,9 @@
 module ApplicationHelper
   def image_or_pdf_icon(message)
     if message.image_url[-4..-1] == ".pdf"
-      "/assets/pdf.ico" 
+      image_tag("/assets/pdf.ico", class: "msg-pdf-icon")
     else
-      message.image_url
+      image_tag(message.image_url, class: "msg-img")
     end
   end
 end
