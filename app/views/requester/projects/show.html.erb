@@ -1,1 +1,5 @@
 <%= @project.name %>
+<% @project.proposals.each do |proposal| %>
+  <p>Proposal ID: <%= link_to proposal.id, requester_proposal_path(proposal) %></p>
+  <p>From: <%= proposal.user.name %></p>
+<% end %>
