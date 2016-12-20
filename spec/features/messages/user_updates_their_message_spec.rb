@@ -1,8 +1,8 @@
 require "rails_helper"
 
-describe "User deletes a message spec" do
-  context "When a requester visits a proposal" do
-    scenario "they can delete their message" do
+describe "user updates their message" do
+  context "requester visits a proposal show" do
+    it "edits a message" do
       user1, user2 = create_list(:user, 2)
       requester = create(:role, title: "requester")
       professional = create(:role, title: "professional")
@@ -15,17 +15,19 @@ describe "User deletes a message spec" do
 
       visit requester_proposal_path(proposal)
       within("#message-#{message.id}") do
-        click_on "Delete"
+        click_on "Edit"
       end
 
+      fill_in :message_body, with: "Uptown Girl"
+      click_on "Update"
 
-      expect(page).to_not have_css("#message-#{message.id}")
-      expect(page).to_not have_content(message.body)
+      expect(current_path).to eq(requester_proposal_path(proposal))
+      within("#message-#{message.id}") do
+        expect(page).to have_content("Uptown Girl")
+      end
     end
-  end
 
-  context "requester cannot delete a professional's message" do
-    it "does not see a delete button" do
+    it "cannot see edit button on someone else's message" do
       user1, user2 = create_list(:user, 2)
       requester = create(:role, title: "requester")
       professional = create(:role, title: "professional")
@@ -37,10 +39,10 @@ describe "User deletes a message spec" do
       message = proposal.messages.create(body: "test body", user: user2)
 
       visit requester_proposal_path(proposal)
-
       within("#message-#{message.id}") do
-        expect(page).to_not have_content("Delete")
+        expect(page).to_not have_content"Edit"
       end
     end
+
   end
 end

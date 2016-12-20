@@ -4,17 +4,5 @@
       <h4>Project Name: <%= @proposal.project.name %></h4>
       <h4>Project Requester: <%=link_to @proposal.project.user.name, requester_path(@proposal.project.user) %></h4>
     </div>
-    <div class="col-md-4 message-center">
-      <h3>Message Center</h3>
-      <%= form_for [@proposal, @message] do |f|%>
-        <%= f.label "Add a message" %>
-        <%= f.text_area :body %>
-        <%= f.submit("Send") %>
-      <% end %>
-      <hr>
-      <% @proposal.messages.each do |message| %>
-        <p><%= message.body %></p>
-        <p>Sent by <%= message.user.name %> at <%= message.created_at %></p>
-      <% end %>
-    </div>
+    <%= render partial: "shared/message_center" %>
 </div>
