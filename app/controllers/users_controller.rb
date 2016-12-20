@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :username, :status, :email, :location, :phone, :password, :password_confirmation)
+      params.require(:user).permit(:name, :username, :status, :email, :location, :phone, :password, :image)
     end
 
     def only_current_user

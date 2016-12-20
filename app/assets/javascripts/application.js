@@ -16,7 +16,7 @@
 //= require bootstrap
 //= require_tree .
 
-$( document ).ready(function() {
+$( document ).on('turbolinks:load', function() {
   $(function() {
     $('.directUpload').find("input:file").each(function(i, elem) {
       var fileInput    = $(elem);
