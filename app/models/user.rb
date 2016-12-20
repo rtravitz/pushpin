@@ -67,4 +67,12 @@ class User < ApplicationRecord
   def average_rating
     ratings.average(:score).to_f
   end
+
+  def completed_projects
+    projects.where(status: "complete")
+  end
+
+  def current_projects
+    projects.where.not(status: "complete")
+  end
 end
