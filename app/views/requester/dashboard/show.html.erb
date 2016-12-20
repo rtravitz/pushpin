@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row" id="current-projects">
       <h4>Current Projects</h4>
-      <% @user.projects.each do |project| %>
+      <% @user.current_projects.each do |project| %>
       <a href=<%= requester_project_path(project: project.slug) %> >
         <div class="col-md-3 panel project-card">
           <h5><%= project.name %></h5>
@@ -30,7 +30,7 @@
   <div class="container">
     <div class="row" id="completed-projects">
       <h4>Project History</h4>
-      <% @completed_projects.each do |project| %>
+      <% @user.completed_projects.each do |project| %>
       <a href=<%= requester_project_path(project: project.slug) %> >
         <div class="col-md-3 panel project-card">
 

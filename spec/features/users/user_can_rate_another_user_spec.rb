@@ -18,7 +18,7 @@ feature "As a logged in requester" do
 
     expect(page).to have_content(project.name)
 
-    within "#current-projects" do
+    within "#completed-projects" do
       click_on(project.name)
     end
 
