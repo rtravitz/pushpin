@@ -17,5 +17,4 @@ class Project < ApplicationRecord
   def generate_slug
     self.slug = "#{name.parameterize}-#{self.id}" if self.name
   end
-
 end
