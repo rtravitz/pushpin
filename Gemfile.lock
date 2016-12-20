@@ -240,7 +240,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk
+  aws-sdk (~> 2)
   bcrypt
   bootstrap-sass
   byebug
