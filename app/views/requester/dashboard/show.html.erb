@@ -2,7 +2,7 @@
   <h1>Welcome to Your Requester Dashboard</h1>
   <%= link_to "Create New Project", new_requester_project_path, class: "btn btn-primary" %>
   <div class="container">
-    <div class="row">
+    <div class="row" id="current-projects">
       <h4>Current Projects</h4>
       <% @user.projects.each do |project| %>
       <a href=<%= requester_project_path(project: project.slug) %> >
@@ -24,6 +24,22 @@
           <h5>Proposal ID: <%= proposal.id %></h5>
           <p>Proposed by: <%= proposal.user.name %></p>
         </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row" id="completed-projects">
+      <h4>Project History</h4>
+      <% @completed_projects.each do |project| %>
+      <a href=<%= requester_project_path(project: project.slug) %> >
+        <div class="col-md-3 panel project-card">
+
+          <h5><%= project.name %></h5>
+          <p>Status: <%= project.status %></p>
+          <p>Location: <%= project.location %></p>
+          <p>Description: <%= project.description %></p>
+        </div>
+      </a>
       <% end %>
     </div>
   </div>

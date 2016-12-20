@@ -18,7 +18,9 @@ feature "As a logged in requester" do
 
     expect(page).to have_content(project.name)
 
-    click_on(project.name)
+    within "#current-projects" do
+      click_on(project.name)
+    end
 
     expect(page).to have_content(project.status)
     expect(page).to have_content("Rate This Professional: #{professional.name}")
