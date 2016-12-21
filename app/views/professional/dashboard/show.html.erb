@@ -25,7 +25,7 @@
           <div class="row">
             <% @professional.projects.each do |project| %>
               <div class="panel col-md-6">
-                <p>Name: <%= link_to project.name %></p>
+                <p>Name: <%= link_to project.name, professional_project_path(project: project.slug) %></p>
                 <p>Status: <%= project.status %></p>
               </div>
             <% end %>

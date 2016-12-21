@@ -5,5 +5,7 @@ class Professional::ProjectsController < ApplicationController
 
   def show
     @project = Project.find_by(slug: params[:project])
+    @professional = current_user
+    @rating = Rating.new 
   end
 end
