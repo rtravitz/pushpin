@@ -29,4 +29,24 @@ describe "messages endpoints" do
       expect(result[0]['proposal_id']).to eq(message1.proposal_id)
     end
   end
+
+  context "GET /messages" do
+    it "returns a list of messages" do
+      user_r, user_p = create_list(:user, 2)
+      requester = create(:role, title: "requester")
+      professional = create(:role, title: "professional")
+      user_r.roles << requester
+      user_p.roles << professional
+      project = create(:project, user: user_r)
+      proposal = create(:proposal, user: user_p, project: project)
+      message_body = "This is the body of the message"
+
+      post "/api/v1/messages?api_key=#{user_r.api_key}&proposal=#{proposal.id}&message=#{message_body}"
+
+      result = JSON.parse(response.body)
+
+      expect(response).to be_success
+      expect(Message.last.body).to eq(message_body)
+    end
+  end
 end

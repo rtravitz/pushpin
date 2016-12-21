@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   end
   namespace :api do
     namespace :v1 do
-      get '/messages', to: "messages#index"
+      resources :messages, only: [:index, :create]
     end
   end
 end
