@@ -1,16 +1,44 @@
 .dashboard-container {
   h1 {
+    color: #fff;
     text-align: center;
     padding-bottom: 20px;
   }
+  p {
+    color: #fff; 
+  }
 
-  .panel {
-    background-color: darkgrey;
-    padding: 2%;
-    margin: 1%;
+  h4 {
+    color: #fff; 
   }
 
   .sit-right {
     float: right;
   }
+
+  .btn.btn-lg {
+    padding-right: 20px; 
+    padding-left: 20px; 
+    background: $pushpin-orange;
+  }
+  .btn.btn-lg:hover {
+    padding-right: 20px; 
+    padding-left: 20px; 
+    background: $darker-pushpin-orange;
+  }
+}
+
+.header-block {
+  display: inline-block;
+  background: rgb(83, 172, 249);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 5%;
+  box-shadow: 0px 0px 0px 2px #fff inset, 0px 0px 5px 3px $darker-pushpin-orange;
+  border: 5px solid rgba(83, 172, 249, 0.3); 
+  box-sizing: border-box;
+}
+
+.dashboard-header {
+  background: $pushpin-orange;
 }
