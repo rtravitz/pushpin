@@ -7,12 +7,14 @@
         <% @professional.skills.each do |skill| %>
         <p><%= skill.name %></p>
         <% end %>
+        <div class="professional_add_skill">
         <h4>Add a Skill:</h4>
         <%= form_tag({controller: "skills", action: "create"}, method: "post(or put)") do %>
           <%= collection_select(:skill, :skill_id, @skills, :id, :name) %>
           <%= submit_tag("Add this skill!") %>
           <% end %>
         <hr>
+      </div>
          <%= button_to "Find Work",  professional_projects_path, method: :get, class: "btn btn-warning" %>
       </div>
       <div class="col-md-6">
