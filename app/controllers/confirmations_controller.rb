@@ -1,11 +1,15 @@
 class ConfirmationsController < ApplicationController
   def new
     @user = current_user
+    redirect_to user_confirmation_path
   end
 
   def update
     @user = current_user
-      
+    ConfirmationSender.send_confirmation_to(@user)
+    # redirect_to user_confirmation_path
+
+    binding.pry
     if @user.verification_code == params[:user][:verification_code]
 
       session[:authenticated] = true
