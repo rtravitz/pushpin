@@ -1,12 +1,11 @@
 <div class="row">
   <div class="form">
     <div class="col-md-4 col-md-offset-4">
-
-
+      <h3>Update Your Password:</h3>
         <%= form_for @user, :url => {:controller => 'confirmations', :action => 'update'} do |f| %>
-        <%= f.label "Verification Code" %>
+        <%= f.label "Verification Code:" %>
         <%= f.password_field :verification_code %>
-        <%= f.label "New Password" %>
+        <%= f.label "New Password:" %>
         <%= f.password_field :password %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
