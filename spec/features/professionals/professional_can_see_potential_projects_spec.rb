@@ -33,8 +33,8 @@ end
 
 def setup
   user = create(:user)
-  role_1, role_2, role_3 = create_list(:role, 3)
-  user.roles << role_2
+  professional = create(:role, title: "professional")
+  user.roles << professional
   skills_1, skill_2 = create_list(:skill, 2)
   project_1, project_2, project_3 = create_list(:project, 3)
   project_1.skills << skill_2
