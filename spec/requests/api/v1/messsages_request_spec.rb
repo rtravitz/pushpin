@@ -31,7 +31,7 @@ describe "messages endpoints" do
   end
 
   context "POST /messages" do
-    it "returns a list of messages" do
+    it "creates a message for the api_user" do
       user_r, user_p = create_list(:user, 2)
       requester = create(:role, title: "requester")
       professional = create(:role, title: "professional")
@@ -55,6 +55,30 @@ describe "messages endpoints" do
       expect(result['image_url']).to eq(file)
       expect(result['user_id']).to eq(user_r.id)
       expect(result['proposal_id']).to eq(proposal.id)
+    end
+
+    it "does not create a message for invalid api_key" do
+      user_r, user_p = create_list(:user, 2)
+      requester = create(:role, title: "requester")
+      professional = create(:role, title: "professional")
+      user_r.roles << requester
+      user_p.roles << professional
+      project = create(:project, user: user_r)
+      proposal = create(:proposal, user: user_p, project: project)
+
+      message_body = "Test message"
+      file = "http://picture.jpg"
+      headers = { "CONTENT-TYPE" => "application/json" }
+      body = { message: { body: message_body, image_url: file } }.to_json
+      invalid_api_key = "5"
+
+      post "/api/v1/messages?api_key=#{invalid_api_key}&proposal=#{proposal.id}", body, headers
+
+      parsed = JSON.parse(response.body)
+
+      expect(Message.last).to eq(nil)
+      expect(parsed["message"]).to eq("You are not authorized!")
+      expect(response).to have_http_status(403)
     end
   end
 end
