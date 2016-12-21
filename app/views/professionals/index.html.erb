@@ -1,7 +1,7 @@
-<div class="container">
-  <% @professionals.each do |professional| %>
+<div class="container profile-index">
+  <% @professionals.each_with_index do |professional, index| %>
     <a href=<%= professional_path(professional) %>>
-      <div class="col-md-3 col-md-offset-1 spacer">
+      <div class="col-md-3 spacer">
         <div class="profile-card text-center">
           <div class="image-and-rating">
             <%= image_tag(professional.image, class: "profile-img") %>
@@ -19,5 +19,8 @@
         </div>
       </div>
     </a>
+    <% if (index + 1) % 4  == 0 %>
+      <div class="clearfix"></div> 
+    <% end %>
   <% end %>
 </div>
