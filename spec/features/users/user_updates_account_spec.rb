@@ -89,9 +89,9 @@ describe "User updates account information" do
       click_on "Update"
 
       expect(current_path).to eq(user_path(user))
-      expect(User.last.roles.count).to eq(2)
-      expect(User.last.roles.first).to eq(Role.find_by(title: "professional"))
-      expect(User.last.roles.last).to eq(Role.find_by(title: "requester"))
+      expect(user.roles.count).to eq(2)
+      expect(user.roles.first.title).to eq("professional")
+      expect(user.roles.last.title).to eq("requester")
     end
   end
 end
