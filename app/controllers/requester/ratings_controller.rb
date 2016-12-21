@@ -11,4 +11,5 @@ class Requester::RatingsController < ApplicationController
       flash[:success] = "Thanks for rating this professional!"
     end
   end
+
 end

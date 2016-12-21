@@ -23,8 +23,6 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles, dependent: :destroy
   has_many :ratings
   has_many :givers, through: :ratings
-  # has_many :proposals, through: :projects
-  # has_many :projects, through: :proposals
   has_many :proposals
   has_many :projects
   has_many :messages
@@ -75,4 +73,6 @@ class User < ApplicationRecord
   def current_projects
     projects.where.not(status: "complete")
   end
+
+  
 end
