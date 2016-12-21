@@ -11,7 +11,9 @@
     <% end %></p>
 
   <% if @project.status == "unassigned" %>
-  <%= link_to "Create a Proposal", new_professional_proposal_path(project: @project.id), class: "btn btn-warning" %>
+    <%= link_to "Create a Proposal", new_professional_proposal_path(project: @project.id), class: "btn btn-warning" %>
+  <% else %>
+    <%= render partial: "shared/message_center" %>
   <% end %>
 
   <%= render partial: "rating" %>

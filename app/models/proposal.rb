@@ -10,4 +10,8 @@ class Proposal < ApplicationRecord
   def messages_by_most_recent
     messages.reverse
   end
+
+  def self.assigned
+    find_by(status: "assigned")
+  end
 end
