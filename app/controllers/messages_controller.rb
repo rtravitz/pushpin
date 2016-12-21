@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :set_s3_direct_post, only: [:create, :edit, :update]
 
   def create
     proposal = Proposal.find(params[:proposal_id])
@@ -32,7 +33,7 @@ class MessagesController < ApplicationController
   private
 
     def message_params
-      params.require(:message).permit(:body)
+      params.require(:message).permit(:body, :image_url)
     end
 
     def redirect_decision(proposal)
@@ -41,5 +42,9 @@ class MessagesController < ApplicationController
       else
         redirect_to requester_proposal_path(proposal)
       end
+    end
+
+    def set_s3_direct_post
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
     end
 end
