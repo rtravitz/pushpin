@@ -1,4 +1,4 @@
-<div class="col-md-4 message-center form">
+<div class="col-md-4 message-center form pull-right">
 
   <h3>Message Center</h3>
   <%= form_for([@proposal, @message], html: { class: "directUpload", data: {'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host} }) do |f|%>
