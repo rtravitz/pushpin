@@ -9,14 +9,14 @@ feature "As as logged in professional" do
     professional_user.roles << professional
     requester_user.roles << requester
 
-    project = create(:project)
+    project = create(:project, user: requester_user)
     proposal = create(:proposal, project: project, user: professional_user)
     login(professional_user)
     visit professional_project_path(project: project.slug)
 
     expect(page).to_not have_content("Rate This Requester: #{requester_user.name}")
 
-    project.status = "complete"
+    project.update_attributes(status: "complete")
 
     visit professional_project_path(project: project.slug)
 
