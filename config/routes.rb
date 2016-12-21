@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     get '/projects/:project', to: 'projects#show', as: 'project'
     resources :proposals, only: [:new, :create, :show, :destroy]
   end
-  namespace :api do
+  namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :messages, only: [:index, :create]
     end
