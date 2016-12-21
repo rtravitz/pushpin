@@ -75,6 +75,6 @@ class User < ApplicationRecord
   end
 
   def not_rated?(other_user)
-    Rating.where(giver_id: self.id, user_id: other_user.id)
+    Rating.where(giver_id: self.id, user_id: other_user.id).length == 0
   end
 end
