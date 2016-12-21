@@ -27,7 +27,6 @@ feature "As a logged in professional, on my dashboard" do
     expect(page).to have_content(project.name)
     expect(page).to have_content(project.location)
     expect(page).to have_content(project.description)
-    expect(page).to have_content(project.status)
   end
 end
 
