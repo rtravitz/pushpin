@@ -1,6 +1,6 @@
 <h4>Your Skills:</h4>
 <% @professional.skills.each do |skill| %>
-<p><%= skill.name %></p>
+<p><%= skill.name %> <%= button_to "Delete", professional_skill_path(skill), method: :delete %> </p>
 <% end %>
 <div class="professional_add_skill">
   <h4>Add a Skill:</h4>

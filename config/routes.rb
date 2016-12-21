@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
   namespace :professional do
     get '/dashboard', to: 'dashboard#show', as: :dashboard
-    resources :skills, only: [:new, :create]
+    resources :skills, only: [:new, :create, :destroy]
     resources :projects, only: [:index]
     resources :ratings, only: [:new, :create]
     get '/projects/:project', to: 'projects#show', as: 'project'

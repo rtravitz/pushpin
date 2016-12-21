@@ -11,4 +11,11 @@ class Professional::SkillsController < ApplicationController
       redirect_to professional_dashboard_path
     end
   end
+
+  def destroy
+    skill = Skill.find(params[:id])
+    current_user.skills.destroy(skill)
+    flash[:info] = "Deleted a skill!"
+    redirect_to professional_dashboard_path
+  end
 end
