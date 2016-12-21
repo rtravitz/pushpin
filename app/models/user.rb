@@ -74,5 +74,7 @@ class User < ApplicationRecord
     projects.where.not(status: "complete")
   end
 
-  
+  def not_rated?(other_user)
+    Rating.where(giver_id: self.id, user_id: other_user.id)
+  end
 end
