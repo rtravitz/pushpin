@@ -15,20 +15,11 @@ class Api::V1::MessagesController < ApiController
 
   private
 
-  def message_params(user)
-    params.permit(:message).tap do |whitelisted|
-      whitelisted[:body] = params[:message][:body]
-      whitelisted[:image_url] = params[:message][:image_url]
-      whitelisted[:user_id] = user.id
+    def message_params(user)
+      params.permit(:message).tap do |whitelisted|
+        whitelisted[:body] = params[:message][:body]
+        whitelisted[:image_url] = params[:message][:image_url]
+        whitelisted[:user_id] = user.id
+      end
     end
-  end
-  #
-  #   permit(:message).tap do |whitelisted|
-  #     whitelisted[:body]
-  #
-  #      [:body, :image_url])
-  # end
-  # params.require(:measurement).permit, :message).tap do |whitelisted|
-  #     whitelisted[:message] = params[:message]
-  #
 end
