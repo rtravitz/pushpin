@@ -1,4 +1,6 @@
 class Api::V1::MessagesController < ApiController
+  respond_to :json
+  before_action: authenticate!
 
   def index
     messages = Message.by_proposal(params[:proposal])
@@ -7,9 +9,9 @@ class Api::V1::MessagesController < ApiController
 
   def create
     proposal = Proposal.find(params[:proposal])
-    user = User.find_by(api_key: params[:api_key])
-    binding.pry
-    message = proposal.messages.create(message_params(user))
+    if authenticate!
+      message = proposal.messages.create(message_params(user))
+    end
     render json: message
   end
 
@@ -21,5 +23,10 @@ class Api::V1::MessagesController < ApiController
         whitelisted[:image_url] = params[:message][:image_url]
         whitelisted[:user_id] = user.id
       end
+    end
+
+    def authenticate!
+      return true if User.find_by(api_key: params[:api_key])
+      render file: "/public/404"
     end
 end
