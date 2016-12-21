@@ -47,6 +47,10 @@ describe "messages endpoints" do
 
       expect(response).to be_success
       expect(Message.last.body).to eq(message_body)
+      expect(result['body']).to eq(message_body)
+      expect(result['image_url']).to eq(file)
+      expect(result['user_id']).to eq(user_r.id)
+      expect(result['proposal_id']).to eq(proposal.id)
     end
   end
 end
