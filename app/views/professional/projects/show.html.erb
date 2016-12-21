@@ -1,10 +1,10 @@
 <div class="container">
   <h3>Project Info:</h3>
-  <p><%= @project.name %></p>
-  <p><%= @project.location %></p>
-  <p> <%= @project.description %></p>
-  <p> <%= @project.status %></p>
-  <p> <%= @project.created_at %></p>
+  <p>Name: <%= @project.name %></p>
+  <p>Location: <%= @project.location %></p>
+  <p>Description: <%= @project.description %></p>
+  <p>Status: <%= @project.status.capitalize %></p>
+  <p>Project Date: <%= @project.created_at %></p>
   <p>Required Skills:
     <% @project.skills.each do |skill| %>
       <%= skill.name%>
@@ -14,14 +14,8 @@
   <%= link_to "Create a Proposal", new_professional_proposal_path(project: @project.id), class: "btn btn-warning" %>
   <% end %>
 
-  <% if @project.status == "complete" && @professional.not_rated?(@project.user) %>
-    <h4> Rate This Requester: <%= @project.user.name %></h4>
-    <%= form_for [@professional,@rating],  url: professional_ratings_path(requester: @project.user, project: @project) do |f| %>
-      <%= f.label "Score" %>
-      <%= f.select :score, options_for_select(1..5), include_blank: true %>
-      <%= f.label "Comment" %>
-      <%= f.text_area :comment %>
-      <%= f.submit %>
-    <% end %>
-  <% end %>
+  <%= render partial: "rating" %>
+
+  <%= link_to "Back to Your Professional Dashboard", professional_dashboard_path %>
+
 </div>
