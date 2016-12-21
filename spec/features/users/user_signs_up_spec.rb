@@ -18,6 +18,7 @@ feature "User signs up for an account" do
 
     expect(current_path).to eq(requester_dashboard_path)
     expect(page).to have_content("Requester")
+    expect(User.last.api_key.length).to eq(32)
   end
 
   scenario "professional signs up" do
