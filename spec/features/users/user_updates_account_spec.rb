@@ -71,15 +71,15 @@ describe "User updates account information" do
       click_on "Update"
 
       expect(current_path).to eq(user_path(user))
-      expect(User.last.roles.count).to eq(2)
-      expect(User.last.roles.first).to eq(Role.find_by(title: "requester"))
-      expect(User.last.roles.last).to eq(Role.find_by(title: "professional"))
+      expect(user.roles.count).to eq(2)
+      expect(user.roles.first.title).to eq("requester")
+      expect(user.roles.last.title).to eq("professional")
     end
 
     it "professional user adds a requester role" do
       prof_role = create(:role, title: "professional")
       user.roles << prof_role
-      requester_role #calls the above let block
+      requester_role
       login(user)
 
       visit edit_user_path(user)
