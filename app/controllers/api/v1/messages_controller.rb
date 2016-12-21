@@ -24,6 +24,7 @@ class Api::V1::MessagesController < ApiController
 
     def authenticate!
       @user = User.find_by(api_key: params[:api_key])
-      render file: "/public/404" unless @user
+      return true if @user
+      render json: { message: "You are not authorized!"}, status: 403
     end
 end
