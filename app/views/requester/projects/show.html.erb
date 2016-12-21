@@ -12,7 +12,7 @@
         <%= link_to "Mark This Project as Complete", edit_requester_project_path(current_user, project: @project.slug), method: :get %>
       <% end %>
 
-      <% if @project.status == "complete" %>
+      <% if @project.status == "complete" && @requester.not_rated?(@professional) %>
       <span id=rate-header> <h4>Rate This Professional:</h4>
       <h4><%= link_to @professional.name, professional_path(@professional) %></h4></span>
        <%= form_for [@requester,@rating],  url: requester_ratings_path(professional: @professional, project: @project) do |f| %>
@@ -28,5 +28,6 @@
   <% @project.proposals.each do |proposal| %>
   <p>Proposal ID: <%= link_to proposal.id, requester_proposal_path(proposal) %></p>
   <p>From: <%= proposal.user.name %></p>
+  <%= proposal.status %>
   <% end %>
 </div>

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#show', as: :dashboard
     resources :skills, only: [:new, :create]
     resources :projects, only: [:index]
+    resources :ratings, only: [:new, :create]
     get '/projects/:project', to: 'projects#show', as: 'project'
     resources :proposals, only: [:new, :create, :show, :destroy]
   end
