@@ -30,9 +30,8 @@
       <hr>
 
       <h4>In order to change your password, please click below to get a confirmation code.</h4>
-        <%= form_for @user, :url => {:controller => 'confirmations', :action => 'new'}  do |f| %>
-        <%= f.submit "Send me a verification code", class: "btn btn-info" %>
-        <% end %>
+      <%= link_to "Send me code", user_confirmation_path(@user) %>
+  
         <hr>
     </div>
   </div>
