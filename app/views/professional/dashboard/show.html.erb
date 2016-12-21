@@ -4,17 +4,12 @@
     <div class="row">
       <div class="col-md-6">
         <%= render partial: "skills" %>
-
         <%= button_to "Find Work",  professional_projects_path, method: :get, class: "btn btn-warning" %>
-
         <hr>
-        
         <%= render partial: 'proposals' %>
       </div>
-
       <div class="col-md-6">
         <%= render partial: 'active_projects' %>
-
         <%= render partial: 'completed_projects' %>
       </div>
     </div>

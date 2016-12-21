@@ -14,10 +14,10 @@
   <%= link_to "Create a Proposal", new_professional_proposal_path(project: @project.id), class: "btn btn-warning" %>
   <% end %>
 
-  <% if @project.status == "complete" && @professional.not_rated?(@project.user) %>
+  <% if @project.status == "complete" %>
   <%= render partial: "rating" %>
   <% end %>
 
-  <%= link_to "Back to Your Professional Dashboard", professional_dashboard_path %>
-  
+  <p><%= link_to "Back to Your Professional Dashboard", professional_dashboard_path %></p>
+
 </div>
