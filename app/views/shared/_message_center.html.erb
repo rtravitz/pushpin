@@ -1,0 +1,29 @@
+<div class="col-md-4 message-center form">
+
+  <h3>Message Center</h3>
+  <%= form_for([@proposal, @message], html: { class: "directUpload", data: {'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host} }) do |f|%>
+    <%= f.label "Add a message" %>
+    <%= f.text_area :body %>
+    <%= f.label "Add a file" %>
+    <%= f.file_field :image_url %>
+    <%= f.submit("Submit") %>
+  <% end %>
+  <hr>
+  <% @proposal.messages_by_most_recent.each do |message| %>
+    <div id="message-<%= message.id %>" class="panel">
+      <% if message.body %>
+        <p><%= message.body %></p>
+      <% end %>
+      <% if message.image_url %>
+        <a href=<%= message.image_url %>>
+          <%= image_or_pdf_icon(message.image_url) %>
+        </a>
+      <% end %>
+      <p>Sent by <%= message.user.name %> at <%= message.created_at %></p>
+      <% if message.user == current_user %>
+        <%= link_to "Edit", edit_proposal_message_path(@proposal, message), class: "btn btn-warning btn-xs" %>
+        <%= link_to "Delete", proposal_message_path(@proposal, message), method: :delete, class: "btn btn-danger btn-xs" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

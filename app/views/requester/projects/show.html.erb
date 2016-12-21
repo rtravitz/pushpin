@@ -9,7 +9,7 @@
       <%= @project.status %>
 
       <% if @project.status == "assigned" %>
-      <%= link_to "Mark This Project as Complete", edit_requester_project_path(current_user, project: @project.slug), method: :get %>
+        <%= link_to "Mark This Project as Complete", edit_requester_project_path(current_user, project: @project.slug), method: :get %>
       <% end %>
 
       <% if @project.status == "complete" %>
@@ -25,4 +25,8 @@
       <% end %>
     </div>
   </div>
+  <% @project.proposals.each do |proposal| %>
+  <p>Proposal ID: <%= link_to proposal.id, requester_proposal_path(proposal) %></p>
+  <p>From: <%= proposal.user.name %></p>
+  <% end %>
 </div>
