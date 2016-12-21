@@ -10,7 +10,7 @@ feature "As as logged in professional" do
     requester_user.roles << requester
 
     project = create(:project, user: requester_user)
-    proposal = create(:proposal, project: project, user: professional_user)
+    proposal = create(:proposal, project: project, user: professional_user, status: "assigned")
     login(professional_user)
     visit professional_project_path(project: project.slug)
 
