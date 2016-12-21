@@ -46,4 +46,9 @@ Rails.application.routes.draw do
     get '/projects/:project', to: 'projects#show', as: 'project'
     resources :proposals, only: [:new, :create, :show, :destroy]
   end
+  namespace :api do
+    namespace :v1 do
+      get '/messages', to: "messages#index"
+    end
+  end
 end
