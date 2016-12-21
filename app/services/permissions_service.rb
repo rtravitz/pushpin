@@ -43,7 +43,7 @@ class PermissionsService
       return true if controller == "requesters" && action == "show"
       return true if controller == "messages" && action.in?(%w(create destroy edit update))
       return true if controller == "professional/ratings" && action.in?(%w(create))
-
+      return true if controller == "professional/skills" && action.in?(%w(new create))
     end
 
     def requester_permissions

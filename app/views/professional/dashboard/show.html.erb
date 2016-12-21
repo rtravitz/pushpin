@@ -3,24 +3,11 @@
     <h1>Welcome to Your Professional Dashboard</h1>
     <div class="row">
       <div class="col-md-6">
-        <h4>Your Skills:</h4>
-        <% @professional.skills.each do |skill| %>
-        <p><%= skill.name %></p>
-        <% end %>
-
-        <h4>Add a Skill:</h4>
-        <%= form_tag "/professional/dashboard", method: "get" do %>
-          <%= collection_select(:skill, :skill_id, @skills, :id, :name) %>
-        <%= submit_tag("Add this skill!") %>
-          <% end %>
-        <hr>
-
+        <%= render partial: "professional_skills" %>
+      
          <%= button_to "Find Work",  professional_projects_path, method: :get, class: "btn btn-warning" %>
-
       </div>
-
       <div class="col-md-6">
-
         <h5>Active Projects: </h5>
           <div class="row">
             <% @professional.projects.each do |project| %>
@@ -30,7 +17,6 @@
               </div>
             <% end %>
           </div>
-
         <h5>Proposals</h5>
         <div class="row">
           <% @professional.proposals.each do |proposal| %>
@@ -42,7 +28,6 @@
           <% end %>
         </div>
       </div>
-
     </div>
   </div>
 </div>
