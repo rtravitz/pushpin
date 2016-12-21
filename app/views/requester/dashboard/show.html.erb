@@ -21,7 +21,7 @@
       <h4>Proposals</h4>
       <% @user.proposals.each do |proposal| %>
         <div class="col-md-3 panel proposal-card">
-          <h5>Proposal ID: <%= proposal.id %></h5>
+          <h5>Proposal ID: <%= link_to proposal.id, requester_proposal_path(proposal) %></h5>
           <p>Proposed by: <%= proposal.user.name %></p>
         </div>
       <% end %>
