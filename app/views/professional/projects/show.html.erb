@@ -5,6 +5,7 @@
   <p>Description: <%= @project.description %></p>
   <p>Status: <%= @project.status %></p>
   <p>Project Date: <%= @project.created_at %></p>
+  <p>Requester: <%= link_to @project.user.name, requester_path(@project.user) %> (Rating: <%= @project.user.average_rating if @project.user.average_rating %>) </p>
   <p>Required Skills:
     <% @project.skills.each do |skill| %>
       <%= skill.name%>
