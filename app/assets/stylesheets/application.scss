@@ -14,6 +14,8 @@
 
 $navbar-default-bg: #337AB7;
 $navbar-default-link-color: #fff;
+$pushpin-orange: #fc9f69;
+$darker-pushpin-orange: #fb8f50;
 
 
 @import url('https://fonts.googleapis.com/css?family=Cabin');
@@ -34,11 +36,15 @@ $navbar-default-link-color: #fff;
 @import "forms.scss";
 @import "home.scss";
 @import "navbar.scss";
-
 @import "dashboard.scss";
+@import "requester_dashboard.scss";
+@import "admin_dashboard.scss";
+@import "professional_show.scss";
+@import 'proposal_show.scss';
+@import 'screen.scss';
+@import 'professional_dashboard.scss';
+
 
 body {
   font-family: 'Cabin', sans-serif;
 }
-@import "requester_dashboard.scss";
-@import "admin_dashboard.scss";

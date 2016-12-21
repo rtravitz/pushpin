@@ -2,10 +2,16 @@ class Proposal < ApplicationRecord
   belongs_to :project
   belongs_to :user
 
-  has_many :messages
-  has_many :users, through: :messages
+  has_many :messages, dependent: :destroy
+  has_many :users, through: :messages, dependent: :destroy
 
-  # def projects_with_skill_matches
-  #   skills.
-  # end
+  scope :unassigned, -> { where(status: "unassigned") }
+
+  def messages_by_most_recent
+    messages.reverse
+  end
+
+  def self.assigned
+    find_by(status: "assigned")
+  end
 end

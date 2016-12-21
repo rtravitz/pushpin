@@ -1,0 +1,12 @@
+<% if @professional.not_rated?(@project.user) %>
+  <h4> Rate This Requester: <%= @project.user.name %></h4>
+  <%= form_for [@professional,@rating],  url: professional_ratings_path(requester: @project.user, project: @project) do |f| %>
+    <%= f.label "Score" %>
+    <%= f.select :score, options_for_select(1..5), include_blank: true %>
+    <%= f.label "Comment" %>
+    <%= f.text_area :comment %>
+    <%= f.submit %>
+  <% end %>
+<% else %>
+<p>You already rated this requester.</p>
+<% end %>

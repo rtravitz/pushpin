@@ -1,8 +1,37 @@
-<div class="row">
-  <div class="col-md-3 col-md-offset-4">
-    <h1>Edit Your Account</h1>
-      <%= form_for @user do |f| %>
-      <%= f.submit "Send me a verification code!", class: "btn btn-primary" %>
+<div class="container">
+  <div class="row">
+    <div class="form col-md-4 col-md-offset-4">
+      <h1>Update account:</h1>
+      <%= form_for(@user, html: { class: "directUpload", data: {'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host} }) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.label :username %>
+        <%= f.text_field :username %>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+        <%= f.label :location %>
+        <%= f.text_field :location %>
+        <%= f.label :phone %>
+        <%= f.text_field :phone %>
+        <%= f.label :image %>
+        <%= f.file_field :image %>
+
+        <h4>Your role(s):</h4>
+        <ul>
+          <% @user.roles.each do |role| %>
+            <li><%= role.title %></li>
+          <% end %>
+        </ul>
+
+        <h4>Add a role to your account:</h4>
+        <%= f.collection_select(:role_to_add, @user.role_to_add, :id, :title, include_blank: true) %>
+
+        <h4>To change password:</h4>
+
+        <%= f.submit "Send me a verification code!", class: "btn btn-primary" %>
+
+        <%= f.submit "Update", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
+</div>

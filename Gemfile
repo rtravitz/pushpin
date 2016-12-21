@@ -17,13 +17,7 @@ gem 'figaro'
 gem 'twilio-ruby'
 gem 'faraday'
 gem 'octicons_helper'
-
-
-
-group :production do
-  gem 'rails_12factor'
-end
-
+gem 'aws-sdk', '~> 2'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -32,7 +26,6 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'pry'
-  gem 'launchy'
 end
 
 group :development do
