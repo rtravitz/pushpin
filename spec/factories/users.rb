@@ -8,6 +8,7 @@ FactoryGirl.define do
     phone "555-555-5555"
     password "password"
     image "https://www.organicfacts.net/wp-content/uploads/2013/06/Pineapple.jpg"
+    api_key "2028feb924af15bc5c07cda74a2aa850"
   end
 
   sequence :name do |n|
