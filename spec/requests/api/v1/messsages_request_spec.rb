@@ -30,7 +30,7 @@ describe "messages endpoints" do
     end
   end
 
-  context "GET /messages" do
+  context "POST /messages" do
     it "returns a list of messages" do
       user_r, user_p = create_list(:user, 2)
       requester = create(:role, title: "requester")
@@ -39,10 +39,13 @@ describe "messages endpoints" do
       user_p.roles << professional
       project = create(:project, user: user_r)
       proposal = create(:proposal, user: user_p, project: project)
-      message_body = "This is the body of the message"
-      file = "http://picture.jpg"
 
-      post "/api/v1/messages?api_key=#{user_r.api_key}&proposal=#{proposal.id}&message=#{message_body}&file=#{file}"
+      message_body = "Test message"
+      file = "http://picture.jpg"
+      headers = { "CONTENT-TYPE" => "application/json" }
+      body = { message: { body: message_body, image_url: file } }.to_json
+
+      post "/api/v1/messages?api_key=#{user_r.api_key}&proposal=#{proposal.id}", body, headers
 
       result = JSON.parse(response.body)
 
