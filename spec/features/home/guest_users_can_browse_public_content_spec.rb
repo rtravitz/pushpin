@@ -25,8 +25,6 @@ feature "Guest user visits the root" do
       expect(current_path).to eq("/professionals")
       expect(page).to have_content(first.name)
       expect(page).to have_content(last.name)
-      expect(page).to have_content(first.email)
-      expect(page).to have_content(first.phone)
       expect(page).to have_content(first.location)
     end
   end
