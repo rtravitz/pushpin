@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220204313) do
+ActiveRecord::Schema.define(version: 20161221015443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20161220204313) do
     t.datetime "updated_at",                                                  null: false
     t.string   "verification_code"
     t.string   "image",             default: "/assets/default-user-icon.png"
+    t.string   "api_key"
   end
 
   add_foreign_key "messages", "proposals"
