@@ -36,8 +36,6 @@ class UsersController < ApplicationController
     else
       render :edit
     end
-    # ConfirmationSender.send_confirmation_to(@user)
-    # redirect_to user_confirmation_path
   end
 
   private
