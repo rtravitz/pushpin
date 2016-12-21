@@ -23,8 +23,8 @@
   <div class="container">
     <div class="row" id="proposals">
       <h4>Proposals</h4>
-      <% @user.projects.each do |project| %>
-      <% project.proposals.each do |proposal| %>
+      <% @user.projects.unassigned.each do |project| %>
+      <% project.proposals.unassigned.each do |proposal| %>
           <div class="col-md-3 panel proposal-card">
             <h5>Proposal ID: <%= link_to proposal.id, requester_proposal_path(proposal) %> for project <%= proposal.project_id %> </h5>
             <p>Proposed by: <%= proposal.user.name %></p>
