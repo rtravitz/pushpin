@@ -40,8 +40,8 @@ describe "messages endpoints" do
       project = create(:project, user: user_r)
       proposal = create(:proposal, user: user_p, project: project)
       message_body = "This is the body of the message"
-
-      post "/api/v1/messages?api_key=#{user_r.api_key}&proposal=#{proposal.id}&message=#{message_body}"
+      file = "http://picture.jpg"
+      post "/api/v1/messages?api_key=#{user_r.api_key}&proposal=#{proposal.id}&message=#{message_body}&file=#{file}"
 
       result = JSON.parse(response.body)
 
