@@ -38,9 +38,17 @@ class MessagesController < ApplicationController
 
     def redirect_decision(proposal)
       if current_user == proposal.user
-        redirect_to professional_proposal_path(proposal)
+        if proposal.status == "assigned"
+          redirect_to professional_project_path(project: proposal.project.slug)
+        else
+          redirect_to professional_proposal_path(proposal)
+        end
       else
-        redirect_to requester_proposal_path(proposal)
+        if proposal.status == "assigned"
+          redirect_to requester_project_path(project: proposal.project.slug)
+        else
+          redirect_to requester_proposal_path(proposal)
+        end
       end
     end
 
