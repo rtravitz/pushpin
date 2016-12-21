@@ -3,5 +3,4 @@ FactoryGirl.define do
     user {create(:user)}
     project {create(:project)}
   end
-
 end

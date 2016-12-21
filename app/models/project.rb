@@ -18,4 +18,5 @@ class Project < ApplicationRecord
     self.slug = "#{name.parameterize}-#{self.id}" if self.name
   end
 
+
 end
