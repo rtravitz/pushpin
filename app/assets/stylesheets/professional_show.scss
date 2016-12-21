@@ -9,10 +9,6 @@
   margin-bottom: 10px;
 }
 
-.bottom-spacer {
-  height: 30px;
-}
-
 .image-and-rating {
   display: inline-block;
   position: relative;
@@ -73,22 +69,20 @@
 }
 
 .profile-skills {
+}
+.skill-tag {
+  display: inline-block;
+  padding: 5px;
+  margin: 1px;
+  background: $pushpin-orange;
+  border-radius: 6px;
+  color: #fff;
+  border: 1px solid $darker-pushpin-orange;
+}
 
-  .skill-tag {
-    display: inline-block;
-    padding: 5px;
-    margin: 1px;
-    background: $pushpin-orange;
-    border-radius: 6px;
-    color: #fff;
-    border: 1px solid $darker-pushpin-orange;
-  }
-
-  .skill-tag:hover {
-    text-decoration: none;
-    color: #fff;
-    background: $darker-pushpin-orange;
-  }
-
+.skill-tag:hover {
+  text-decoration: none;
+  color: #fff;
+  background: $darker-pushpin-orange;
 }
 

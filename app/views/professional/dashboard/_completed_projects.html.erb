@@ -1,7 +1,7 @@
 <h5>Completed Projects:</h5>
   <div class="row">
-    <% @professional.completed_projects.each do |project| %>
-      <div class="panel col-md-6">
+    <% @professional.professional_completed_projects.each do |project| %>
+      <div class="dashboard-card col-md-6">
       <p>Name: <%= link_to project.name, professional_project_path(project: project.slug) %></p>
       <p>Status: <%= project.status %></p>
       <% end %>
