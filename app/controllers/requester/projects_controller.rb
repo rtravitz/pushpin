@@ -18,6 +18,21 @@ class Requester::ProjectsController < ApplicationController
 
   def show
     @project = Project.find_by(slug: params[:project])
+    if @project.status == "complete"
+      @professional = User.find(@project.proposals.where(status: "assigned").first.user_id)
+    end
+    @rating = Rating.new
+    @requester = current_user
+  end
+
+  def edit
+    @project = Project.find_by(slug: params[:project])
+    @project.update_attributes(status: "complete")
+    redirect_to requester_dashboard_path(current_user)
+  end
+
+  def update
+
   end
 
   private

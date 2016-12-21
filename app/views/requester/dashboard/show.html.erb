@@ -2,28 +2,51 @@
   <h1>Welcome to Your Requester Dashboard</h1>
   <%= link_to "Create New Project", new_requester_project_path, class: "btn btn-primary" %>
   <div class="container">
-    <div class="row">
-      <h4>Projects</h4>
-      <% @user.projects.each do |project| %>
+    <div class="row" id="current-projects">
+      <h4>Current Projects</h4>
+      <% @user.current_projects.each do |project| %>
       <a href=<%= requester_project_path(project: project.slug) %> >
         <div class="col-md-3 panel project-card">
           <h5><%= project.name %></h5>
-          <p>Status: <%= project.status %></p>
+          <p>Status: <%= project.status.capitalize %></p>
           <p>Location: <%= project.location %></p>
           <p>Description: <%= project.description %></p>
+          <p>Project ID: <%= project.id %></p>
+            <% if project.status == "assigned" %>
+            Professional: <%#= project.proposals.where(status: "assigned").first.user_id %>
+            <% end %>
         </div>
       </a>
       <% end %>
     </div>
   </div>
   <div class="container">
-    <div class="row">
+    <div class="row" id="proposals">
       <h4>Proposals</h4>
-      <% @user.proposals.each do |proposal| %>
-        <div class="col-md-3 panel proposal-card">
-          <h5>Proposal ID: <%= link_to proposal.id, requester_proposal_path(proposal) %></h5>
-          <p>Proposed by: <%= proposal.user.name %></p>
+      <% @user.projects.each do |project| %>
+      <% project.proposals.each do |proposal| %>
+          <div class="col-md-3 panel proposal-card">
+            <h5>Proposal ID: <%= link_to proposal.id, requester_proposal_path(proposal) %> for project <%= proposal.project_id %> </h5>
+            <p>Proposed by: <%= proposal.user.name %></p>
+            <p>Status: <%= proposal.status %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row" id="completed-projects">
+      <h4>Project History</h4>
+      <% @user.completed_projects.each do |project| %>
+      <a href=<%= requester_project_path(project: project.slug) %> >
+        <div class="col-md-3 panel project-card">
+
+          <h5><%= project.name %></h5>
+          <p>Status: <%= project.status %></p>
+          <p>Location: <%= project.location %></p>
+          <p>Description: <%= project.description %></p>
         </div>
+      </a>
       <% end %>
     </div>
   </div>
