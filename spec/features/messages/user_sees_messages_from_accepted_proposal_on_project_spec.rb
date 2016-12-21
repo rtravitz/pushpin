@@ -16,8 +16,8 @@ feature "As a professional with an accepted proposal for a project" do
 
     expect(page).to_not have_content(message.body)
 
-    project.update_attributes(status: "accepted")
-    proposal.update_attributes(status: "accepted")
+    project.update_attributes(status: "assigned")
+    proposal.update_attributes(status: "assigned")
 
     visit professional_project_path(project: project.slug)
 
