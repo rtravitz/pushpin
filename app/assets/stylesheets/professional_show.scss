@@ -1,0 +1,81 @@
+.main-card {
+  background: #f2f2f2;
+  background-size: cover;
+  height: 100%;
+  padding: 20px;
+}
+
+.spacer {
+  margin-bottom: 30px;
+
+}
+
+.image-and-rating {
+  display: inline-block;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  .profile-img {
+    border-radius: 50%;
+    height: 150px;
+  }
+  .rating {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 45%;
+    bottom: -10px;
+    background: yellow;
+    padding: 2px 8px;
+    border-radius: 8px;
+  }
+}
+
+.secondary-card {
+  background: rgb(83, 172, 249);
+  height: 250px;
+}
+
+.profile-contact {
+  background: rgba(252, 159, 105, 0.3);
+  border-radius: 10px;
+}
+
+.profile-card {
+  background: rgba(83, 172, 249, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+.profile-header-block {
+  h3 {
+    font-size: 30px;
+    margin-left: 1px;
+  }
+
+  p {
+    font-size: 20px;
+    margin-left: 1px;
+  }
+}
+
+.profile-skills {
+
+  .skill-tag {
+    padding: 5px;
+    background: $pushpin-orange;
+    border-radius: 6px;
+    color: #fff;
+    border: 1px solid $darker-pushpin-orange;
+  }
+
+  .skill-tag:hover {
+    text-decoration: none;
+    color: #fff;
+    background: $darker-pushpin-orange;
+  }
+
+}

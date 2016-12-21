@@ -24,7 +24,8 @@ class Seed
                           email: Faker::Internet.email,
                           phone: Faker::PhoneNumber.phone_number,
                           status: "active",
-                          password: Faker::Internet.password
+                          password: Faker::Internet.password,
+                          image: "/assets/default-user-icon.png"
                           )
       puts "User #{i}: #{user.name} created."
     end

@@ -1,0 +1,8 @@
+<div class="container">
+  <h3><%= @requester.name %>'s Profile</h3>
+  <h4>Location: <%= @requester.location %></h4>
+
+  <%=image_tag( @requester.image)  %>
+
+  <h4>Rating: <%= @requester.average_rating if @requester.average_rating %></h4>
+</div>

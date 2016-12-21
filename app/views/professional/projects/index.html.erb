@@ -1,0 +1,9 @@
+<div class="container">
+
+  <h3>Potential Projects that Match Your Skills</h3>
+  <% @projects.each do |project| %>
+  <p><%= link_to project.name, professional_project_path(project: project.slug) %></p>
+  <% end %>
+  <hr>
+  <%= link_to "Back to Your Professional Dashboard", professional_dashboard_path %>
+</div>

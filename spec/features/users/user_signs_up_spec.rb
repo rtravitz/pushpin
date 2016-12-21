@@ -13,11 +13,12 @@ feature "User signs up for an account" do
     fill_in "user[phone]", with: "3330003333"
     fill_in "user[password]", with: "password"
     fill_in "user[password_confirmation]", with: "password"
-    select "requester", :from => "user_roles"
+    select "requester", from: "user_roles"
     click_on "Submit"
 
     expect(current_path).to eq(requester_dashboard_path)
     expect(page).to have_content("Requester")
+    expect(User.last.api_key.length).to eq(32)
   end
 
   scenario "professional signs up" do
@@ -33,7 +34,7 @@ feature "User signs up for an account" do
     fill_in "user[phone]", with: "3330003333"
     fill_in "user[password]", with: "password"
     fill_in "user[password_confirmation]", with: "password"
-    select "professional", :from => "user_roles"
+    select "professional", from: "user_roles"
     click_on "Submit"
 
     expect(current_path).to eq(professional_dashboard_path)

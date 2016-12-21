@@ -23,10 +23,6 @@ class User < ApplicationRecord
   has_many :roles, through: :user_roles, dependent: :destroy
   has_many :ratings
   has_many :givers, through: :ratings
-  has_many :user_roles
-  has_many :roles, through: :user_roles
-  # has_many :proposals, through: :projects
-  # has_many :projects, through: :proposals
   has_many :proposals
   has_many :projects
   has_many :messages
@@ -52,5 +48,33 @@ class User < ApplicationRecord
 
   def requester?
     roles.exists?(title: "requester")
+  end
+
+  def possible_projects_professional
+    Project.unassigned.joins(skills: :users).where("user_skills.user_id = ?", self.id)
+  end
+
+  def role_to_add
+    (Role.signup_roles - roles)
+  end
+
+  def add_extra_role
+    roles << role_to_add
+  end
+
+  def average_rating
+    ratings.average(:score).to_f
+  end
+
+  def completed_projects
+    projects.where(status: "complete")
+  end
+
+  def current_projects
+    projects.where.not(status: "complete")
+  end
+
+  def not_rated?(other_user)
+    Rating.where(giver_id: self.id, user_id: other_user.id).length == 0
   end
 end

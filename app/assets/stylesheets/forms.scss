@@ -2,48 +2,71 @@
   padding: 20px;
 }
 
-@mixin box_sizing {
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box;
-}
+.form {
+  @mixin outline {
+    box-shadow: 0 0 3px 1px $pushpin-orange;
+    outline: none;
+  }
 
-body {
-  padding-top: 60px;
-}
+  @mixin box_sizing {
+    -moz-box-sizing:    border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing:         border-box;
+  }
 
-input, textarea, select {
-  padding-top: 10px;
-  font-size: 1.3em;
-  line-height: 1em;
-  border: 2px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  @include box_sizing;
-}
+  input, textarea, select {
+    padding: 5px;
+    font-size: 1.3em;
+    line-height: 1em;
+    border: 2px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    @include box_sizing;
+  }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
+  h1 {
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: $pushpin-orange
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  padding-top: 10px;
-  line-height: 1;
-  text-align: center;
-}
+  h1, h2, h3, h5, h6 {
+    padding-top: 10px;
+    line-height: 1;
+    text-align: center;
+  }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
+  #rate-header {
+    text-align: center;
+  }
 
-#login {
-  padding-top: 15px;
-  text-align: center;
+  p {
+    font-size: 1.1em;
+    line-height: 1.7em;
+  }
+
+  #login {
+    padding-top: 15px;
+    text-align: center;
+  }
+
+  .checkbox-grid li {
+    display: block;
+    float: left;
+    width: 25%;
+  }
+
+  input[type=text]:focus {
+    @include outline;
+  }
+
+  input[type=password]:focus {
+    @include outline;
+  }
 }

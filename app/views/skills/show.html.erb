@@ -1,0 +1,13 @@
+<div class="container">
+  <h3>Find a Professional with the skills you need!</h3>
+  <h4>Skill: <%= @skill.name %> </h4>
+
+  <% @skill.users.each do |professional| %>
+    <div class="prof-card col-md-3 col-md-offset-1 well">
+      <p><%= link_to professional.name, professional_path(professional) %></p>
+      <p><%= professional.location %></p>
+      <p><%= professional.email %></p>
+      <p><%= professional.phone %></p>
+    </div>
+  <% end %>
+</div>
