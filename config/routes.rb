@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   # get '/professionals/:id', to: 'professionals#show'
   resources :professionals, only: [:index, :show]
   resources :requesters, only: [:show]
+  resources :proposals, only: [:show] do
+    resources :messages
+  end
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -32,6 +35,7 @@ Rails.application.routes.draw do
     get '/:project', to: "projects#show", as: 'project'
     get '/ratings', to: "ratings#new"
     post '/ratings', to: "ratings#create"
+    resources :proposals, only: [:show]
   end
 
   namespace :professional do

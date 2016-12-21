@@ -1,0 +1,7 @@
+<div class="form">
+  <%= form_for [@message.proposal, @message] do |f|%>
+     <%= f.label "Update Your Message" %>
+     <%= f.text_area :body %>
+     <%= f.submit %>
+   <% end  %>
+</div>

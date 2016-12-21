@@ -35,7 +35,18 @@ RSpec.describe Proposal, type: :model do
 
       expect(proposal).to respond_to(:users)
     end
+  end
 
+  context "methods" do
+    context "#messages_by_most_recent" do
+      it "returns the messages in order of recency" do
+        proposal = create(:proposal)
+        proposal.messages.create(body: "test1")
+        proposal.messages.create(body: "test2")
+        messages = proposal.messages_by_most_recent
 
+        expect(messages.first.body).to eq("test2")
+      end
+    end
   end
 end

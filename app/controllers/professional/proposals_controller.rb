@@ -1,7 +1,9 @@
 class Professional::ProposalsController < ApplicationController
+  before_action :set_s3_direct_post, only: [:show]
 
   def show
     @proposal = Proposal.find(params[:id])
+    @message = Message.new
   end
 
   def new
@@ -23,7 +25,7 @@ class Professional::ProposalsController < ApplicationController
   def destroy
     proposal = Proposal.find(params[:id])
     if proposal.destroy
-      current_user.proposals.delete(proposal) if  Rails.env == "test"
+      current_user.proposals.delete(proposal) #if  Rails.env == "test"
       flash[:success] = "You have successfully deleted Proposal: #{proposal.id}"
     end
     redirect_to professional_dashboard_path
@@ -33,6 +35,10 @@ class Professional::ProposalsController < ApplicationController
 
     def proposal_params
       params.require(:proposal).permit(:user_id, :project_id)
+    end
+    
+    def set_s3_direct_post
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
     end
 
 end
