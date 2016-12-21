@@ -4,7 +4,7 @@ class Professional::SkillsController < ApplicationController
   end
 
   def create
-    @skill = Skill.new
+    @skill = Skill.find(params[:skill][:skill_id])
     current_user.skills << @skill
     if @skill.save
       flash[:success] = "Created new skill!"
