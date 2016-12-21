@@ -30,4 +30,7 @@
   <p>From: <%= proposal.user.name %></p>
   <%= proposal.status %>
   <% end %>
+  <% unless @project.status == "unassigned" %>
+    <%= render partial: "shared/message_center" %>
+  <% end %>
 </div>
