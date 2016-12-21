@@ -3,30 +3,14 @@
     <h1>Welcome to Your Professional Dashboard</h1>
     <div class="row">
       <div class="col-md-6">
-        <%= render partial: "professional_skills" %>
-
-         <%= button_to "Find Work",  professional_projects_path, method: :get, class: "btn btn-warning" %>
+        <%= render partial: "skills" %>
+        <%= button_to "Find Work",  professional_projects_path, method: :get, class: "btn btn-warning" %>
+        <hr>
+        <%= render partial: 'proposals' %>
       </div>
       <div class="col-md-6">
-        <h5>Active Projects: </h5>
-          <div class="row">
-            <% @professional.projects.each do |project| %>
-              <div class="panel col-md-6">
-                <p>Name: <%= link_to project.name, professional_project_path(project: project.slug) %></p>
-                <p>Status: <%= project.status %></p>
-              </div>
-            <% end %>
-          </div>
-        <h5>Proposals:</h5>
-        <div class="row">
-          <% @professional.proposals.each do |proposal| %>
-            <div class="proposal-<%= proposal.id %> panel col-md-6">
-              <p>Proposal ID: <%=link_to proposal.id, professional_proposal_path(proposal) %>  <%= link_to "Delete", professional_proposal_path(proposal), method: :delete, class:"btn btn-danger btn-xs sit-right" %> </p>
-              <p>Project: <%= proposal.project.name %> <% proposal.project.id %></p>
-              <p>Date Submitted: <%= proposal.created_at %> </p>
-            </div>
-          <% end %>
-        </div>
+        <%= render partial: 'active_projects' %>
+        <%= render partial: 'completed_projects' %>
       </div>
     </div>
   </div>

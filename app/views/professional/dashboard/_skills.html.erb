@@ -8,7 +8,7 @@
   <h4>Add a Skill:</h4>
   <%= form_tag({controller: "skills", action: "create"}, method: "post(or put)") do %>
   <%= collection_select(:skill, :skill_id, @skills, :id, :name) %>
-  <%= submit_tag "Add this skill!", class: "btn btn-info" %>
+  <%= submit_tag "Add this skill!", class: "btn btn-info btn-sm" %>
   <% end %>
   <hr>
 </div>
