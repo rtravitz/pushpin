@@ -16,7 +16,7 @@ class Seed
   end
 
   def create_users
-    100.times do |i|
+    1000.times do |i|
       user = User.create!(
                           name: Faker::Name.name,
                           username: "#{Faker::Internet.user_name}#{i}",
@@ -41,7 +41,7 @@ class Seed
 
   def create_user_roles_professional
     role = Role.find_by(title: "professional")
-    40.times do |i|
+    400.times do |i|
       user = User.find(i+1)
       user_role = UserRole.create!(
                                     user_id: user.id,
@@ -53,7 +53,7 @@ class Seed
 
   def create_user_roles_requester
     role = Role.find_by(title: "requester")
-    60.times do |i|
+    600.times do |i|
       user = User.find(40+i)
       user_role = UserRole.create!(
                                     user_id: user.id,
@@ -136,10 +136,10 @@ class Seed
 
   def create_ratings
     10.times do |i|
-      user = User.find(Random.new.rand(1..10))
-      giver = User.find(Random.new.rand(1..10))
+      user = User.find(Random.new.rand(1..400))
+      giver = User.find(Random.new.rand(401..1000))
       rating = Rating.create!(
-                                score: Faker::Number.decimal(2),
+                                score: Faker::Number.between(1, 5),
                                 comment: Faker::Lorem.sentence,
                                 user_id: user.id,
                                 giver_id: giver.id,
