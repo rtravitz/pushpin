@@ -2,14 +2,16 @@ require "rails_helper"
 
 describe "messages endpoints" do
   context "GET /messages" do
+    let(:user_r)          { create(:user) }
+    let(:user_p)          { create(:user)}
+    let(:requester)       { create(:role, title: "requester") }
+    let(:professional)    { create(:role, title: "professional") }
+    let(:project)         { create(:project, user: user_r) }
+    let(:proposal)        { create(:proposal, user: user_p, project: project) }
+
     it "returns a list of messages for the api user" do
-      user_r, user_p = create_list(:user, 2)
-      requester = create(:role, title: "requester")
-      professional = create(:role, title: "professional")
       user_r.roles << requester
       user_p.roles << professional
-      project = create(:project, user: user_r)
-      proposal = create(:proposal, user: user_p, project: project)
       message1 = proposal.messages.create(body: "test body", user: user_r)
       message2 = proposal.messages.create(body: "test body", user: user_p)
 
@@ -30,13 +32,8 @@ describe "messages endpoints" do
     end
 
     it "does not return messages for invalid api key" do
-      user_r, user_p = create_list(:user, 2)
-      requester = create(:role, title: "requester")
-      professional = create(:role, title: "professional")
       user_r.roles << requester
       user_p.roles << professional
-      project = create(:project, user: user_r)
-      proposal = create(:proposal, user: user_p, project: project)
       message1 = proposal.messages.create(body: "test body", user: user_r)
       message2 = proposal.messages.create(body: "test body", user: user_p)
       invalid_api_key = "5"
@@ -51,14 +48,16 @@ describe "messages endpoints" do
   end
 
   context "POST /messages" do
+    let(:user_r)          { create(:user) }
+    let(:user_p)          { create(:user)}
+    let(:requester)       { create(:role, title: "requester") }
+    let(:professional)    { create(:role, title: "professional") }
+    let(:project)         { create(:project, user: user_r) }
+    let(:proposal)        { create(:proposal, user: user_p, project: project) }
+
     it "creates a message for the api user" do
-      user_r, user_p = create_list(:user, 2)
-      requester = create(:role, title: "requester")
-      professional = create(:role, title: "professional")
       user_r.roles << requester
       user_p.roles << professional
-      project = create(:project, user: user_r)
-      proposal = create(:proposal, user: user_p, project: project)
 
       message_body = "Test message"
       file = "http://picture.jpg"
@@ -78,13 +77,8 @@ describe "messages endpoints" do
     end
 
     it "does not create a message for invalid api key" do
-      user_r, user_p = create_list(:user, 2)
-      requester = create(:role, title: "requester")
-      professional = create(:role, title: "professional")
       user_r.roles << requester
       user_p.roles << professional
-      project = create(:project, user: user_r)
-      proposal = create(:proposal, user: user_p, project: project)
 
       message_body = "Test message"
       file = "http://picture.jpg"
