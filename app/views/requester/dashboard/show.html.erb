@@ -16,7 +16,7 @@
         <p>Description: <%= project.description %></p>
         <p>Project ID: <%= project.id %></p>
           <% if project.status == "assigned" %>
-          Professional: <%#= project.proposals.where(status: "assigned").first.user_id %>
+          Professional: <%= project.proposals.where(status: "assigned").first.user_id %>
           <% end %>
       </div>
     </a>
