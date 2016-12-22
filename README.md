@@ -5,8 +5,6 @@
 This web platform allows users to search for, post, and take on projects posted
 by other users.
 
-[![Code Climate](https://codeclimate.com/github/AliSchlereth/rales_engine/badges/gpa.svg)](https://codeclimate.com/github/AliSchlereth/rales_engine)
-
 # How to install
 
 ### First:
