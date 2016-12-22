@@ -42,7 +42,7 @@ $( document ).on('turbolinks:load', function() {
           submitButton.prop('disabled', true);
 
           progressBar.
-            css('background', 'green').
+            css('background', 'mediumseagreen').
             css('display', 'block').
             css('width', '0%').
             text("Loading...");
