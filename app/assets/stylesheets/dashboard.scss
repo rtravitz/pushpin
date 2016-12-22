@@ -1,15 +1,5 @@
-.requester-dashboard {
-  h1 {
-    text-align: center;
-  }
-  .panel {
-    background-color: darkgrey;
-    padding: 2%;
-    margin: 1%;
-  }
-}
-
 .dashboard-container {
+  box-shadow: 0px 0px 5px 3px #b3b3b3;
   h1 {
     color: #fff;
     text-align: center;
@@ -36,6 +26,9 @@
     padding-right: 20px; 
     padding-left: 20px; 
     background: $darker-pushpin-orange;
+  }
+  .prof-btn {
+    margin-bottom: 10px; 
   }
 }
 
