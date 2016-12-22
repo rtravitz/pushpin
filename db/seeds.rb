@@ -11,7 +11,6 @@ class Seed
     seed.create_skills
     seed.create_user_skills
     seed.create_project_skills
-    seed.create_messages
     seed.create_ratings
   end
 
@@ -117,20 +116,6 @@ class Seed
                                           )
 
       puts "Project Skill #{i}: project skill created for skill #{project_skill.skill_id} and #{project_skill.project_id} project"
-    end
-  end
-
-  def create_messages
-    10.times do |i|
-      user = User.find(Random.new.rand(1..10))
-      proposal = Proposal.find(Random.new.rand(1..10))
-      message = Message.create!(
-                                body: Faker::Lorem.paragraph,
-                                image_url: Faker::Avatar.image,
-                                user_id: user.id,
-                                proposal_id: proposal.id,
-                                )
-      puts "Message #{i}: created for #{message.proposal_id} proposal and #{message.user_id} user"
     end
   end
 

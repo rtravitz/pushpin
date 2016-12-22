@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :find_user
-  
+
   def update
     if @user.active?
       @user.update_attributes(status: "inactive")
@@ -12,6 +12,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    flash[:success] = "Successfully deleted a user."
     redirect_to admin_dashboard_path
   end
 
