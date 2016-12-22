@@ -44,6 +44,9 @@ If not, you might be missing a gem or maybe you should go back and run
 
 `rake db:test:prepare`.
 
+## API Documentation  
+API supports get and post requests for messages  
+Find full documentation [here](https://app.swaggerhub.com/api/alisher/PushPin/1.0.0) 
 
 ## Technical details:
 
