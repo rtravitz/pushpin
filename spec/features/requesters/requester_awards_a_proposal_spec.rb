@@ -15,13 +15,18 @@ describe "As a logged in requester" do
     proposal_2 = create(:proposal, project: project, user: professional_2)
 
     login(requester)
-
     visit requester_dashboard_path(requester)
-
     within "#proposals" do
       click_on proposal_1.id
     end
 
+    expect(current_path).to eq(requester_proposal_path(proposal_1))
 
+    click_on "Award This Proposal"
+
+    expect(current_path).to eq(requester_dashboard_path)
+    within "#current-projects" do
+      expect(page).to have_content(proposal_1.user_id)
+    end
   end
 end
