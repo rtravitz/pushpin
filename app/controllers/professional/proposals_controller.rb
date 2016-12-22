@@ -1,5 +1,5 @@
 class Professional::ProposalsController < ApplicationController
-  before_action :set_s3_direct_post, only: [:show]
+  before_action :set_s3_direct_post, only: [:show, :create, :new]
 
   def show
     @proposal = Proposal.find(params[:id])
@@ -14,6 +14,7 @@ class Professional::ProposalsController < ApplicationController
   def create
     @proposal = Proposal.new(user: current_user, project_id: params[:project_id])
     if @proposal.save
+      @proposal.messages.create(image_url: params[:image_url], user_id: current_user.id)
       flash[:success] = "You have submitted a proposal for #{@proposal.project.name}"
       redirect_to professional_dashboard_path(current_user)
     else
@@ -36,7 +37,7 @@ class Professional::ProposalsController < ApplicationController
     def proposal_params
       params.require(:proposal).permit(:user_id, :project_id)
     end
-    
+
     def set_s3_direct_post
       @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read')
     end
