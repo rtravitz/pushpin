@@ -44,6 +44,9 @@ If not, you might be missing a gem or maybe you should go back and run
 
 `rake db:test:prepare`.
 
+## API Documentation  
+API supports get and post requests for messages  
+Find full documentation [here]() 
 
 ## Technical details:
 
