@@ -1,18 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="form col-md-3 col-md-offset-4">
+    <div class="form col-md-6 col-md-offset-3">
       <h1>Your account information:</h1>
       <p>Name:&emsp;&emsp;&emsp;&ensp;&nbsp;<%= @user.name %></p>
       <p>Username:&emsp;&emsp;<%= @user.username %></p>
       <p>Email:&emsp;&emsp;&emsp;&emsp;<%= @user.email %></p>
       <p>Location:&emsp;&emsp;&ensp;&nbsp;<%= @user.location %></p>
       <p>Phone:&emsp;&emsp;&emsp;&ensp;&nbsp;<%= @user.phone %></p>
+      <p>API Key:&emsp;&emsp;&emsp;&nbsp;<%= @user.api_key %></p>
       <p>
-        Role(s):
+        Role(s):&emsp;&emsp;&emsp;&nbsp;
         <% @user.roles.each do |role| %>
-          <ul>
-            <li><%= role.title %></li>
-          </ul>
+            <%= role.title %>
         <% end %>
       </p>
       <h3><%= link_to "Update account info", edit_user_path(@user) %></h3>

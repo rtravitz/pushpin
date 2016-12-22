@@ -27,10 +27,12 @@ class PermissionsService
 
     def admin_permissions
       return true if controller == "admin/dashboard" && action == "show"
-      return true if controller == "admin/users" && action.in?(%w(update destroy))
+      return true if controller == "admin/users" && action.in?(%w(update destroy show))
       return true if controller == "users" && action.in?(%w(edit update show))
       return true if controller == "confirmations" && action.in?(%w(new update))
       return true if controller == "sessions" && action == "destroy"
+      return true if controller == "admin/proposals"
+      return true if controller == "admin/projects"
     end
 
     def professional_permissions
