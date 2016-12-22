@@ -1,7 +1,7 @@
 <h5>Proposals:</h5>
   <div class="row">
     <% @professional.proposals.each do |proposal| %>
-      <div class="proposal-<%= proposal.id %> panel col-md-6">
+      <div class="proposal-<%= proposal.id %> dashboard-card col-md-6">
         <p>Proposal ID: <%=link_to proposal.id, professional_proposal_path(proposal) %>  <%= link_to "Delete", professional_proposal_path(proposal), method: :delete, class:"btn btn-danger btn-xs sit-right" %> </p>
         <p>Project: <%= proposal.project.name %> <% proposal.project.id %></p>
         <p>Date Submitted: <%= proposal.created_at %> </p>
