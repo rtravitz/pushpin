@@ -19,15 +19,15 @@ class User < ApplicationRecord
   has_secure_password
   validates_confirmation_of :password
 
-  has_many :user_roles
+  has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles, dependent: :destroy
-  has_many :ratings
-  has_many :givers, through: :ratings
-  has_many :proposals
-  has_many :projects
-  has_many :messages
-  has_many :messages, through: :proposals
-  has_many :user_skills
+  has_many :ratings, dependent: :destroy
+  has_many :givers, through: :ratings, dependent: :destroy
+  has_many :proposals, dependent: :destroy
+  has_many :projects, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :messages, through: :proposals, dependent: :destroy
+  has_many :user_skills, dependent: :destroy
   has_many :skills, through: :user_skills, dependent: :destroy
 
   def self.professionals
