@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
+  before_action :only_current_user, except: [:new, :create]
 
   def show
-    @user = only_current_user
   end
 
   def new
@@ -24,11 +24,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = only_current_user
   end
 
   def update
-    @user = only_current_user
     if @user.update_attributes(user_params)
       @user.add_extra_role if params[:user][:role_to_add]
       flash[:success] = "Your account information has been updated!"
@@ -36,8 +34,6 @@ class UsersController < ApplicationController
     else
       render :edit
     end
-    # ConfirmationSender.send_confirmation_to(@user)
-    # redirect_to user_confirmation_path
   end
 
   private
@@ -47,7 +43,7 @@ class UsersController < ApplicationController
 
     def only_current_user
       if params[:id].to_i == current_user.id
-        current_user
+        @user = current_user
       else
         render file: "/public/404"
       end
