@@ -19,7 +19,7 @@ describe "guest sees professionals by skill" do
       click_on "Find a Professional"
 
       expect(current_path).to eq(skills_search_path)
-      expect(page).to have_link("#{user1.name}", href: professional_path(user1))
+      expect(page).to have_link("#{user1.name}", href: professional_path(user1, skill: skill1))
       expect(page).to have_content("#{user1.location}")
       expect(page).to have_content("#{user1.email}")
       expect(page).to have_content("#{user1.phone}")

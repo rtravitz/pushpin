@@ -74,6 +74,20 @@ class User < ApplicationRecord
     projects.where.not(status: "complete")
   end
 
+  def professional_current_projects
+    Project.where(id: self.proposals
+      .joins(:project)
+      .where("proposals.status = ? AND projects.status = ?", "assigned", "assigned")
+      .pluck("projects.id"))
+  end
+
+  def professional_completed_projects
+    Project.where(id: self.proposals
+      .joins(:project)
+      .where("proposals.status = ? AND projects.status = ?", "assigned", "complete")
+      .pluck("projects.id"))
+  end
+
   def not_rated?(other_user)
     Rating.where(giver_id: self.id, user_id: other_user.id).length == 0
   end

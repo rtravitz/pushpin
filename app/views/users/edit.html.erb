@@ -25,13 +25,13 @@
 
         <h4>Add a role to your account:</h4>
         <%= f.collection_select(:role_to_add, @user.role_to_add, :id, :title, include_blank: true) %>
-
-        <h4>To change password:</h4>
-
-        <%= f.submit "Send me a verification code!", class: "btn btn-primary" %>
-
         <%= f.submit "Update", class: "btn btn-primary" %>
       <% end %>
+      <hr>
+
+      <h4>Need to change your password?</h4>
+      <h4><%= link_to "Get a verification code here.", user_confirmation_path(@user) %></h4>
+        <hr>
     </div>
   </div>
 </div>
