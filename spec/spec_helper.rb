@@ -1,5 +1,6 @@
 require 'capybara/rspec'
 require 'database_cleaner'
+require 'simplecov'
 
 DatabaseCleaner[:active_record].strategy = :truncation
 RSpec.configure do |config|
@@ -26,4 +27,9 @@ end
 
 def login(user)
   allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+end
+
+SimpleCov.start do
+  add_filter "/spec/"
+  add_filter "/config/"
 end

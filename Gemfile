@@ -18,6 +18,7 @@ gem 'twilio-ruby'
 gem 'faraday'
 gem 'octicons_helper'
 gem 'aws-sdk', '~> 2'
+gem 'simplecov', :require => false, :group => :test
 
 group :development, :test do
   gem 'byebug', platform: :mri
