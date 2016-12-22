@@ -15,14 +15,14 @@
           <% @users.each do |user| %>
             <tr>
               <td><%= user.id %></td>
-              <td><%= user.name %></td>
+              <td><%= link_to user.name, admin_user_path(user) %></td>
               <td><%= user.status %></td>
               <% if user.active? %>
-                <td id=update_<%= user.id %>><%= button_to "Deactivate", admin_update_path(user), method: :put, class: "btn btn-warning" %></td>
+                <td id=update_<%= user.id %>><%= button_to "Deactivate", admin_user_path(user), method: :patch, class: "btn btn-warning" %></td>
               <% else %>
-                <td id=update_<%= user.id %>><%= button_to "Activate", admin_update_path(user), method: :put, class: "btn btn-success"  %></td>
+                <td id=update_<%= user.id %>><%= button_to "Activate", admin_user_path(user), method: :patch, class: "btn btn-success"  %></td>
               <% end %>
-              <td id=delete_<%= user.id %>><%= button_to "Delete", admin_delete_path(user), method: :delete, class: "btn btn-danger" %></td>
+              <td id=delete_<%= user.id %>><%= button_to "Delete", admin_user_path(user), method: :delete, class: "btn btn-danger" %></td>
             </tr>
           <% end %>
         </table>

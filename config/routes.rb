@@ -3,11 +3,9 @@ Rails.application.routes.draw do
   resources :skills, only: [:index, :show]
 
   get '/skills-search', to: 'skills#show'
-
-  # get '/professionals', to: 'professionals#index', as: 'professionals'
-  # get '/professionals/:id', to: 'professionals#show'
   resources :professionals, only: [:index, :show]
   resources :requesters, only: [:show]
+
   resources :proposals, only: [:show] do
     resources :messages
   end
@@ -21,8 +19,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/dashboard', to: 'dashboard#show', as: :dashboard
-    put '/user/:id', to: 'users#update', as: :update
-    delete '/user/:id', to: 'users#destroy', as: :delete
+    resources :users, only: [:show, :update, :destroy] do
+      resources :proposals, only: [:destroy]
+      resources :projects, only: [:destroy]
+    end
   end
 
   resources :users, only: [:edit, :update, :create, :show]
