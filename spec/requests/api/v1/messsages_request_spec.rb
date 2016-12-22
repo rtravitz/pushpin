@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "messages endpoints" do
   context "GET /messages" do
-    it "returns a list of messages" do
+    it "returns a list of messages for the api user" do
       user_r, user_p = create_list(:user, 2)
       requester = create(:role, title: "requester")
       professional = create(:role, title: "professional")
@@ -28,10 +28,30 @@ describe "messages endpoints" do
       expect(result[1]['body']).to eq(message1.body)
       expect(result[0]['proposal_id']).to eq(message1.proposal_id)
     end
+
+    it "does not return messages for invalid api key" do
+      user_r, user_p = create_list(:user, 2)
+      requester = create(:role, title: "requester")
+      professional = create(:role, title: "professional")
+      user_r.roles << requester
+      user_p.roles << professional
+      project = create(:project, user: user_r)
+      proposal = create(:proposal, user: user_p, project: project)
+      message1 = proposal.messages.create(body: "test body", user: user_r)
+      message2 = proposal.messages.create(body: "test body", user: user_p)
+      invalid_api_key = "5"
+
+      get "/api/v1/messages?api_key=#{invalid_api_key}&proposal=#{proposal.id}"
+
+      parsed = JSON.parse(response.body)
+
+      expect(parsed["message"]).to eq("You are not authorized!")
+      expect(response).to have_http_status(403)
+    end
   end
 
   context "POST /messages" do
-    it "creates a message for the api_user" do
+    it "creates a message for the api user" do
       user_r, user_p = create_list(:user, 2)
       requester = create(:role, title: "requester")
       professional = create(:role, title: "professional")
@@ -57,7 +77,7 @@ describe "messages endpoints" do
       expect(result['proposal_id']).to eq(proposal.id)
     end
 
-    it "does not create a message for invalid api_key" do
+    it "does not create a message for invalid api key" do
       user_r, user_p = create_list(:user, 2)
       requester = create(:role, title: "requester")
       professional = create(:role, title: "professional")
