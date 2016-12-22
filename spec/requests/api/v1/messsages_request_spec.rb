@@ -62,9 +62,9 @@ describe "messages endpoints" do
       message_body = "Test message"
       file = "http://picture.jpg"
       headers = { "CONTENT-TYPE" => "application/json" }
-      body = { message: { body: message_body, image_url: file } }.to_json
+      params = { message: { body: message_body, image_url: file } }.to_json
 
-      post "/api/v1/messages?api_key=#{user_r.api_key}&proposal=#{proposal.id}", body, headers
+      post "/api/v1/messages?api_key=#{user_r.api_key}&proposal=#{proposal.id}", params, headers
 
       result = JSON.parse(response.body)
 
@@ -83,10 +83,10 @@ describe "messages endpoints" do
       message_body = "Test message"
       file = "http://picture.jpg"
       headers = { "CONTENT-TYPE" => "application/json" }
-      body = { message: { body: message_body, image_url: file } }.to_json
+      params = { message: { body: message_body, image_url: file } }.to_json
       invalid_api_key = "5"
 
-      post "/api/v1/messages?api_key=#{invalid_api_key}&proposal=#{proposal.id}", body, headers
+      post "/api/v1/messages?api_key=#{invalid_api_key}&proposal=#{proposal.id}", params, headers
 
       parsed = JSON.parse(response.body)
 

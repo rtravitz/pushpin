@@ -2,9 +2,19 @@
   <div class="form">
     <div class="col-md-4">
       <p>Create a proposal for <%= @project.name %></p>
-        <%= form_for [:professional, @proposal], :url => {action: "create", project_id: @project.id} do |f| %>
+        <%= form_for [:professional, @proposal], url: {action: "create", project_id: @project.id}, html: { class: "directUpload", data: {'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host} } do |f| %>
+          <%= f.label "Add an Estimate (PDF)" %>
+          <%= f.file_field :image_url %>
           <%= f.submit "Submit a Proposal"  %>
           <% end  %>
     </div>
   </div>
 </div>
+
+<%#= form_for([@proposal, @message], html: { class: "directUpload", data: {'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host} }) do |f|%>
+  <%#= f.label "Add a message" %>
+  <%#= f.text_area :body %>
+  <%#= f.label "Add a file" %>
+  <%#= f.file_field :image_url %>
+  <%#= f.submit("Submit") %>
+<%# end %>
