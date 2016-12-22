@@ -1,8 +1,14 @@
 <div class="container">
-  <h3><%= @requester.name %>'s Profile</h3>
-  <h4>Location: <%= @requester.location %></h4>
-
-  <%=image_tag( @requester.image)  %>
-
-  <h4>Rating: <%= @requester.average_rating if @requester.average_rating %></h4>
+  <div class="col-md-6 col-md-offset-3 proposal-spacer">
+    <div class="profile-card text-center">
+      <div class="image-and-rating">
+        <%= image_tag(@requester.image, class: "profile-img") %>
+        <span class="rating"><%= octicon "star" %><%= @requester.average_rating %></span>
+      </div>
+      <div class="profile-header-block">
+        <h3 class="profile-name"><%= @requester.name %></h3>
+        <p><%= @requester.location %></p>
+      </div>
+    </div>
+  </div>
 </div>
