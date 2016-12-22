@@ -1,0 +1,17 @@
+<div class="container">
+  <h3><%= @user.name %>'s Content:</h3>
+  <h4> Projects:</h4>
+  <% @user.projects.each do |project| %>
+  <div class="profile-card">
+    <%= project.name %>
+    <%= link_to "Delete", admin_user_project_path(@user, project), method: :delete, class: "btn btn-danger btn-sm pull-right" %>
+  </div>
+  <% end %>
+  <h4>Proposals:</h4>
+  <% @user.proposals.each do |proposal| %>
+  <div class="profile-card">
+    Proposal Id: <%= proposal.id %>
+    <%= link_to "Delete", admin_user_proposal_path(@user, proposal), method: :delete, class: "btn btn-danger btn-sm pull-right" %>
+  </div>
+      <% end %>
+    </div>

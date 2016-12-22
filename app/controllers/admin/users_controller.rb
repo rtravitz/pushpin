@@ -1,6 +1,9 @@
 class Admin::UsersController < ApplicationController
   before_action :find_user
 
+  def show
+  end
+
   def update
     if @user.active?
       @user.update_attributes(status: "inactive")
