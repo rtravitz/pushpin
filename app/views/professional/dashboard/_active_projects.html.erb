@@ -1,9 +1,9 @@
 <h5>Active Projects: </h5>
-  <div class="row">
-    <% @professional.current_projects.each do |project| %>
-      <div class="panel col-md-6">
-        <p>Name: <%= link_to project.name, professional_project_path(project: project.slug) %></p>
-        <p>Status: <%= project.status %></p>
-      </div>
-    <% end %>
-  </div>
+<div class="row">
+  <% @professional.professional_current_projects.each do |project| %>
+    <div class="dashboard-card col-md-6">
+      <p>Name: <%= link_to project.name, professional_project_path(project: project.slug) %></p>
+      <p>Status: <%= project.status %></p>
+    </div>
+  <% end %>
+</div>
