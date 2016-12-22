@@ -1,13 +1,30 @@
-<div class="container">
+<div class="text-center">
   <h3>Find a Professional with the skills you need!</h3>
   <h4>Skill: <%= @skill.name %> </h4>
-
-  <% @skill.users.each do |professional| %>
-    <div class="prof-card col-md-3 col-md-offset-1 well">
-      <p><%= link_to professional.name, professional_path(professional, skill: @skill) %></p>
-      <p><%= professional.location %></p>
-      <p><%= professional.email %></p>
-      <p><%= professional.phone %></p>
-    </div>
+</div>
+<div class="container profile-index">
+  <% @skill.users.each_with_index do |professional, index| %>
+    <a href=<%= professional_path(professional) %>>
+      <div class="col-md-3 spacer">
+        <div class="profile-card text-center">
+          <div class="image-and-rating">
+            <%= image_tag(professional.image, class: "profile-img") %>
+            <span class="rating"><%= octicon "star" %><%= professional.average_rating %></span>
+          </div>
+          <div class="profile-header-block">
+            <h3 class="profile-name"><%= professional.name %></h3>
+            <p><%= professional.location %></p>
+            <div class="profile-skills">
+              <% professional.skills.each do |skill| %>
+              <%=link_to skill.name, skills_search_path(skill: {skill_id: skill.id}), class: "skill-tag" %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    <% if (index + 1) % 4  == 0 %>
+      <div class="clearfix"></div> 
+    <% end %>
   <% end %>
 </div>
