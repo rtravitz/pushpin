@@ -21,8 +21,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/dashboard', to: 'dashboard#show', as: :dashboard
-    put '/update_user/:id', to: 'update_user#update_status', as: :update_user
-    delete '/delete_user/:id', to: 'update_user#destroy_user', as: :delete_user
+    put '/user/:id', to: 'users#update', as: :update
+    delete '/user/:id', to: 'users#destroy', as: :delete
   end
 
   resources :users, only: [:edit, :update, :create, :show]

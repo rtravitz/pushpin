@@ -8,6 +8,7 @@ describe "professional visits a proposal" do
     @proposal = create(:proposal, user: user)
     login(@proposal.user)
   end
+  
   context "sees a proposal show professional dashboard" do
     it "sees the proposal" do
 
@@ -23,5 +24,4 @@ describe "professional visits a proposal" do
       expect(page).to have_content("Message Center")
     end
   end
-
 end
