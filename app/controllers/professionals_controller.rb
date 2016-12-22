@@ -5,6 +5,6 @@ class ProfessionalsController < ApplicationController
 
   def show
     @professional = User.find(params[:id])
-    @skill = Skill.find(params[:skill])
+    @skill = Skill.find(params[:skill]) if params[:skill]
   end
 end
